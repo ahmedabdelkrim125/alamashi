@@ -26,7 +26,11 @@ class Assets {
   /// assets/images/WaveStart.svg
   static const String imagesWaveStart = "assets/images/WaveStart.svg";
 
-  static const String onlineShoppingVector = "assets/images/onlineShoppingVector.svg";
-  static const String fastDeliveryVector = "assets/images/fastDeliveryVector.svg";
-  static const String securePaymentVector = "assets/images/securePaymentVector.svg";
+  static const String onlineShoppingVector =
+      "assets/images/onlineShoppingVector.svg";
+  static const String fastDeliveryVector =
+      "assets/images/fastDeliveryVector.svg";
+  static const String securePaymentVector =
+      "assets/images/securePaymentVector.svg";
+  static const String backArrowCircle = "assets/images/back_arrow_circle.svg";
 }
