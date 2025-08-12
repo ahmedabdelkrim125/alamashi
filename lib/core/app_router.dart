@@ -1,4 +1,3 @@
-import 'package:egyptian_supermaekat/features/auth/presentation/view/login_page.dart';
 import 'package:egyptian_supermaekat/features/auth/presentation/view/sign_up_page.dart';
 import 'package:egyptian_supermaekat/features/on_boarding/presentation/views/on_boarding_screen.dart';
 import 'package:egyptian_supermaekat/features/splash/presentation/views/splash_screen.dart';

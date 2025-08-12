@@ -25,7 +25,7 @@ class _SplashScreenBodyState extends State<SplashScreenBody>
 
   void _navigateToonBoarding() {
     Future.delayed(
-      const Duration(seconds: 4),
+      const Duration(seconds: 3),
       () {
         context.push(AppRouter.onboarding);
       },
