@@ -7,6 +7,7 @@ import 'package:egyptian_supermaekat/features/auth/presentation/view/Widgets/cut
 import 'package:egyptian_supermaekat/features/auth/presentation/view/Widgets/cutom_forget_text.dart';
 import 'package:egyptian_supermaekat/features/auth/presentation/view/Widgets/social_login_button.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import '../../../../../core/style.dart';
 
 class LoginPageBody extends StatelessWidget {
@@ -21,11 +22,12 @@ class LoginPageBody extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            FittedBox(
-              child: Image.asset(
-                Assets.logo,
-                height: 80,
-                width: 80,
+            Padding(
+              padding: const EdgeInsets.all(80),
+              child: FittedBox(
+                child: SvgPicture.asset(
+                  Assets.logo,
+                ),
               ),
             ),
             CustomFormTextField(
@@ -39,7 +41,6 @@ class LoginPageBody extends StatelessWidget {
             CutomBuutton(
               onTap: () {
                 if (_formKey.currentState!.validate()) {
-                 
                   ScaffoldMessenger.of(context).showSnackBar(
                     SnackBar(
                       backgroundColor: ThemeColor.primaryColor,

@@ -7,6 +7,7 @@ import 'package:egyptian_supermaekat/features/auth/presentation/view/Widgets/cut
 import 'package:egyptian_supermaekat/features/auth/presentation/view/Widgets/cutom_forget_text.dart';
 import 'package:egyptian_supermaekat/features/auth/presentation/view/Widgets/social_login_button.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 
 class SignUpBodyPage extends StatelessWidget {
   SignUpBodyPage({super.key});
@@ -21,11 +22,13 @@ class SignUpBodyPage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            FittedBox(
-              child: Image.asset(
+            Padding(
+              padding: const EdgeInsets.all(80),
+              child: FittedBox(
+                child: SvgPicture.asset(
                 Assets.logo,
-                height: 80,
-                width: 80,
+                width: 30,
+              ),
               ),
             ),
             CustomFormTextField(
