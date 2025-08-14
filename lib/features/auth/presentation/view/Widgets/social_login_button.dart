@@ -64,7 +64,7 @@ class SocialLoginButton extends StatelessWidget {
                 style: Style.textStyle16.copyWith(
                   decoration: TextDecoration.underline,
                   fontFamily: cairoBold,
-                  color: ThemeColor.primaryColor,
+                  color: ThemeColor.darkGreenColor,
                 ),
               ),
             ),
@@ -72,7 +72,7 @@ class SocialLoginButton extends StatelessWidget {
               noAccountText,
               style: Style.textStyle16.copyWith(
                 fontFamily: cairoRegular,
-                color: ThemeColor.primaryColor,
+                color: ThemeColor.darkGreenColor,
               ),
             ),
           ],

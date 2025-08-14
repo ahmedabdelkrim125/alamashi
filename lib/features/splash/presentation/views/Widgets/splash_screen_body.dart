@@ -27,7 +27,7 @@ class _SplashScreenBodyState extends State<SplashScreenBody>
     Future.delayed(
       const Duration(seconds: 3),
       () {
-        context.push(AppRouter.onboarding);
+        context.go(AppRouter.onboarding);
       },
     );
   }
@@ -58,7 +58,7 @@ class _SplashScreenBodyState extends State<SplashScreenBody>
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        Spacer(flex: 3),
+        Spacer(flex: 2),
         FadeTransition(
           opacity: _fadeAnimation,
           child: ScaleTransition(
@@ -68,17 +68,14 @@ class _SplashScreenBodyState extends State<SplashScreenBody>
               children: [
                 SvgPicture.asset(
                   Assets.imagesLeafyChat,
-                  width: 250.sp,
+                  width: 300.sp,
                 ),
               ],
             ),
           ),
         ),
-        Spacer(flex: 2),
-        SvgPicture.asset(
-          Assets.imagesWaveStart,
-          fit: BoxFit.fill,
-        ),
+        Spacer(flex: 3),
+      
       ],
     );
   }

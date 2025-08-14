@@ -6,10 +6,11 @@ class CustomFormTextField extends StatelessWidget {
   CustomFormTextField({
     super.key,
     required this.texthit,
-    required this.textLable,
+    required this.textLable, this.prefix,
   });
   final String texthit;
   final String textLable;
+  final Widget? prefix;
   final _controller = TextEditingController();
   @override
   Widget build(BuildContext context) {
@@ -21,6 +22,7 @@ class CustomFormTextField extends StatelessWidget {
           textLable: texthit,
         ),
         CustomTextField(
+          prefix: prefix,
           controller: _controller,
           validator: (value) {
             if (value == null || value.isEmpty) {
@@ -34,3 +36,5 @@ class CustomFormTextField extends StatelessWidget {
     );
   }
 }
+
+

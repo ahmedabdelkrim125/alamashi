@@ -2,6 +2,7 @@ import 'package:dots_indicator/dots_indicator.dart';
 import 'package:egyptian_supermaekat/constant.dart';
 import 'package:egyptian_supermaekat/core/app_router.dart';
 import 'package:egyptian_supermaekat/core/style.dart';
+import 'package:egyptian_supermaekat/core/theme_color.dart';
 import 'package:egyptian_supermaekat/core/utils/app_images.dart';
 import 'package:egyptian_supermaekat/features/on_boarding/presentation/views/Widgets/page_view_item.dart';
 import 'package:flutter/material.dart';
@@ -46,13 +47,13 @@ class _OnBoardingBodyState extends State<OnBoardingBody> {
               alignment: Alignment.centerLeft,
               child: GestureDetector(
                 onTap: () {
-                  context.push(AppRouter.login);
+                  context.go(AppRouter.login);
                 },
                 child: Text(
                   'تخطي',
                   style: Style.textStyle18.copyWith(
                     fontFamily: cairoMedium,
-                    color: Color(0xff4A4A4A),
+                    color: ThemeColor.darkGrayTextColor,
                   ),
                 ),
               ),
@@ -81,8 +82,8 @@ class _OnBoardingBodyState extends State<OnBoardingBody> {
             dotsCount: 3,
             position: _currentPageIndex,
             decorator: const DotsDecorator(
-              color: Color(0xffD9D9D9),
-              activeColor: Color(0xff01AC66),
+              color: ThemeColor.lightGrayColor,
+              activeColor: ThemeColor.primaryGreenColor,
               size: Size.square(10),
               activeSize: Size(24.0, 9.0),
               activeShape: RoundedRectangleBorder(
@@ -116,14 +117,13 @@ class _OnBoardingBodyState extends State<OnBoardingBody> {
                 Expanded(
                   child: GestureDetector(
                     onTap: () {
-                      print('شغال ');
                       if (_currentPageIndex < 2) {
                         _pageController.nextPage(
                           duration: Duration(milliseconds: 300),
                           curve: Curves.easeIn,
                         );
                       } else if (_currentPageIndex == 2) {
-                        context.push(AppRouter.login);
+                        context.go(AppRouter.login);
                       }
                     },
                     child: Container(
@@ -133,8 +133,8 @@ class _OnBoardingBodyState extends State<OnBoardingBody> {
                         borderRadius: BorderRadius.circular(8),
                         gradient: LinearGradient(
                           colors: [
-                            Color(0xFF00462A),
-                            Color(0xFF01AC66),
+                            ThemeColor.darkGreenColor,
+                            ThemeColor.primaryGreenColor,
                           ],
                           begin: Alignment.centerRight,
                           end: Alignment.centerLeft,
@@ -147,7 +147,7 @@ class _OnBoardingBodyState extends State<OnBoardingBody> {
                           style: Style.textStyle14.copyWith(
                             fontFamily: cairoSemiBold,
                             fontWeight: FontWeight.w600,
-                            color: Colors.white,
+                            color: ThemeColor.bgColor,
                           ),
                         ),
                       ),

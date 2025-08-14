@@ -1,11 +1,30 @@
 import 'package:flutter/widgets.dart';
 
 class ThemeColor {
-  static Color primaryColor = Color(0xff027326);
-  static Color secondaryButton = Color(0xff1976D2);
-  static Color ctaColor = Color(0xffFFD453);
-  static Color secondaryColor = Color(0xffD9EADF);
-  static Color textColor = Color(0xff000000);
-  static Color bgColor = Color(0xffFFFFFF);
-  static Color textColor_1 = Color(0xff808080);
+  // ألوان أساسية موجودة
+  static const Color primaryColor = Color(0xff027326);
+  static const Color secondaryButton = Color(0xff1976D2);
+  static const Color ctaColor = Color(0xffFFD453);
+  static const Color secondaryColor = Color(0xffD9EADF);
+  static const Color textColor = Color(0xff000000);
+  static const Color bgColor = Color(0xffFFFFFF);
+  static const Color textColor_1 = Color(0xff808080);
+
+  // ألوان OnBoarding
+  static const Color primaryDarkColor = Color(0xFF100B20);
+  static const Color secondaryGrayColor = Color(0xFF707070);
+  static const Color accentYellowColor = Color(0xFFFFDD4F);
+  static const Color darkGrayTextColor = Color(0xFF4A4A4A);
+  static const Color lightGrayColor = Color(0xFFD9D9D9);
+  static const Color primaryGreenColor = Color(0xFF01AC66);
+  static const Color darkGreenColor = Color(0xFF00462A);
+  static const Color neutralGrayColor = Color(0xFF9A9BA1); 
+  static const Color charcoalColor = Color(0xFF242424);
+  static const Color lightBorderColor = Color(0xFFE4E4E4);
+
+  
+  static const Color orangeAccentColor = Color(0xFFF78628);
+
+  // ألوان الـ Auth
+  static const Color errorColor = Color(0xFFFF0000); // لون رسائل الخطأ
 }

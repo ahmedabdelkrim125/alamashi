@@ -33,4 +33,5 @@ class Assets {
   static const String securePaymentVector =
       "assets/images/securePaymentVector.svg";
   static const String backArrowCircle = "assets/images/back_arrow_circle.svg";
+  static const String eyeSlashIcon = "assets/images/eyeSlashIcon.svg";
 }

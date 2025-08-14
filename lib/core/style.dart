@@ -19,4 +19,7 @@ abstract class Style {
    static TextStyle textStyle14 = TextStyle(
     fontSize: 14.sp,
   );
+  static TextStyle textStyle12 = TextStyle(
+    fontSize: 12.sp,
+  );
 }

@@ -2,9 +2,10 @@ import 'package:egyptian_supermaekat/constant.dart';
 import 'package:egyptian_supermaekat/core/style.dart';
 import 'package:egyptian_supermaekat/core/theme_color.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class CutomBuutton extends StatelessWidget {
-  const CutomBuutton({super.key, required this.textButton, this.onTap});
+class CutomButton extends StatelessWidget {
+  const CutomButton({super.key, required this.textButton, this.onTap});
   final String textButton;
   final void Function()? onTap;
   @override
@@ -14,20 +15,28 @@ class CutomBuutton extends StatelessWidget {
       child: GestureDetector(
         onTap: onTap,
         child: Container(
-          height: 50,
-          width: 50,
+          width: double.infinity,
+          height: 40.sp,
           decoration: BoxDecoration(
-            color: ThemeColor.primaryColor,
-            borderRadius: BorderRadius.circular(20),
+            borderRadius: BorderRadius.circular(8),
+            gradient: LinearGradient(
+              colors: [
+                ThemeColor.darkGreenColor,
+                ThemeColor.primaryGreenColor,
+              ],
+              begin: Alignment.centerRight,
+              end: Alignment.centerLeft,
+            ),
           ),
           child: Center(
             child: Text(
               textButton,
-              style: Style.textStyle18.copyWith(
-                fontFamily: cairoSemiBold,
-                color: Colors.white,
-              ),
               textAlign: TextAlign.center,
+              style: Style.textStyle14.copyWith(
+                fontFamily: cairoSemiBold,
+                fontWeight: FontWeight.w600,
+                color: ThemeColor.bgColor,
+              ),
             ),
           ),
         ),

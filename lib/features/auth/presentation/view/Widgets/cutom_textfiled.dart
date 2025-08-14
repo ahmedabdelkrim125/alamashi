@@ -5,7 +5,13 @@ import 'package:egyptian_supermaekat/core/theme_color.dart';
 import 'package:flutter/material.dart';
 
 class CustomTextField extends StatelessWidget {
-  const CustomTextField({super.key,required this.texthit,this.validator,required this.controller});
+  const CustomTextField(
+      {super.key,
+      required this.texthit,
+      this.validator,
+      required this.controller,
+      this.prefix});
+  final Widget? prefix;
   final String texthit;
   final String? Function(String?)? validator;
   final TextEditingController controller;
@@ -22,29 +28,30 @@ class CustomTextField extends StatelessWidget {
             child: Text(
               texthit,
               style: Style.textStyle16.copyWith(
-                fontFamily: cairoSemiBold,
-                color: ThemeColor.primaryColor,
+                fontFamily: cairoRegular,
+                color: ThemeColor.neutralGrayColor,
               ),
             ),
           ),
           enabledBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(20),
+            borderRadius: BorderRadius.circular(16),
             borderSide: BorderSide(
-              color: ThemeColor.primaryColor,
+              color: ThemeColor.lightBorderColor,
             ),
           ),
           disabledBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(20),
+            borderRadius: BorderRadius.circular(16),
             borderSide: BorderSide(
-              color: ThemeColor.primaryColor,
+              color: ThemeColor.lightBorderColor,
             ),
           ),
           focusedBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(20),
+            borderRadius: BorderRadius.circular(16),
             borderSide: BorderSide(
-              color: ThemeColor.primaryColor,
+              color: ThemeColor.lightBorderColor,
             ),
           ),
+          prefix: prefix,
         ),
       ),
     );

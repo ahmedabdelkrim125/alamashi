@@ -6,16 +6,17 @@ import 'package:flutter/material.dart';
 
 class LableText extends StatelessWidget {
   const LableText({super.key, required this.textLable});
- final String textLable;
+  final String textLable;
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20),
       child: Text(
         textLable,
-        style: Style.textStyle16.copyWith(
+        style: Style.textStyle14.copyWith(
           fontFamily: cairoBold,
-          color: ThemeColor.primaryColor,
+          color: ThemeColor.charcoalColor,
+          fontWeight: FontWeight.w700,
         ),
         textAlign: TextAlign.end,
       ),

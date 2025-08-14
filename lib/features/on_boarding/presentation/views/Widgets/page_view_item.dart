@@ -19,7 +19,7 @@ class PageViewItem extends StatelessWidget {
       children: [
         SvgPicture.asset(
           image,
-          height: MediaQuery.of(context).size.height * .3,
+          height: MediaQuery.of(context).size.height * .4,
         ),
         const Spacer(flex: 1),
         Text(

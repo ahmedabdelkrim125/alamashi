@@ -23,7 +23,7 @@ class CutomForgetText extends StatelessWidget {
         textline,
         style: Style.textStyle16.copyWith(
           fontFamily: cairoRegular,
-          color: ThemeColor.primaryColor,
+          color: ThemeColor.darkGreenColor,
         ),
       ),
     );
