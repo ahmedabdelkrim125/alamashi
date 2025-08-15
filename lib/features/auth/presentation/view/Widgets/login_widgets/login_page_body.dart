@@ -1,10 +1,10 @@
-import 'package:egyptian_supermaekat/features/auth/presentation/view/Widgets/login/login_button.dart';
-import 'package:egyptian_supermaekat/features/auth/presentation/view/Widgets/login/login_email_field.dart';
-import 'package:egyptian_supermaekat/features/auth/presentation/view/Widgets/login/login_forget_password.dart';
-import 'package:egyptian_supermaekat/features/auth/presentation/view/Widgets/login/login_header.dart';
-import 'package:egyptian_supermaekat/features/auth/presentation/view/Widgets/login/login_or_divider.dart';
-import 'package:egyptian_supermaekat/features/auth/presentation/view/Widgets/login/login_password_field.dart';
-import 'package:egyptian_supermaekat/features/auth/presentation/view/Widgets/login/login_social_section.dart';
+import 'package:egyptian_supermaekat/features/auth/presentation/view/Widgets/login_widgets/login_button.dart';
+import 'package:egyptian_supermaekat/features/auth/presentation/view/Widgets/login_widgets/login_email_field.dart';
+import 'package:egyptian_supermaekat/features/auth/presentation/view/Widgets/login_widgets/login_forget_password.dart';
+import 'package:egyptian_supermaekat/features/auth/presentation/view/Widgets/login_widgets/login_header.dart';
+import 'package:egyptian_supermaekat/features/auth/presentation/view/Widgets/login_widgets/login_or_divider.dart';
+import 'package:egyptian_supermaekat/features/auth/presentation/view/Widgets/login_widgets/login_password_field.dart';
+import 'package:egyptian_supermaekat/features/auth/presentation/view/Widgets/login_widgets/login_social_section.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
