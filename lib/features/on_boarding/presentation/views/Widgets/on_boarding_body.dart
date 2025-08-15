@@ -53,7 +53,7 @@ class _OnBoardingBodyState extends State<OnBoardingBody> {
                   'تخطي',
                   style: Style.textStyle18.copyWith(
                     fontFamily: cairoMedium,
-                    color: ThemeColor.darkGrayTextColor,
+                    color: ThemeColor.bgColor,
                   ),
                 ),
               ),

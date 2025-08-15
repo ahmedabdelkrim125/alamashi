@@ -21,7 +21,7 @@ class CutomForgetText extends StatelessWidget {
       },
       child: Text(
         textline,
-        style: Style.textStyle16.copyWith(
+        style: Style.textStyle14.copyWith(
           fontFamily: cairoRegular,
           color: ThemeColor.darkGreenColor,
         ),

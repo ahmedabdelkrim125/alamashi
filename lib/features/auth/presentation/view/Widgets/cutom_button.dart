@@ -15,8 +15,8 @@ class CutomButton extends StatelessWidget {
       child: GestureDetector(
         onTap: onTap,
         child: Container(
-          width: double.infinity,
-          height: 40.sp,
+          width: 343.w, // تحويل 343px للعرض المناسب للشاشة
+          height: 48.h, // تحويل 48px للارتفاع المناسب للشاشة
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(8),
             gradient: LinearGradient(

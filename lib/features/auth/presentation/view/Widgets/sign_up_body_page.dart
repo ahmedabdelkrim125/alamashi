@@ -6,7 +6,7 @@ import 'package:egyptian_supermaekat/core/utils/app_images.dart';
 import 'package:egyptian_supermaekat/features/auth/presentation/view/Widgets/custom_form_text_field.dart';
 import 'package:egyptian_supermaekat/features/auth/presentation/view/Widgets/cutom_button.dart';
 import 'package:egyptian_supermaekat/features/auth/presentation/view/Widgets/cutom_forget_text.dart';
-import 'package:egyptian_supermaekat/features/auth/presentation/view/Widgets/social_login_button.dart';
+import 'package:egyptian_supermaekat/features/auth/presentation/view/Widgets/social_login_section.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
@@ -111,10 +111,10 @@ class SignUpBodyPage extends StatelessWidget {
                 textline: 'نسيت كلمة المرور؟',
               ),
             ),
-            SocialLoginButton(
+            SocialLoginSection(
               routerPage: AppRouter.login,
-              createAccountText: 'تسجيل',
-              noAccountText: 'لديك حساب ب الفعل؟',
+              createAccountText: 'هل تمتلك حساب بالفعل ؟ ',
+              
             )
           ],
         ),
