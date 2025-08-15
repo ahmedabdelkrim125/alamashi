@@ -1,6 +1,6 @@
 import 'package:egyptian_supermaekat/core/utils/app_images.dart';
 import 'package:egyptian_supermaekat/features/auth/presentation/view/Widgets/create_account_title.dart';
-import 'package:egyptian_supermaekat/features/auth/presentation/view/Widgets/sign_up_body_page.dart';
+import 'package:egyptian_supermaekat/features/auth/presentation/view/Widgets/signup_widgets/sign_up_body_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
