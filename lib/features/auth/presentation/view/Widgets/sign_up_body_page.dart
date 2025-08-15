@@ -6,7 +6,7 @@ import 'package:egyptian_supermaekat/core/utils/app_images.dart';
 import 'package:egyptian_supermaekat/features/auth/presentation/view/Widgets/custom_form_text_field.dart';
 import 'package:egyptian_supermaekat/features/auth/presentation/view/Widgets/cutom_button.dart';
 import 'package:egyptian_supermaekat/features/auth/presentation/view/Widgets/cutom_forget_text.dart';
-import 'package:egyptian_supermaekat/features/auth/presentation/view/Widgets/social_login_section.dart';
+import 'package:egyptian_supermaekat/features/auth/presentation/view/Widgets/login/social_login_section.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';

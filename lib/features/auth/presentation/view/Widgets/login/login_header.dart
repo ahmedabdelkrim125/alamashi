@@ -1,8 +1,9 @@
+import 'package:egyptian_supermaekat/constant.dart';
+import 'package:egyptian_supermaekat/core/style.dart';
+import 'package:egyptian_supermaekat/core/theme_color.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import '../../../../../core/style.dart';
-import '../../../../../core/theme_color.dart';
-import '../../../../../constant.dart';
+
 
 class LoginHeader extends StatelessWidget {
   const LoginHeader({super.key});

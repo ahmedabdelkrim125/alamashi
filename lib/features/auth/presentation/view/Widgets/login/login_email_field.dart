@@ -1,5 +1,5 @@
+import 'package:egyptian_supermaekat/features/auth/presentation/view/Widgets/custom_form_text_field.dart';
 import 'package:flutter/material.dart';
-import '../widgets/custom_form_text_field.dart';
 
 class LoginEmailField extends StatelessWidget {
   const LoginEmailField({super.key});

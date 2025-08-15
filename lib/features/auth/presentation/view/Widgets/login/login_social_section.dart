@@ -1,6 +1,7 @@
+import 'package:egyptian_supermaekat/core/app_router.dart';
+import 'package:egyptian_supermaekat/features/auth/presentation/view/Widgets/login/social_login_section.dart';
 import 'package:flutter/material.dart';
-import '../../../../../core/app_router.dart';
-import '../widgets/social_login_section.dart';
+
 
 class LoginSocialSection extends StatelessWidget {
   const LoginSocialSection({super.key});

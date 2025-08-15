@@ -2,7 +2,7 @@ import 'package:egyptian_supermaekat/constant.dart';
 import 'package:egyptian_supermaekat/core/style.dart';
 import 'package:egyptian_supermaekat/core/theme_color.dart';
 import 'package:egyptian_supermaekat/core/utils/app_images.dart';
-import 'package:egyptian_supermaekat/features/auth/presentation/view/Widgets/social_login_icon.dart';
+import 'package:egyptian_supermaekat/features/auth/presentation/view/Widgets/login/social_login_icon.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';

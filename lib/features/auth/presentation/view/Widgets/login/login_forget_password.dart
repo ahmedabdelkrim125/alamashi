@@ -1,5 +1,5 @@
+import 'package:egyptian_supermaekat/features/auth/presentation/view/Widgets/cutom_forget_text.dart';
 import 'package:flutter/material.dart';
-import '../widgets/cutom_forget_text.dart';
 
 class LoginForgetPassword extends StatelessWidget {
   const LoginForgetPassword({super.key});
