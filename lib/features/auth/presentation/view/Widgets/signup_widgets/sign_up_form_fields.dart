@@ -1,3 +1,4 @@
+import 'package:egyptian_supermaekat/features/auth/presentation/view/Widgets/signup_widgets/sign_up_phone_number_field.dart';
 import 'package:flutter/material.dart';
 import 'sign_up_name_field.dart';
 import 'sign_up_email_field.dart';
@@ -13,6 +14,7 @@ class SignUpFormFields extends StatelessWidget {
         SignUpNameField(),
         SignUpEmailField(),
         SignUpPasswordField(),
+        SignPhoneNumberField()
       ],
     );
   }
