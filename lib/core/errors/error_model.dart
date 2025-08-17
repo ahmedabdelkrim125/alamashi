@@ -1,3 +1,5 @@
+import 'package:egyptian_supermaekat/core/api/end_points.dart';
+
 class ErrorModel {
   final int status;
   final String errorMessage;
@@ -5,8 +7,8 @@ class ErrorModel {
   ErrorModel({required this.status, required this.errorMessage});
   factory ErrorModel.fromJson(Map<String, dynamic> jsonData) {
     return ErrorModel(
-      status: jsonData['status'],
-      errorMessage: jsonData['errorMessage'],
+      status: jsonData[ApiKeys.statusCode],
+      errorMessage: jsonData[ApiKeys.errorMessage],
     );
   }
 }

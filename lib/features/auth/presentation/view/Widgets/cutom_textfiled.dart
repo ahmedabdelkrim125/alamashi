@@ -20,40 +20,59 @@ class CustomTextField extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(10),
       child: TextFormField(
-        controller: controller,
-        validator: validator,
-        decoration: InputDecoration(
-          hint: Align(
-            alignment: Alignment.centerRight,
-            child: Text(
-              texthit,
-              style: Style.textStyle16.copyWith(
-                fontFamily: cairoRegular,
-                color: ThemeColor.neutralGrayColor,
+          controller: controller,
+          validator: validator,
+          decoration: InputDecoration(
+            hint: Align(
+              alignment: Alignment.centerRight,
+              child: Text(
+                texthit,
+                style: Style.textStyle16.copyWith(
+                  fontFamily: cairoRegular,
+                  color: ThemeColor.neutralGrayColor,
+                ),
               ),
             ),
-          ),
-          enabledBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(16),
-            borderSide: BorderSide(
-              color: ThemeColor.lightBorderColor,
+            enabledBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(16),
+              borderSide: BorderSide(
+                color: ThemeColor.lightBorderColor,
+                width: 1.5,
+              ),
             ),
-          ),
-          disabledBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(16),
-            borderSide: BorderSide(
-              color: ThemeColor.lightBorderColor,
+            focusedBorder: OutlineInputBorder(
+              // لما تدوس على الحقل
+              borderRadius: BorderRadius.circular(16),
+              borderSide: BorderSide(
+                color: ThemeColor.lightBorderColor, // نفس اللون الرمادي
+                width: 2,
+              ),
             ),
-          ),
-          focusedBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(16),
-            borderSide: BorderSide(
-              color: ThemeColor.lightBorderColor,
+            disabledBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(16),
+              borderSide: BorderSide(
+                color: ThemeColor.lightBorderColor,
+                width: 1.5,
+              ),
             ),
-          ),
-          prefix: prefix,
-        ),
-      ),
+            errorBorder: OutlineInputBorder(
+              // لو فيه خطأ
+              borderRadius: BorderRadius.circular(16),
+              borderSide: BorderSide(
+                color: Colors.red,
+                width: 1.5,
+              ),
+            ),
+            focusedErrorBorder: OutlineInputBorder(
+              // خطأ + ضغط على الحقل
+              borderRadius: BorderRadius.circular(16),
+              borderSide: BorderSide(
+                color: Colors.red,
+                width: 2,
+              ),
+            ),
+            prefix: prefix,
+          )),
     );
   }
 }

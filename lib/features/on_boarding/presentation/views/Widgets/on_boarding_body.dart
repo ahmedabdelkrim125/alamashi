@@ -127,8 +127,8 @@ class _OnBoardingBodyState extends State<OnBoardingBody> {
                       }
                     },
                     child: Container(
-                      width: double.infinity,
-                      height: 40.sp,
+                      width: 343.w,
+                      height: 48.h,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(8),
                         gradient: LinearGradient(
