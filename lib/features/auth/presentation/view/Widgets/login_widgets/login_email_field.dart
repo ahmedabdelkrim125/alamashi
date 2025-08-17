@@ -2,11 +2,12 @@ import 'package:egyptian_supermaekat/features/auth/presentation/view/Widgets/cus
 import 'package:flutter/material.dart';
 
 class LoginEmailField extends StatelessWidget {
-  const LoginEmailField({super.key});
-
+  const LoginEmailField({super.key, required this.controller});
+final TextEditingController controller;
   @override
   Widget build(BuildContext context) {
     return CustomFormTextField(
+      controller:controller ,
       textLable: 'البريد الالكتروني',
       texthit: 'البريد الالكتروني',
     );

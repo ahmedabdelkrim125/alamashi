@@ -3,16 +3,18 @@ import 'package:egyptian_supermaekat/features/auth/presentation/view/Widgets/lab
 import 'package:flutter/material.dart';
 
 class CustomFormTextField extends StatelessWidget {
-  CustomFormTextField({
+  const CustomFormTextField({
     super.key,
     required this.texthit,
     required this.textLable,
     this.prefix,
+    required this.controller,
   });
   final String texthit;
   final String textLable;
   final Widget? prefix;
-  final _controller = TextEditingController();
+  final TextEditingController controller;
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -24,7 +26,7 @@ class CustomFormTextField extends StatelessWidget {
         ),
         CustomTextField(
           prefix: prefix,
-          controller: _controller,
+          controller: controller,
           validator: (value) {
             if (value == null || value.isEmpty) {
               return '';

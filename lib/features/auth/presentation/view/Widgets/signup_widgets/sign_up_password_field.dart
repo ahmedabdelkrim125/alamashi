@@ -5,11 +5,12 @@ import 'package:egyptian_supermaekat/core/utils/app_images.dart';
 import 'package:egyptian_supermaekat/features/auth/presentation/view/Widgets/custom_form_text_field.dart';
 
 class SignUpPasswordField extends StatelessWidget {
-  const SignUpPasswordField({super.key});
-
+  const SignUpPasswordField({super.key, required this.controller});
+final TextEditingController controller;
   @override
   Widget build(BuildContext context) {
     return CustomFormTextField(
+      controller: controller,
       prefix: SvgPicture.asset(
         Assets.eyeSlashIcon,
         height: 20.sp,

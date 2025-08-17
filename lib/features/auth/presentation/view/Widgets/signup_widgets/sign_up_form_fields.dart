@@ -5,16 +5,16 @@ import 'sign_up_email_field.dart';
 import 'sign_up_password_field.dart';
 
 class SignUpFormFields extends StatelessWidget {
-  const SignUpFormFields({super.key});
-
+  const SignUpFormFields({super.key, required this.controller});
+final TextEditingController controller;
   @override
   Widget build(BuildContext context) {
     return Column(
-      children: const [
-        SignUpNameField(),
-        SignUpEmailField(),
-        SignUpPasswordField(),
-        SignPhoneNumberField()
+      children:  [
+        SignUpNameField(controller: controller,),
+        SignUpEmailField(controller: controller),
+        SignUpPasswordField(controller: controller,),
+        SignPhoneNumberField(controller: controller,)
       ],
     );
   }

@@ -7,7 +7,8 @@ import 'package:flutter/material.dart';
 class SignUpBodyPage extends StatelessWidget {
   SignUpBodyPage({super.key});
   final _formKey = GlobalKey<FormState>();
-
+  // Controllers
+  final TextEditingController emailController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -17,7 +18,9 @@ class SignUpBodyPage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             const SignUpHeader(),
-            const SignUpFormFields(),
+            SignUpFormFields(
+              controller: emailController,
+            ),
             SignUpButton(formKey: _formKey),
             const SizedBox(height: 10),
             const SignUpSocialSection(),

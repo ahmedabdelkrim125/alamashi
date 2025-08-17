@@ -5,11 +5,12 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class LoginPasswordField extends StatelessWidget {
-  const LoginPasswordField({super.key});
-
+  const LoginPasswordField({super.key, required this.controller});
+final TextEditingController controller;
   @override
   Widget build(BuildContext context) {
     return CustomFormTextField(
+      controller: controller,
       prefix: SvgPicture.asset(
         Assets.eyeSlashIcon,
         height: 20.sp,
