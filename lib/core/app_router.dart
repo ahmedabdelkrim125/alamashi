@@ -29,7 +29,7 @@ class AppRouter {
               return const LoginPage();
             },
           ),
-           GoRoute(
+          GoRoute(
             path: onboarding,
             builder: (BuildContext context, GoRouterState state) {
               return const OnBoardingScreen();

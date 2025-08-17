@@ -6,7 +6,8 @@ class Assets {
 
   /// Assets for imagesFacebookLogo
   /// assets/images/facebook_logo.svg
-  static const String imagesFacebookLogo = "assets/images/imagesFacebookLogo.svg";
+  static const String imagesFacebookLogo =
+      "assets/images/imagesFacebookLogo.svg";
 
   static const String imagesGmailLogo = "assets/images/imagesGmailLogo.svg";
 

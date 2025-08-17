@@ -9,7 +9,6 @@ class SignUpSocialSection extends StatelessWidget {
   Widget build(BuildContext context) {
     return SocialLoginSection(
       routerPage: AppRouter.login,
-      
       createAccountText: 'هل تمتلك حساب بالفعل ؟ ',
     );
   }

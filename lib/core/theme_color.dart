@@ -18,11 +18,10 @@ class ThemeColor {
   static const Color lightGrayColor = Color(0xFFD9D9D9);
   static const Color primaryGreenColor = Color(0xFF01AC66);
   static const Color darkGreenColor = Color(0xFF00462A);
-  static const Color neutralGrayColor = Color(0xFF9A9BA1); 
+  static const Color neutralGrayColor = Color(0xFF9A9BA1);
   static const Color charcoalColor = Color(0xFF242424);
   static const Color lightBorderColor = Color(0xFFE4E4E4);
 
-  
   static const Color orangeAccentColor = Color(0xFFF78628);
 
   // ألوان الـ Auth

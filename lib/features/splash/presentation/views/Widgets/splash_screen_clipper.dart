@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
 class SplashScreenClipper extends CustomClipper<Path> {
-  final double startCurveHeightFactor;  // بداية المنحنى من اليسار
-  final double controlPointXFactor;       // عرض نقطة التحكم للمنحنى
-  final double controlPointYFactor;       // ارتفاع نقطة التحكم للمنحنى
-  final double endPointYFactor;            //ارتفاع نهاية المنحنى
+  final double startCurveHeightFactor; // بداية المنحنى من اليسار
+  final double controlPointXFactor; // عرض نقطة التحكم للمنحنى
+  final double controlPointYFactor; // ارتفاع نقطة التحكم للمنحنى
+  final double endPointYFactor; //ارتفاع نهاية المنحنى
 
   SplashScreenClipper({
     this.startCurveHeightFactor = 0.75,
@@ -45,7 +45,3 @@ class SplashScreenClipper extends CustomClipper<Path> {
   @override
   bool shouldReclip(CustomClipper<Path> oldClipper) => false;
 }
-
-
-
-

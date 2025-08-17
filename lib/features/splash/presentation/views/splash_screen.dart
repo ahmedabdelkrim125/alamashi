@@ -9,13 +9,11 @@ class SplashScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      
       body: Stack(
         children: [
           ClipPath(
             clipper: SplashScreenClipper(),
             child: Container(
-              
               decoration: const BoxDecoration(
                 gradient: LinearGradient(
                   colors: [

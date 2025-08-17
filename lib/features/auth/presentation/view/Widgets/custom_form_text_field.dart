@@ -6,7 +6,8 @@ class CustomFormTextField extends StatelessWidget {
   CustomFormTextField({
     super.key,
     required this.texthit,
-    required this.textLable, this.prefix,
+    required this.textLable,
+    this.prefix,
   });
   final String texthit;
   final String textLable;
@@ -36,5 +37,3 @@ class CustomFormTextField extends StatelessWidget {
     );
   }
 }
-
-

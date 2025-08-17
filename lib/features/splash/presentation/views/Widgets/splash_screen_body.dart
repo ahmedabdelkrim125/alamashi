@@ -75,7 +75,6 @@ class _SplashScreenBodyState extends State<SplashScreenBody>
           ),
         ),
         Spacer(flex: 3),
-      
       ],
     );
   }

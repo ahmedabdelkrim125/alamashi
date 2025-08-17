@@ -1,4 +1,3 @@
-
 import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -19,7 +18,7 @@ abstract class Style {
   static TextStyle textStyle16 = TextStyle(
     fontSize: 16,
   );
-   static TextStyle textStyle14 = TextStyle(
+  static TextStyle textStyle14 = TextStyle(
     fontSize: 14.sp,
   );
   static TextStyle textStyle12 = TextStyle(
