@@ -3,7 +3,7 @@ import 'package:egyptian_supermaekat/features/auth/presentation/view/Widgets/cus
 
 class SignPhoneNumberField extends StatelessWidget {
   const SignPhoneNumberField({super.key, required this.controller});
-final TextEditingController controller;
+  final TextEditingController controller;
   @override
   Widget build(BuildContext context) {
     return CustomFormTextField(

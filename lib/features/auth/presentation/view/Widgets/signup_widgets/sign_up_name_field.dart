@@ -3,11 +3,11 @@ import 'package:egyptian_supermaekat/features/auth/presentation/view/Widgets/cus
 
 class SignUpNameField extends StatelessWidget {
   const SignUpNameField({super.key, required this.controller});
-final TextEditingController controller;
+  final TextEditingController controller;
   @override
   Widget build(BuildContext context) {
     return CustomFormTextField(
-      controller:controller ,
+      controller: controller,
       textLable: 'الاسم',
       texthit: 'الاسم',
     );

@@ -24,9 +24,7 @@ class SignUpFormFields extends StatelessWidget {
           controller: controllerNameField,
         ),
         SignUpEmailField(controller: controllerEmailField),
-        SignUpPasswordField(
-          controller: controllerPasswordField
-        ),
+        SignUpPasswordField(controller: controllerPasswordField),
         SignPhoneNumberField(
           controller: controllerNumberField,
         )

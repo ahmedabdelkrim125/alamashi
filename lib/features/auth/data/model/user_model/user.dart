@@ -1,3 +1,4 @@
+import 'package:egyptian_supermaekat/core/api/end_points.dart';
 import 'package:equatable/equatable.dart';
 
 class User extends Equatable {
@@ -16,19 +17,19 @@ class User extends Equatable {
   });
 
   factory User.fromJson(Map<String, dynamic> json) => User(
-        userId: json['userID'] as int?,
-        userName: json['userName'] as String?,
-        email: json['email'] as String?,
-        phone: json['phone'] as String?,
-        permissions: json['permissions'] as int?,
+        userId: json[ApiKeys.userId] as int?,
+        userName: json[ApiKeys.userName] as String?,
+        email: json[ApiKeys.email] as String?,
+        phone: json[ApiKeys.phone] as String?,
+        permissions: json[ApiKeys.permissions] as int?,
       );
 
   Map<String, dynamic> toJson() => {
-        'userID': userId,
-        'userName': userName,
-        'email': email,
-        'phone': phone,
-        'permissions': permissions,
+        ApiKeys.userId: userId,
+        ApiKeys.userName: userName,
+        ApiKeys.email: email,
+        ApiKeys.phone: phone,
+        ApiKeys.permissions: permissions,
       };
 
   @override

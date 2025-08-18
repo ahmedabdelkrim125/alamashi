@@ -44,10 +44,10 @@ class AuthRepoImplement implements AuthRepo {
       final response = await api.post(
         EndPoints.createNewUser,
         data: {
-          "UserName": user.userName,
-          "email": user.email,
-          "password": password,
-          "Phone": user.phone,
+          ApiKeys.userName: user.userName,
+          ApiKeys.email: user.email,
+          ApiKeys.password: password,
+          ApiKeys.phone: user.phone,
         },
       );
 

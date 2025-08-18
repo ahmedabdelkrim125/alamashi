@@ -6,7 +6,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 class LoginPasswordField extends StatelessWidget {
   const LoginPasswordField({super.key, required this.controller});
-final TextEditingController controller;
+  final TextEditingController controller;
   @override
   Widget build(BuildContext context) {
     return CustomFormTextField(

@@ -11,13 +11,22 @@ class EndPoints {
 }
 
 class ApiKeys {
-  // 🔢 Response Keys
-  static const String statusCode = 'statusCode';
-  static const String errorMessage = 'message';
+  // 📌 Response Keys
+  static const String status = 'status';
+  static const String data = 'data';
+  static const String accessToken = 'accessToken';
+  static const String refreshToken = 'refreshToken';
 
   // 🧑‍💻 User Keys
+  static const String userId = 'userID';
+  static const String userName = 'userName';
   static const String email = 'email';
-  static const String password = 'password';
-  static const String token = 'token';
-  static const String id = 'id';
+  static const String password= 'password';
+  static const String phone = 'phone';
+  static const String permissions = 'permissions';
+  static const String user = 'user';
+
+  // 📌 Error Keys
+  static const String statusCode = 'statusCode';
+  static const String errorMessage = 'message';
 }

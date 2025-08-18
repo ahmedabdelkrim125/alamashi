@@ -37,7 +37,7 @@ class AppRouter {
               return const OnBoardingScreen();
             },
           ),
-           GoRoute(
+          GoRoute(
             path: home,
             builder: (BuildContext context, GoRouterState state) {
               return const HomePage();
