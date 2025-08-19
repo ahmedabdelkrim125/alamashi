@@ -1,5 +1,6 @@
 import 'package:egyptian_supermaekat/core/app_router.dart';
 import 'package:egyptian_supermaekat/core/theme_color.dart';
+import 'package:egyptian_supermaekat/core/utils/show_snackbar.dart';
 import 'package:egyptian_supermaekat/features/auth/presentation/view/Widgets/login_widgets/login_button.dart';
 import 'package:egyptian_supermaekat/features/auth/presentation/view/Widgets/login_widgets/login_email_field.dart';
 import 'package:egyptian_supermaekat/features/auth/presentation/view/Widgets/login_widgets/login_forget_password.dart';
@@ -45,9 +46,10 @@ class LoginPageBody extends StatelessWidget {
             Navigator.pop(context);
             context.go(AppRouter.home);
           } else if (state is AuthFailure) {
-            Navigator.pop(context); // 🔙 قفل الـ Dialog
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(content: Text(state.message)),
+            Navigator.pop(context);    
+            showCustomSnackBar(context:   context, 
+            message: state.message,
+          backgroundColor: ThemeColor.errorColor
             );
           }
         },

@@ -1,3 +1,4 @@
+import 'package:egyptian_supermaekat/core/utils/validators.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
@@ -18,6 +19,7 @@ class SignUpPasswordField extends StatelessWidget {
       ),
       textLable: 'كلمة السر',
       texthit: 'كلمة السر',
+       validator: AppValidators.validatePassword,
     );
   }
 }

@@ -8,13 +8,13 @@ class CustomFormTextField extends StatelessWidget {
     required this.texthit,
     required this.textLable,
     this.prefix,
-    required this.controller,
+    required this.controller, this.validator,
   });
   final String texthit;
   final String textLable;
   final Widget? prefix;
   final TextEditingController controller;
-
+final String? Function(String?)? validator; 
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -27,12 +27,13 @@ class CustomFormTextField extends StatelessWidget {
         CustomTextField(
           prefix: prefix,
           controller: controller,
-          validator: (value) {
-            if (value == null || value.isEmpty) {
-              return '';
-            }
-            return null;
-          },
+          // validator: (value) {
+          //   if (value == null || value.isEmpty) {
+          //     return '';
+          //   }
+          //   return null;
+          // },
+          validator: validator,
           texthit: texthit,
         ),
       ],

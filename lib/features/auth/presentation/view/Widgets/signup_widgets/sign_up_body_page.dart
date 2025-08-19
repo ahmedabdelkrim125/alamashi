@@ -1,5 +1,6 @@
 import 'package:egyptian_supermaekat/core/app_router.dart';
 import 'package:egyptian_supermaekat/core/theme_color.dart';
+import 'package:egyptian_supermaekat/core/utils/show_snackbar.dart';
 import 'package:egyptian_supermaekat/features/auth/presentation/view/Widgets/signup_widgets/sign_up_button.dart';
 import 'package:egyptian_supermaekat/features/auth/presentation/view/Widgets/signup_widgets/sign_up_form_fields.dart';
 import 'package:egyptian_supermaekat/features/auth/presentation/view/Widgets/signup_widgets/sign_up_header.dart';
@@ -31,7 +32,7 @@ class SignUpBodyPage extends StatelessWidget {
                 children: [
                   CircularProgressIndicator(),
                   SizedBox(width: 16),
-                  Text("...جاري تسجيل الدخول"),
+                  Text("...جاري إنشاء حساب"),
                 ],
               ),
             ),
@@ -41,9 +42,10 @@ class SignUpBodyPage extends StatelessWidget {
           context.go(AppRouter.login);
         } else if (state is AuthFailure) {
           Navigator.pop(context); // 🔙 قفل الـ Dialog
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text(state.message)),
-          );
+          showCustomSnackBar(
+              context: context,
+              message: state.message,
+              backgroundColor: ThemeColor.errorColor);
         }
       },
       builder: (context, state) {

@@ -18,7 +18,7 @@ void main() async {
           create: (context) =>
               AuthCubit(AuthRepoImplement(DioConsumer(dio: Dio()))),
         ),
-        // ممكن تضيف Cubits تانية هنا
+           
       ],
       child: ScreenUtilInit(
         designSize: const Size(360, 690),

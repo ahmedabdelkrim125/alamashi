@@ -1,4 +1,5 @@
 import 'package:egyptian_supermaekat/core/utils/app_images.dart';
+import 'package:egyptian_supermaekat/core/utils/validators.dart';
 import 'package:egyptian_supermaekat/features/auth/presentation/view/Widgets/custom_form_text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -18,6 +19,7 @@ class LoginPasswordField extends StatelessWidget {
       ),
       textLable: 'كلمة السر',
       texthit: 'كلمة السر',
+      validator: AppValidators.validateNotEmpty,
     );
   }
 }
