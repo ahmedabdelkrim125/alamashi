@@ -44,13 +44,14 @@ class LoginPageBody extends StatelessWidget {
             );
           } else if (state is AuthSuccess) {
             Navigator.pop(context);
-            context.go(AppRouter.kHome);
+            context.go(AppRouter.kMain);
           } else if (state is AuthFailure) {
             Navigator.pop(context);
             showCustomSnackBar(
-                context: context,
-                message: state.message,
-                backgroundColor: ThemeColor.errorColor);
+              context: context,
+              message: state.message,
+              isError: true,
+            );
           }
         },
         builder: (context, state) {

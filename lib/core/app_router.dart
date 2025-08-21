@@ -3,7 +3,7 @@ import 'package:egyptian_supermaekat/features/auth/presentation/view/create_new_
 import 'package:egyptian_supermaekat/features/auth/presentation/view/forgot_password_page.dart';
 import 'package:egyptian_supermaekat/features/auth/presentation/view/login_page.dart';
 import 'package:egyptian_supermaekat/features/auth/presentation/view/sign_up_page.dart';
-import 'package:egyptian_supermaekat/features/home/presentation/view/home_page.dart';
+import 'package:egyptian_supermaekat/features/main/presentation/view/main_navigation_page.dart';
 import 'package:egyptian_supermaekat/features/on_boarding/presentation/views/on_boarding_screen.dart';
 import 'package:egyptian_supermaekat/features/splash/presentation/views/splash_screen.dart';
 import 'package:flutter/material.dart';
@@ -12,10 +12,11 @@ import 'package:go_router/go_router.dart';
 abstract class AppRouter {
   // تعريف المسارات كثوابت لسهولة الاستخدام وتجنب الأخطاء
   static const kSplash = '/';
+  static const kMain = '/main';
   static const kOnBoarding = '/on_boarding';
   static const kLogin = '/login';
   static const kSignUp = '/sign_up';
-  static const kHome = '/home';
+
   static const kForgotPassword = '/forgot-password';
   static const kConfirmCode = '/onfirm-code';
   static const kCreateNewPasswod = '/CreateNewPasswodPage';
@@ -47,12 +48,6 @@ abstract class AppRouter {
         },
       ),
       GoRoute(
-        path: kHome,
-        builder: (BuildContext context, GoRouterState state) {
-          return const HomePage();
-        },
-      ),
-      GoRoute(
         path: kForgotPassword,
         builder: (BuildContext context, GoRouterState state) {
           return LoginForgetPasswordPage();
@@ -68,6 +63,12 @@ abstract class AppRouter {
         path: kCreateNewPasswod,
         builder: (BuildContext context, GoRouterState state) {
           return CreateNewPasswodPage();
+        },
+      ),
+      GoRoute(
+        path: kMain,
+        builder: (BuildContext context, GoRouterState state) {
+          return MainNavigationPage();
         },
       ),
     ],

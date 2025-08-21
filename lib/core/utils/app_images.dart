@@ -36,4 +36,8 @@ class Assets {
   static const String backArrowCircle = "assets/images/back_arrow_circle.svg";
   static const String eyeSlashIcon = "assets/images/eyeSlashIcon.svg";
   static const String chevronRight = "assets/images/chevron_right.svg";
+  static const String ichome = "assets/images/ic_home.svg";
+  static const String icorders = "assets/images/ic_orders.svg";
+  static const String icfavorites = "assets/images/ic_favorites.svg";
+  static const String icaccount = "assets/images/ic_account.svg";
 }
