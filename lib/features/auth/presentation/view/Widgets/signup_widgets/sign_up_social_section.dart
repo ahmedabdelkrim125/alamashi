@@ -8,7 +8,7 @@ class SignUpSocialSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SocialLoginSection(
-      routerPage: AppRouter.login,
+      routerPage: AppRouter.kLogin,
       createAccountText: 'هل تمتلك حساب بالفعل ؟ ',
     );
   }

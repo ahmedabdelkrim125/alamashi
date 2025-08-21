@@ -1,6 +1,6 @@
 import 'package:egyptian_supermaekat/core/theme_color.dart';
 import 'package:egyptian_supermaekat/core/utils/show_snackbar.dart';
-import 'package:egyptian_supermaekat/features/auth/presentation/view/Widgets/cutom_button.dart';
+import 'package:egyptian_supermaekat/features/auth/presentation/view/Widgets/Custom_Widgets/cutom_button.dart';
 import 'package:egyptian_supermaekat/features/auth/presentation/viewmodel/auth_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

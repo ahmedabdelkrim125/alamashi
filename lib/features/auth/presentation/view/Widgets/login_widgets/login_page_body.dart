@@ -44,13 +44,13 @@ class LoginPageBody extends StatelessWidget {
             );
           } else if (state is AuthSuccess) {
             Navigator.pop(context);
-            context.go(AppRouter.home);
+            context.go(AppRouter.kHome);
           } else if (state is AuthFailure) {
-            Navigator.pop(context);    
-            showCustomSnackBar(context:   context, 
-            message: state.message,
-          backgroundColor: ThemeColor.errorColor
-            );
+            Navigator.pop(context);
+            showCustomSnackBar(
+                context: context,
+                message: state.message,
+                backgroundColor: ThemeColor.errorColor);
           }
         },
         builder: (context, state) {
@@ -74,7 +74,7 @@ class LoginPageBody extends StatelessWidget {
                     passwordController: passwordController,
                   ),
                   SizedBox(height: 10.sp),
-                  const LoginForgetPassword(),
+                  const ForgotPasswordLink(),
                   SizedBox(height: 27.h),
                   const LoginOrDivider(),
                   SizedBox(height: 12.h),

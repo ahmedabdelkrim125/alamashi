@@ -1,3 +1,6 @@
+import 'package:egyptian_supermaekat/features/auth/presentation/view/confirm_code_page.dart';
+import 'package:egyptian_supermaekat/features/auth/presentation/view/create_new_passwod_page.dart';
+import 'package:egyptian_supermaekat/features/auth/presentation/view/forgot_password_page.dart';
 import 'package:egyptian_supermaekat/features/auth/presentation/view/login_page.dart';
 import 'package:egyptian_supermaekat/features/auth/presentation/view/sign_up_page.dart';
 import 'package:egyptian_supermaekat/features/home/presentation/view/home_page.dart';
@@ -6,44 +9,66 @@ import 'package:egyptian_supermaekat/features/splash/presentation/views/splash_s
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-class AppRouter {
-  static String signUp = '/sign_up'; //sign_up page
-  static String onboarding = '/on_boarding'; //on_boarding page
-  static String login = '/login'; //loginScreen page
-  static String home = '/home'; //HomeScreen page
+abstract class AppRouter {
+  // تعريف المسارات كثوابت لسهولة الاستخدام وتجنب الأخطاء
+  static const kSplash = '/';
+  static const kOnBoarding = '/on_boarding';
+  static const kLogin = '/login';
+  static const kSignUp = '/sign_up';
+  static const kHome = '/home';
+  static const kForgotPassword = '/forgot-password';
+  static const kConfirmCode = '/onfirm-code';
+  static const kCreateNewPasswod = '/CreateNewPasswodPage';
+
   static final GoRouter router = GoRouter(
     routes: <RouteBase>[
       GoRoute(
-        path: '/',
+        path: kSplash,
         builder: (BuildContext context, GoRouterState state) {
           return const SplashScreen();
         },
-        routes: <RouteBase>[
-          GoRoute(
-            path: signUp,
-            builder: (BuildContext context, GoRouterState state) {
-              return const SignUpPage();
-            },
-          ),
-          GoRoute(
-            path: login,
-            builder: (BuildContext context, GoRouterState state) {
-              return const LoginPage();
-            },
-          ),
-          GoRoute(
-            path: onboarding,
-            builder: (BuildContext context, GoRouterState state) {
-              return const OnBoardingScreen();
-            },
-          ),
-          GoRoute(
-            path: home,
-            builder: (BuildContext context, GoRouterState state) {
-              return const HomePage();
-            },
-          ),
-        ],
+      ),
+      GoRoute(
+        path: kOnBoarding,
+        builder: (BuildContext context, GoRouterState state) {
+          return const OnBoardingScreen();
+        },
+      ),
+      GoRoute(
+        path: kLogin,
+        builder: (BuildContext context, GoRouterState state) {
+          return const LoginPage();
+        },
+      ),
+      GoRoute(
+        path: kSignUp,
+        builder: (BuildContext context, GoRouterState state) {
+          return const SignUpPage();
+        },
+      ),
+      GoRoute(
+        path: kHome,
+        builder: (BuildContext context, GoRouterState state) {
+          return const HomePage();
+        },
+      ),
+      GoRoute(
+        path: kForgotPassword,
+        builder: (BuildContext context, GoRouterState state) {
+          return LoginForgetPasswordPage();
+        },
+      ),
+      GoRoute(
+        path: kConfirmCode,
+        builder: (BuildContext context, GoRouterState state) {
+          return ConfirmCodePage();
+        },
+      ),
+      GoRoute(
+        path: kCreateNewPasswod,
+        builder: (BuildContext context, GoRouterState state) {
+          return CreateNewPasswodPage();
+        },
       ),
     ],
   );

@@ -21,7 +21,8 @@ class User extends Equatable {
         userName: json[ApiKeys.userName] as String?,
         email: json[ApiKeys.email] as String?,
         phone: json[ApiKeys.phone] as String?,
-        permissions: json[ApiKeys.permissions] as int?,
+        permissions: int.tryParse(json[ApiKeys.permissions]?.toString()??''),
+
       );
 
   Map<String, dynamic> toJson() => {

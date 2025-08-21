@@ -47,7 +47,7 @@ class _OnBoardingBodyState extends State<OnBoardingBody> {
               alignment: Alignment.centerLeft,
               child: GestureDetector(
                 onTap: () {
-                  context.go(AppRouter.login);
+                  context.go(AppRouter.kLogin);
                 },
                 child: Text(
                   'تخطي',
@@ -123,7 +123,7 @@ class _OnBoardingBodyState extends State<OnBoardingBody> {
                           curve: Curves.easeIn,
                         );
                       } else if (_currentPageIndex == 2) {
-                        context.go(AppRouter.login);
+                        context.go(AppRouter.kLogin);
                       }
                     },
                     child: Container(

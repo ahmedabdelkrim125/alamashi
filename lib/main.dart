@@ -16,7 +16,8 @@ void main() async {
       providers: [
         BlocProvider<AuthCubit>(
           create: (context) =>
-              AuthCubit(AuthRepoImplement(DioConsumer(dio: Dio()))),
+              AuthCubit(AuthRepoImplement(DioConsumer(dio: Dio())))
+              ..checkAuthStatus(),
         ),
            
       ],

@@ -92,4 +92,28 @@ class AuthCubit extends Cubit<AuthState> {
     emit(AuthInitial());
     log('❌ All tokens removed. User logged out.');
   }
+
+  Future<void> checkAuthStatus() async {
+    final accessToken = CacheHelper.getAccessToken();
+    if (accessToken != null && accessToken.isNotEmpty) {
+      //isExpired(accessToken)  -=>تاريخ انتهاء الصلاحية //
+      if (JwtDecoder.isExpired(accessToken)) {
+        log("Access Token has expired. Attempting to refresh...");
+        await logout();
+      } else {
+        log("✅ Found valid token. User is already logged in.");
+        Map<String, dynamic> decodedToken = JwtDecoder.decode(accessToken);
+        final user = User(
+          userId: int.tryParse(decodedToken['nameid'] ?? ''),
+          userName: decodedToken['unique_name'],
+          email: 'loaded_from_token@email.com',
+        );
+        final userModel =
+            UserModel(status: 'success', accessToken: accessToken, user: user);
+        emit(AuthSuccess(userModel));
+      }
+    } else {
+      log("No token found. User needs to log in.");
+    }
+  }
 }

@@ -1,9 +1,11 @@
 import 'dart:developer';
 
 import 'package:egyptian_supermaekat/constant.dart';
+import 'package:egyptian_supermaekat/core/app_router.dart';
 import 'package:egyptian_supermaekat/core/style.dart';
 import 'package:egyptian_supermaekat/core/theme_color.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class CutomForgetText extends StatelessWidget {
   const CutomForgetText({
@@ -18,6 +20,7 @@ class CutomForgetText extends StatelessWidget {
     return TextButton(
       onPressed: () {
         log('نسيت كلمة المرور؟');
+        context.go(AppRouter.kForgotPassword);
       },
       child: Text(
         textline,

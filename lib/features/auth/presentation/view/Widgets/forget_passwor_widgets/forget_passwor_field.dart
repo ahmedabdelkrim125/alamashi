@@ -1,10 +1,12 @@
+
 import 'package:egyptian_supermaekat/core/utils/validators.dart';
 import 'package:egyptian_supermaekat/features/auth/presentation/view/Widgets/Custom_Widgets/custom_form_text_field.dart';
 import 'package:flutter/material.dart';
 
-class LoginEmailField extends StatelessWidget {
-  const LoginEmailField({super.key, required this.controller});
-  final TextEditingController controller;
+class ForgetPassworField extends StatelessWidget {
+const  ForgetPassworField({super.key, required this.controller});
+  // Controller
+ final TextEditingController controller;
   @override
   Widget build(BuildContext context) {
     return CustomFormTextField(
@@ -15,3 +17,6 @@ class LoginEmailField extends StatelessWidget {
     );
   }
 }
+
+
+

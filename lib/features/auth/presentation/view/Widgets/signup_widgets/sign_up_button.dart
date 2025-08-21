@@ -1,5 +1,5 @@
 import 'package:egyptian_supermaekat/features/auth/data/model/user_model/user.dart';
-import 'package:egyptian_supermaekat/features/auth/presentation/view/Widgets/cutom_button.dart';
+import 'package:egyptian_supermaekat/features/auth/presentation/view/Widgets/Custom_Widgets/cutom_button.dart';
 import 'package:egyptian_supermaekat/features/auth/presentation/viewmodel/auth_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

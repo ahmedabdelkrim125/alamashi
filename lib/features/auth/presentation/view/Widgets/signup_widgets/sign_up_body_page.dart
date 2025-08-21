@@ -39,13 +39,14 @@ class SignUpBodyPage extends StatelessWidget {
           );
         } else if (state is AuthSuccess) {
           Navigator.pop(context);
-          context.go(AppRouter.login);
+          context.go(AppRouter.kLogin);
         } else if (state is AuthFailure) {
           Navigator.pop(context); // 🔙 قفل الـ Dialog
           showCustomSnackBar(
-              context: context,
-              message: state.message,
-              backgroundColor: ThemeColor.errorColor);
+            context: context,
+            message: state.message,
+            backgroundColor: ThemeColor.errorColor,
+          );
         }
       },
       builder: (context, state) {

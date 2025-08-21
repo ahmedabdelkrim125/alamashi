@@ -1,4 +1,4 @@
-import 'package:egyptian_supermaekat/features/auth/presentation/view/Widgets/create_account_title.dart';
+import 'package:egyptian_supermaekat/features/auth/presentation/view/Widgets/Custom_Widgets/create_account_title.dart';
 import 'package:egyptian_supermaekat/features/auth/presentation/view/Widgets/login_widgets/login_page_body.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';

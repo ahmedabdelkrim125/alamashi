@@ -1,3 +1,4 @@
+
 class AppValidators {
   static String? validateNotEmpty(String? value) {
     if (value == null || value.trim().isEmpty) {
@@ -5,25 +6,27 @@ class AppValidators {
     }
     return null;
   }
+
   static String? validateEgyptianPhoneNumber(String? value) {
     if (value == null || value.isEmpty) {
       return 'يرجى إدخال رقم الهاتف';
     }
-    if (value.length  !=11) {
-       return 'يجب أن يكون الرقم مكون من 11 رقم';
+    if (value.length != 11) {
+      return 'يجب أن يكون الرقم مكون من 11 رقم';
     }
     if (!RegExp(r'^(010|011|012|015)').hasMatch(value)) {
       return 'يجب أن يبدأ الرقم بـ 010, 011, 012, أو 015';
-  }
-  return null;
+    }
+    return null;
   }
 
-  static String? validatePassword(String? value){
+  static String? validatePassword(String? value) {
     if (value == null || value.isEmpty) {
       return 'يرجى إدخال كلمة المرور';
     }
-    if (value.length <6) {
-        return 'يجب أن تكون كلمة المرور 6 أحرف على الأقل';
+    
+    if (value.length < 6) {
+      return 'يجب أن تكون كلمة المرور 6 أحرف على الأقل';
     }
     if (!value.contains(RegExp(r'[A-Z]'))) {
       return 'يجب أن تحتوي على حرف كبير واحد على الأقل';
@@ -36,16 +39,36 @@ class AppValidators {
     }
     return null;
   }
+
   static String? validateEmail(String? value) {
     if (value == null || value.isEmpty) {
       return 'يرجى إدخال البريد الإلكتروني';
     }
-    
+
     final emailRegex = RegExp(
       r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$',
     );
     if (!emailRegex.hasMatch(value)) {
       return 'صيغة البريد الإلكتروني غير صحيحة';
+    }
+    return null;
+  }
+
+  static String? confirmCode(value) {
+    if (value == null || value.length < 4) {
+      return 'الرجاء إكمال الكود';
+    }
+    return null;
+  }
+
+
+
+  static  validateConfirmPassword(String? confirmPassword, String originalPassword) {
+    if (confirmPassword == null || confirmPassword.isEmpty) {
+      return 'يرجى تأكيد كلمة المرور';
+    }
+    if (confirmPassword != originalPassword) {
+      return 'كلمتا المرور غير متطابقتين';
     }
     return null;
   }

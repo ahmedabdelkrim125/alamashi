@@ -1,9 +1,7 @@
-import 'package:egyptian_supermaekat/core/app_router.dart';
 import 'package:egyptian_supermaekat/core/utils/app_images.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:go_router/go_router.dart';
 
 class SplashScreenBody extends StatefulWidget {
   const SplashScreenBody({super.key});
@@ -20,18 +18,9 @@ class _SplashScreenBodyState extends State<SplashScreenBody>
   @override
   void initState() {
     _initAnimations();
-    _navigateToonBoarding();
   }
 
-  void _navigateToonBoarding() {
-    Future.delayed(
-      const Duration(seconds: 3),
-      () {
-        context.go(AppRouter.onboarding);
-      },
-    );
-  }
-
+ 
   void _initAnimations() {
     _animationController = AnimationController(
       vsync: this,
