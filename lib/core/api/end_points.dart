@@ -4,6 +4,7 @@ class EndPoints {
   // 🔑 Authentication
   static const String login = '$baseUrl/Users/login';
   static const String createNewUser = '$baseUrl/Users/Create';
+  static const String refresh = '$baseUrl/Users/refresh';
 
   // 👥 Users
   static const String getAllUsers = '$baseUrl/Users/All';

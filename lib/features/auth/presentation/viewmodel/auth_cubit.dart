@@ -1,8 +1,8 @@
 import 'dart:developer';
-
 import 'package:bloc/bloc.dart';
 import 'package:egyptian_supermaekat/core/errors/exceptions.dart';
 import 'package:egyptian_supermaekat/core/utils/cache_helper.dart';
+import 'package:egyptian_supermaekat/core/utils/debug_tokens.dart';
 import 'package:egyptian_supermaekat/features/auth/data/model/user_model/user.dart';
 import 'package:egyptian_supermaekat/features/auth/data/model/user_model/user_model.dart';
 import 'package:egyptian_supermaekat/features/auth/data/repo/auth_repo.dart';
@@ -46,6 +46,8 @@ class AuthCubit extends Cubit<AuthState> {
         if (userModel.refreshToken != null) {
           await CacheHelper.saveRefreshToken(userModel.refreshToken!);
           log("✅ Refresh Token Saved!");
+          // 🧪 Debug
+          await debugTokens();
         }
       } else {
         emit(AuthFailure("Login failed: Missing token in response."));
@@ -78,6 +80,8 @@ class AuthCubit extends Cubit<AuthState> {
       emit(AuthLoading());
       final userModel = await authRepo.signup(user, password);
       emit(AuthSuccess(userModel));
+      // 🧪 Debug
+      await debugTokens();
     } on ServerException catch (e) {
       final friendlyMessage = _mapExceptionToMessage(e);
       emit(AuthFailure(friendlyMessage));
@@ -94,17 +98,30 @@ class AuthCubit extends Cubit<AuthState> {
   }
 
   Future<void> checkAuthStatus() async {
+    await Future.delayed(Duration.zero);
     final accessToken = CacheHelper.getAccessToken();
     if (accessToken != null && accessToken.isNotEmpty) {
-      //isExpired(accessToken)  -=>تاريخ انتهاء الصلاحية //
       if (JwtDecoder.isExpired(accessToken)) {
         log("Access Token has expired. Attempting to refresh...");
-        await logout();
+        try {
+          final newUserModel = await authRepo.refreshToken();
+          await CacheHelper.saveAccessToken(newUserModel.accessToken!);
+          if (newUserModel.refreshToken != null) {
+            await CacheHelper.saveRefreshToken(newUserModel.refreshToken!);
+          }
+          log("✅ Token refreshed successfully!");
+          // 🧪 Debug
+          await debugTokens();
+          emit(AuthSuccess(newUserModel));
+        } catch (e) {
+          log("❌ Failed to refresh token. Logging out.");
+          await logout();
+        }
       } else {
         log("✅ Found valid token. User is already logged in.");
         Map<String, dynamic> decodedToken = JwtDecoder.decode(accessToken);
         final user = User(
-          userId: int.tryParse(decodedToken['nameid'] ?? ''),
+          userId: int.parse(decodedToken['nameid'] ?? ''),
           userName: decodedToken['unique_name'],
           email: 'loaded_from_token@email.com',
         );

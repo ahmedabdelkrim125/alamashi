@@ -1,6 +1,7 @@
 import 'package:egyptian_supermaekat/core/app_router.dart';
 import 'package:egyptian_supermaekat/core/theme_color.dart';
 import 'package:egyptian_supermaekat/core/utils/show_snackbar.dart';
+import 'package:egyptian_supermaekat/features/auth/presentation/view/Widgets/login_widgets/login_or_divider.dart';
 import 'package:egyptian_supermaekat/features/auth/presentation/view/Widgets/signup_widgets/sign_up_button.dart';
 import 'package:egyptian_supermaekat/features/auth/presentation/view/Widgets/signup_widgets/sign_up_form_fields.dart';
 import 'package:egyptian_supermaekat/features/auth/presentation/view/Widgets/signup_widgets/sign_up_header.dart';
@@ -8,6 +9,7 @@ import 'package:egyptian_supermaekat/features/auth/presentation/view/Widgets/sig
 import 'package:egyptian_supermaekat/features/auth/presentation/viewmodel/auth_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 
 class SignUpBodyPage extends StatelessWidget {
@@ -23,25 +25,29 @@ class SignUpBodyPage extends StatelessWidget {
     return BlocConsumer<AuthCubit, AuthState>(
       listener: (context, state) {
         if (state is AuthLoading) {
-          showDialog(
-            context: context,
-            barrierDismissible: false,
-            builder: (_) => AlertDialog(
-              backgroundColor: ThemeColor.bgColor,
-              content: Row(
-                children: [
-                  CircularProgressIndicator(),
-                  SizedBox(width: 16),
-                  Text("...جاري إنشاء حساب"),
-                ],
-              ),
-            ),
+          WidgetsBinding.instance.addPostFrameCallback(
+            (_) {
+              showDialog(
+                context: context,
+                barrierDismissible: false,
+                builder: (_) => AlertDialog(
+                  backgroundColor: ThemeColor.bgColor,
+                  content: Row(
+                    children: [
+                      CircularProgressIndicator(),
+                      SizedBox(width: 16),
+                      Text("...جاري إنشاء حساب"),
+                    ],
+                  ),
+                ),
+              );
+            },
           );
         } else if (state is AuthSuccess) {
           Navigator.pop(context);
           context.go(AppRouter.kLogin);
         } else if (state is AuthFailure) {
-          Navigator.pop(context); // 🔙 قفل الـ Dialog
+          Navigator.pop(context);
           showCustomSnackBar(
             context: context,
             message: state.message,
@@ -70,6 +76,8 @@ class SignUpBodyPage extends StatelessWidget {
                   nameController: nameController,
                   numberController: numberController,
                 ),
+                SizedBox(height: 27.h),
+                const LoginOrDivider(),
                 const SizedBox(height: 10),
                 const SignUpSocialSection(),
               ],

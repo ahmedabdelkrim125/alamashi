@@ -133,7 +133,7 @@ class _OnBoardingBodyState extends State<OnBoardingBody> {
                         borderRadius: BorderRadius.circular(8),
                         gradient: LinearGradient(
                           colors: [
-                            ThemeColor.darkGreenColor,
+                            ThemeColor.forestGreenColor,
                             ThemeColor.primaryGreenColor,
                           ],
                           begin: Alignment.centerRight,

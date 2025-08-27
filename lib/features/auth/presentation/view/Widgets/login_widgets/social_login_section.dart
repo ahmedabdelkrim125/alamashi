@@ -23,32 +23,35 @@ class SocialLoginSection extends StatelessWidget {
       spacing: 10,
       children: [
         /// Scrollable Row for social icons
-        SingleChildScrollView(
-          scrollDirection: Axis.horizontal,
-          child: Row(
-            spacing: 10,
-            children: [
-              /// Custom Widget for Social Login Icon
-              SocialLoginIcon(
+        Row(
+          spacing: 10,
+          children: [
+            /// Custom Widget for Social Login Icon
+            Expanded(
+              child: SocialLoginIcon(
                 iconPath: Assets.imagesFacebookLogo,
                 width: 98.w,
                 height: 50.h,
                 onTap: () {},
               ),
-              SocialLoginIcon(
-                iconPath: Assets.imagesGmailLogo,
+            ),
+            Expanded(
+              child: SocialLoginIcon(
+                iconPath: Assets.imagesGoogleLogo,
                 width: 98.w,
                 height: 50.57.h,
                 onTap: () {},
               ),
-              SocialLoginIcon(
+            ),
+            Expanded(
+              child: SocialLoginIcon(
                 iconPath: Assets.imagesAppleogo,
                 width: 98.w,
                 height: 50.h,
                 onTap: () {},
               ),
-            ],
-          ),
+            ),
+          ],
         ),
 
         /// Create account + No account text

@@ -28,19 +28,23 @@ class LoginPageBody extends StatelessWidget {
       child: BlocConsumer<AuthCubit, AuthState>(
         listener: (context, state) {
           if (state is AuthLoading) {
-            showDialog(
-              context: context,
-              barrierDismissible: false,
-              builder: (_) => AlertDialog(
-                backgroundColor: ThemeColor.bgColor,
-                content: Row(
-                  children: [
-                    CircularProgressIndicator(),
-                    SizedBox(width: 16),
-                    Text("...جاري تسجيل الدخول"),
-                  ],
-                ),
-              ),
+            WidgetsBinding.instance.addPostFrameCallback(
+              (_) {
+                showDialog(
+                  context: context,
+                  barrierDismissible: false,
+                  builder: (_) => AlertDialog(
+                    backgroundColor: ThemeColor.bgColor,
+                    content: Row(
+                      children: [
+                        CircularProgressIndicator(),
+                        SizedBox(width: 16),
+                        Text("...جاري تسجيل الدخول"),
+                      ],
+                    ),
+                  ),
+                );
+              },
             );
           } else if (state is AuthSuccess) {
             Navigator.pop(context);

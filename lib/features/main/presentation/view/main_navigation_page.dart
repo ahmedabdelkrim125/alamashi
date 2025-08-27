@@ -19,10 +19,10 @@ class MainNavigationPage extends StatelessWidget {
   });
 
   static final List<Widget> _pages = <Widget>[
-    const HomePage(),
-    const FavoritesPage(),
-    const OrdersPage(),
     const AccountPage(),
+    const OrdersPage(),
+    const FavoritesPage(),
+    const HomePage(),
   ];
   @override
   Widget build(BuildContext context) {
@@ -34,7 +34,8 @@ class MainNavigationPage extends StatelessWidget {
             children: _pages,
           ),
           bottomNavigationBar: Container(
-            decoration: BoxDecoration(color: ThemeColor.bgColor, boxShadow: [
+            decoration:
+                BoxDecoration(color: ThemeColor.secondaryColor, boxShadow: [
               BoxShadow(
                 blurRadius: 20,
                 // ignore: deprecated_member_use
@@ -49,42 +50,57 @@ class MainNavigationPage extends StatelessWidget {
                   activeColor: ThemeColor.primaryGreenColor,
                   tabBackgroundColor:
                       // ignore: deprecated_member_use
-                      ThemeColor.primaryGreenColor.withOpacity(0.1),
+                      ThemeColor.forestGreenColor.withOpacity(0.1),
                   padding: const EdgeInsets.all(16),
                   selectedIndex: selectedIndex,
                   onTabChange: (index) {
                     context.read<NavigationCubit>().changeIndex(index);
                   },
                   gap: 8,
-                  textStyle: Style.textStyle12.copyWith(
-                    fontFamily: cairoRegular,
-                    color: ThemeColor.primaryGreenColor,
+                  textStyle: Style.textStyle14.copyWith(
+                    fontFamily: cairoBold,
+                    color: ThemeColor.forestGreenColor,
                   ),
                   tabs: [
                     GButton(
                       icon: Icons.storefront_outlined,
                       leading: SvgPicture.asset(
-                        Assets.ichome,
+                        Assets.icaccount,
                         width: 18.w,
                         height: 18.h,
                         colorFilter: ColorFilter.mode(
                           selectedIndex == 0
-                              ? ThemeColor.primaryGreenColor
+                              ? ThemeColor.forestGreenColor
                               : ThemeColor.neutralGrayColor,
                           BlendMode.srcIn,
                         ),
                       ),
-                      text: 'الرئيسية',
+                      text: 'حسابي',
+                    ),
+                    GButton(
+                      icon: Icons.storefront_outlined,
+                      leading: SvgPicture.asset(
+                        Assets.shoppingCartIcon,
+                        width: 18.w,
+                        height: 18.h,
+                        colorFilter: ColorFilter.mode(
+                          selectedIndex == 1
+                              ? ThemeColor.forestGreenColor
+                              : ThemeColor.neutralGrayColor,
+                          BlendMode.srcIn,
+                        ),
+                      ),
+                      text: 'عربة التسوق',
                     ),
                     GButton(
                       icon: Icons.storefront_outlined,
                       leading: SvgPicture.asset(
                         Assets.icorders,
-                        width: 14.w,
-                        height: 14.h,
+                        width: 18.w,
+                        height: 18.h,
                         colorFilter: ColorFilter.mode(
-                          selectedIndex == 1
-                              ? ThemeColor.primaryGreenColor
+                          selectedIndex == 2
+                              ? ThemeColor.forestGreenColor
                               : ThemeColor.neutralGrayColor,
                           BlendMode.srcIn,
                         ),
@@ -94,33 +110,18 @@ class MainNavigationPage extends StatelessWidget {
                     GButton(
                       icon: Icons.storefront_outlined,
                       leading: SvgPicture.asset(
-                        Assets.icfavorites,
-                        width: 14.w,
-                        height: 14.h,
-                        colorFilter: ColorFilter.mode(
-                          selectedIndex == 2
-                              ? ThemeColor.primaryGreenColor
-                              : ThemeColor.neutralGrayColor,
-                          BlendMode.srcIn,
-                        ),
-                      ),
-                      text: 'المفضلة',
-                    ),
-                    GButton(
-                      icon: Icons.storefront_outlined,
-                      leading: SvgPicture.asset(
-                        Assets.icaccount,
-                        width: 14.w,
-                        height: 14.h,
+                        Assets.ichome,
+                        width: 18.w,
+                        height: 18.h,
                         colorFilter: ColorFilter.mode(
                           selectedIndex == 3
-                              ? ThemeColor.primaryGreenColor
+                              ? ThemeColor.forestGreenColor
                               : ThemeColor.neutralGrayColor,
                           BlendMode.srcIn,
                         ),
                       ),
-                      text: 'حسابي',
-                    )
+                      text: 'الرئيسية',
+                    ),
                   ],
                 ),
               ),

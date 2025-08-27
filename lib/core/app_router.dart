@@ -3,6 +3,10 @@ import 'package:egyptian_supermaekat/features/auth/presentation/view/create_new_
 import 'package:egyptian_supermaekat/features/auth/presentation/view/forgot_password_page.dart';
 import 'package:egyptian_supermaekat/features/auth/presentation/view/login_page.dart';
 import 'package:egyptian_supermaekat/features/auth/presentation/view/sign_up_page.dart';
+import 'package:egyptian_supermaekat/features/home/presentation/view/pages/dairy_page.dart';
+import 'package:egyptian_supermaekat/features/home/presentation/view/pages/fruits_page.dart';
+import 'package:egyptian_supermaekat/features/home/presentation/view/pages/grocery_page.dart';
+import 'package:egyptian_supermaekat/features/home/presentation/view/pages/pharmacy_page.dart';
 import 'package:egyptian_supermaekat/features/main/presentation/view/main_navigation_page.dart';
 import 'package:egyptian_supermaekat/features/on_boarding/presentation/views/on_boarding_screen.dart';
 import 'package:egyptian_supermaekat/features/splash/presentation/views/splash_screen.dart';
@@ -20,6 +24,10 @@ abstract class AppRouter {
   static const kForgotPassword = '/forgot-password';
   static const kConfirmCode = '/onfirm-code';
   static const kCreateNewPasswod = '/CreateNewPasswodPage';
+  static const kDairyPage = '/DairyPage';
+  static const kFruitsPage = '/FruitsPage';
+  static const kGroceryPage = '/GroceryPage';
+  static const kPharmacyPage = '/PharmacyPage';
 
   static final GoRouter router = GoRouter(
     routes: <RouteBase>[
@@ -69,6 +77,30 @@ abstract class AppRouter {
         path: kMain,
         builder: (BuildContext context, GoRouterState state) {
           return MainNavigationPage();
+        },
+      ),
+      GoRoute(
+        path: kDairyPage,
+        builder: (BuildContext context, GoRouterState state) {
+          return DairyPage();
+        },
+      ),
+      GoRoute(
+        path: kFruitsPage,
+        builder: (BuildContext context, GoRouterState state) {
+          return FruitsPage();
+        },
+      ),
+      GoRoute(
+        path: kGroceryPage,
+        builder: (BuildContext context, GoRouterState state) {
+          return GroceryPage();
+        },
+      ),
+      GoRoute(
+        path: kPharmacyPage,
+        builder: (BuildContext context, GoRouterState state) {
+          return PharmacyPage();
         },
       ),
     ],

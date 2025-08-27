@@ -45,11 +45,11 @@ class _SplashScreenState extends State<SplashScreen> {
           ClipPath(
             clipper: SplashScreenClipper(),
             child: Container(
-              decoration: const BoxDecoration(
+              decoration: BoxDecoration(
                 gradient: LinearGradient(
                   colors: [
+                    ThemeColor.forestGreenColor,
                     ThemeColor.primaryGreenColor,
-                    ThemeColor.orangeAccentColor,
                   ],
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter,

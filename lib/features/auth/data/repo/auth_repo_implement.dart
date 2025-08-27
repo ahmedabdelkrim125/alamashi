@@ -2,6 +2,7 @@ import 'package:egyptian_supermaekat/core/api/api_consumer.dart';
 import 'package:egyptian_supermaekat/core/api/end_points.dart';
 import 'package:egyptian_supermaekat/core/errors/error_model.dart';
 import 'package:egyptian_supermaekat/core/errors/exceptions.dart';
+import 'package:egyptian_supermaekat/core/utils/cache_helper.dart';
 import 'package:egyptian_supermaekat/features/auth/data/model/user_model/user.dart';
 import 'package:egyptian_supermaekat/features/auth/data/model/user_model/user_model.dart';
 import 'package:egyptian_supermaekat/features/auth/data/repo/auth_repo.dart';
@@ -60,6 +61,25 @@ class AuthRepoImplement implements AuthRepo {
         );
       }
 
+      return UserModel.fromJson(response);
+    } on DioException catch (e) {
+      throw _handleDioException(e);
+    }
+  }
+
+  @override
+  Future<UserModel> refreshToken() async {
+    final accessToken = CacheHelper.getAccessToken();
+    final refreshToken = CacheHelper.getRefreshToken();
+
+    try {
+      final response = await api.post(
+        EndPoints.refresh,
+        data: {
+          ApiKeys.accessToken: accessToken,
+         ApiKeys.refreshToken: refreshToken
+        },
+      );
       return UserModel.fromJson(response);
     } on DioException catch (e) {
       throw _handleDioException(e);

@@ -21,7 +21,7 @@ class CutomButton extends StatelessWidget {
             borderRadius: BorderRadius.circular(8),
             gradient: LinearGradient(
               colors: [
-                ThemeColor.darkGreenColor,
+                ThemeColor.forestGreenColor,
                 ThemeColor.primaryGreenColor,
               ],
               begin: Alignment.centerRight,

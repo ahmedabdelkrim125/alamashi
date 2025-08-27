@@ -9,7 +9,7 @@ class Assets {
   static const String imagesFacebookLogo =
       "assets/images/imagesFacebookLogo.svg";
 
-  static const String imagesGmailLogo = "assets/images/imagesGmailLogo.svg";
+  static const String imagesGoogleLogo = "assets/images/imagesGoogleLogo.svg";
 
   /// Assets for imagesGoogleLogo
   /// assets/images/google_logo.svg
@@ -40,4 +40,14 @@ class Assets {
   static const String icorders = "assets/images/ic_orders.svg";
   static const String icfavorites = "assets/images/ic_favorites.svg";
   static const String icaccount = "assets/images/ic_account.svg";
+  static const String icnotifications = "assets/images/ic_notifications.svg";
+  static const String preson = "assets/images/preson.svg";
+  static const String icsearch = "assets/images/ic_search.svg";
+  static const String shoppingCartIcon = "assets/images/shoppingCart.svg";
+  static const String map_1 = "assets/images/map_1.svg";
+  static const String iconDairy = "assets/images/Icon_dairy_tab.svg";
+  static const String iconFruits = "assets/images/Icon_fruits_tab.svg";
+  static const String iconGrocery = "assets/images/Icon_grocery_tab.svg";
+  static const String iconPharmacy = "assets/images/Icon_pharmacy_tab.svg";
+  static const String fruit = "assets/images/fruit.png";
 }

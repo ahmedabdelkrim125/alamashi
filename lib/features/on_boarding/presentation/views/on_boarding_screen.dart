@@ -15,11 +15,11 @@ class OnBoardingScreen extends StatelessWidget {
             clipper: OnBoardinScreenClipper(),
             child: Container(
               height: size.height * 0.7,
-              decoration: const BoxDecoration(
+              decoration:const BoxDecoration(
                 gradient: LinearGradient(
                   colors: [
+                    ThemeColor.forestGreenColor,
                     ThemeColor.primaryGreenColor,
-                    ThemeColor.orangeAccentColor,
                   ],
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter,

@@ -11,18 +11,18 @@ void showCustomSnackBar({
   Color? backgroundColor,
   bool isError = false,
 }) {
-  // 
-  final Color finalColor = backgroundColor ?? 
-      (isError ? ThemeColor.errorColor : ThemeColor.primaryColor); 
+  //
+  final Color finalColor = backgroundColor ??
+      (isError ? ThemeColor.errorColor : ThemeColor.primaryColor);
 
   ScaffoldMessenger.of(context).showSnackBar(
     SnackBar(
       behavior: SnackBarBehavior.floating,
-      backgroundColor: finalColor, 
+      backgroundColor: finalColor,
       content: Text(
         message,
         textAlign: TextAlign.center,
-        style: Style.textStyle20.copyWith(fontFamily: cairoRegular),
+        style: Style.textStyle18.copyWith(fontFamily: cairoRegular),
       ),
     ),
   );

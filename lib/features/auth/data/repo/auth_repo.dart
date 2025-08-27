@@ -3,5 +3,6 @@ import 'package:egyptian_supermaekat/features/auth/data/model/user_model/user_mo
 
 abstract class AuthRepo {
   Future<UserModel> login(String email, String password);
+  Future<UserModel> refreshToken();
   Future<UserModel> signup(User user, String password);
 }
