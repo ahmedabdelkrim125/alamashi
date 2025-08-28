@@ -18,7 +18,7 @@ class StaticAddressRowCards extends StatelessWidget {
             imagePath: Assets.map_1,
           ),
         ),
-        SizedBox(width: 10.w),
+        SizedBox(width: 16.48.w),
         Expanded(
           child: AddressCard(
             title: "عنوان الفرع:",

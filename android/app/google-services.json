@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "903898710026",
+    "project_id": "alamashi-app",
+    "storage_bucket": "alamashi-app.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:903898710026:android:181f15f13556976b2b1ff3",
+        "android_client_info": {
+          "package_name": "com.example.egyptian_supermaekat_"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAtqGy-2KCwbsjeFZsIItg9wYu9nll4cnU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -40,7 +40,9 @@ class SocialLoginSection extends StatelessWidget {
                 iconPath: Assets.imagesGoogleLogo,
                 width: 98.w,
                 height: 50.57.h,
-                onTap: () {},
+                onTap: () {
+                  // context.read<AuthCubit>().loginWithGoogle();
+                },
               ),
             ),
             Expanded(

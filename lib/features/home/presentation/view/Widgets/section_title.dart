@@ -19,7 +19,7 @@ class SectionTitle extends StatelessWidget {
       child: Text(
         title,
         textAlign: TextAlign.end,
-        style: Style.textStyle16.copyWith(
+        style: Style.textStyle18.copyWith(
           fontFamily: cairoBold,
           color: ThemeColor.charcoalGrey,
         ),

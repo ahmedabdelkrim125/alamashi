@@ -77,7 +77,7 @@ class AuthRepoImplement implements AuthRepo {
         EndPoints.refresh,
         data: {
           ApiKeys.accessToken: accessToken,
-         ApiKeys.refreshToken: refreshToken
+          ApiKeys.refreshToken: refreshToken
         },
       );
       return UserModel.fromJson(response);
@@ -86,11 +86,16 @@ class AuthRepoImplement implements AuthRepo {
     }
   }
 
+  
+
+
+
   ServerException _handleDioException(DioException e) {
     if (e.response?.data != null) {
       return ServerException(errorModel: ErrorModel.fromJson(e.response!.data));
     }
 
+  
     return ServerException(
       errorModel: ErrorModel(
         status: 500,
@@ -98,4 +103,45 @@ class AuthRepoImplement implements AuthRepo {
       ),
     );
   }
+//   @override
+// Future<UserModel> signInWithGoogle() async {
+//   try {
+//     final g = GoogleSignIn.instance;
+//     await g.initialize();
+
+//     final GoogleSignInAccount? googleUser = await g.authenticate();
+//     if (googleUser == null) throw Exception("تم إلغاء تسجيل الدخول");
+
+//     final googleAuth = googleUser.authentication;
+
+//     // مفيش accessToken في v7+
+//     final credential = fb.GoogleAuthProvider.credential(
+//       idToken: googleAuth.idToken,
+//     );
+
+//     final userCred =
+//         await fb.FirebaseAuth.instance.signInWithCredential(credential);
+
+//     final user = userCred.user;
+//     if (user == null) throw Exception("Firebase رجّع user = null");
+
+//     return UserModel(
+//       status: "success",
+//       accessToken: await user.getIdToken(), // ده هو التوكن اللي تسجّله عندك
+//       user: app.User(
+//         userId: user.uid.hashCode,
+//         userName: user.displayName ?? "",
+//         email: user.email ?? "",
+//       ),
+//     );
+//   } catch (e) {
+//     throw Exception("Google Sign-In Failed: $e");
+//   }
+// }
+
+
+
+
+  
+ 
 }

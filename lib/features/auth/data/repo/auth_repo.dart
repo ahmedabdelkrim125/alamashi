@@ -5,4 +5,7 @@ abstract class AuthRepo {
   Future<UserModel> login(String email, String password);
   Future<UserModel> refreshToken();
   Future<UserModel> signup(User user, String password);
+
+    // 🆕 Sign in with Google
+// Future<UserModel> signInWithGoogle();
 }

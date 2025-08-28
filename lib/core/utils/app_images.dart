@@ -50,4 +50,9 @@ class Assets {
   static const String iconGrocery = "assets/images/Icon_grocery_tab.svg";
   static const String iconPharmacy = "assets/images/Icon_pharmacy_tab.svg";
   static const String fruit = "assets/images/fruit.png";
+  static const String test = "assets/images/test.svg";
+  static const String items = "assets/images/items.svg";
+  static const String location = "assets/images/location.svg";
+  static const String item = "assets/images/item.jpg";
+  static const String items_ = "assets/images/items.webp";
 }

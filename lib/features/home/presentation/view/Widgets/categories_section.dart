@@ -29,20 +29,22 @@ class CustomTab extends StatelessWidget {
             height: 50.h,
             decoration: BoxDecoration(
               color: ThemeColor.lightGrey,
-              borderRadius: BorderRadius.circular(40.r),
+              borderRadius: BorderRadius.circular(30.r),
             ),
             child: Center(
               child: SvgPicture.asset(
                 svgAsset,
-                width: 150.w,
-                height: 150.h,
+                width: 40.w,
+                height: 35.h,
               ),
             ),
           ),
           SizedBox(height: 5.h),
           Text(
             text,
-            style: Style.textStyle12.copyWith(fontFamily: cairoBold),
+            style: Style.textStyle14.copyWith(
+              fontFamily: cairoMedium,
+            ),
           ),
         ],
       ),

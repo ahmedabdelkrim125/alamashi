@@ -89,6 +89,22 @@ class AuthCubit extends Cubit<AuthState> {
       emit(AuthFailure("حدث خطأ غير متوقع: ${e.toString()}"));
     }
   }
+  // Future<void> loginWithGoogle() async {
+  //   try {
+  //     emit(AuthLoading());
+
+  //     final userModel = await authRepo.signInWithGoogle();
+
+  //     if (userModel.accessToken != null) {
+  //       await CacheHelper.saveAccessToken(userModel.accessToken!);
+  //       log("✅ Google Access Token Saved!");
+  //     }
+
+  //     emit(AuthSuccess(userModel));
+  //   } catch (e) {
+  //     emit(AuthFailure("فشل تسجيل الدخول بجوجل: ${e.toString()}"));
+  //   }
+  // }
 
   Future<void> logout() async {
     await CacheHelper.removeAccessToken();
