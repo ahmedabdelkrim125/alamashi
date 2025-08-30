@@ -55,4 +55,8 @@ class Assets {
   static const String location = "assets/images/location.svg";
   static const String item = "assets/images/item.jpg";
   static const String items_ = "assets/images/items.webp";
+  static const String woof = "assets/images/woof.svg";
+  static const String fishing = "assets/images/fishing.svg";
+  static const String groceryBasket = "assets/images/grocery_basket.png";
+  static const String shopping_ = "assets/images/shopping_icon.svg";
 }

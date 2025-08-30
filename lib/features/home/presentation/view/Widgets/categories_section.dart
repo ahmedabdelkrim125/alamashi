@@ -19,34 +19,44 @@ class CustomTab extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: onTap,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Container(
-            width: 60.w,
-            height: 50.h,
-            decoration: BoxDecoration(
-              color: ThemeColor.lightGrey,
-              borderRadius: BorderRadius.circular(30.r),
-            ),
-            child: Center(
-              child: SvgPicture.asset(
-                svgAsset,
-                width: 40.w,
-                height: 35.h,
+    return Material(
+      color: Colors.transparent,
+      child: InkWell(
+        highlightColor: ThemeColor.primaryColor.withOpacity(0.1),
+        splashColor: ThemeColor.primaryColor.withOpacity(0.1),
+        borderRadius: BorderRadius.circular(20.r),
+        onTap: onTap,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Container(
+              width: 80.w,
+              height: 70.h,
+              decoration: BoxDecoration(
+                color: Colors.transparent,
+                borderRadius: BorderRadius.circular(40.r),
+                border: Border.all(
+                  width: 2,
+                  color: ThemeColor.forestGreenColor,
+                ),
+              ),
+              child: Center(
+                child: SvgPicture.asset(
+                  svgAsset,
+                  width: 40.w,
+                  height: 35.h,
+                ),
               ),
             ),
-          ),
-          SizedBox(height: 5.h),
-          Text(
-            text,
-            style: Style.textStyle14.copyWith(
-              fontFamily: cairoMedium,
+            SizedBox(height: 15.h),
+            Text(
+              text,
+              style: Style.textStyle16.copyWith(
+                fontFamily: cairoMedium,
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

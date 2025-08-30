@@ -7,6 +7,8 @@ import 'package:egyptian_supermaekat/features/home/presentation/view/pages/dairy
 import 'package:egyptian_supermaekat/features/home/presentation/view/pages/fruits_page.dart';
 import 'package:egyptian_supermaekat/features/home/presentation/view/pages/grocery_page.dart';
 import 'package:egyptian_supermaekat/features/home/presentation/view/pages/pharmacy_page.dart';
+import 'package:egyptian_supermaekat/features/home/presentation/view/pages/meat_page.dart';
+import 'package:egyptian_supermaekat/features/home/presentation/view/pages/fish_page.dart';
 import 'package:egyptian_supermaekat/features/main/presentation/view/main_navigation_page.dart';
 import 'package:egyptian_supermaekat/features/on_boarding/presentation/views/on_boarding_screen.dart';
 import 'package:egyptian_supermaekat/features/splash/presentation/views/splash_screen.dart';
@@ -22,12 +24,14 @@ abstract class AppRouter {
   static const kSignUp = '/sign_up';
 
   static const kForgotPassword = '/forgot-password';
-  static const kConfirmCode = '/onfirm-code';
+  static const kConfirmCode = '/confirm-code';
   static const kCreateNewPasswod = '/CreateNewPasswodPage';
   static const kDairyPage = '/DairyPage';
   static const kFruitsPage = '/FruitsPage';
   static const kGroceryPage = '/GroceryPage';
   static const kPharmacyPage = '/PharmacyPage';
+  static const kMeatPage = '/MeatPage';
+  static const kFishPage = '/FishPage';
 
   static final GoRouter router = GoRouter(
     routes: <RouteBase>[
@@ -101,6 +105,18 @@ abstract class AppRouter {
         path: kPharmacyPage,
         builder: (BuildContext context, GoRouterState state) {
           return PharmacyPage();
+        },
+      ),
+      GoRoute(
+        path: kMeatPage,
+        builder: (BuildContext context, GoRouterState state) {
+          return MeatPage();
+        },
+      ),
+      GoRoute(
+        path: kFishPage,
+        builder: (BuildContext context, GoRouterState state) {
+          return FishPage();
         },
       ),
     ],

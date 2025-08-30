@@ -12,16 +12,29 @@ class ServiceTabsRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CustomScrollView(
-      scrollDirection: Axis.vertical,
-      shrinkWrap: true,
-      physics: NeverScrollableScrollPhysics(),
-      slivers: [
-        SliverToBoxAdapter(
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            spacing: 10.w,
+    return SizedBox(
+      height: 120.h,
+      child: ListView(
+        scrollDirection: Axis.horizontal,
+        children: [
+          Row(
+            spacing: 20.w,
             children: [
+              CustomTab(
+                
+                text: 'اسماك',
+                svgAsset: Assets.fishing,
+                onTap: () {
+                  context.push(AppRouter.kFishPage);
+                },
+              ),
+              CustomTab(
+                text: 'لحوم',
+                svgAsset: Assets.woof,
+                onTap: () {
+                  context.push(AppRouter.kMeatPage);
+                },
+              ),
               CustomTab(
                 text: 'الصيدلية',
                 svgAsset: Assets.iconPharmacy,
@@ -52,8 +65,8 @@ class ServiceTabsRow extends StatelessWidget {
               ),
             ],
           ),
-        )
-      ],
+        ],
+      ),
     );
   }
 }

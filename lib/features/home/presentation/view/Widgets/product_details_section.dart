@@ -5,7 +5,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'product_old_price.dart';
 import 'product_new_price.dart';
 
-
 class ProductDetailsSection extends StatelessWidget {
   const ProductDetailsSection({super.key});
 
@@ -41,8 +40,8 @@ class ProductDetailsSection extends StatelessWidget {
           Row(
             spacing: 7.w,
             children: const [
-              ProductOldPrice(),
               ProductNewPrice(),
+              ProductOldPrice(),
             ],
           )
         ]);

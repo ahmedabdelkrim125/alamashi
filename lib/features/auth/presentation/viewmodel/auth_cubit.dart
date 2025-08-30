@@ -1,5 +1,8 @@
+// auth_cubit.dart
+
 import 'dart:developer';
 import 'package:bloc/bloc.dart';
+import 'package:egyptian_supermaekat/core/api/end_points.dart';
 import 'package:egyptian_supermaekat/core/errors/exceptions.dart';
 import 'package:egyptian_supermaekat/core/utils/cache_helper.dart';
 import 'package:egyptian_supermaekat/core/utils/debug_tokens.dart';
@@ -20,6 +23,7 @@ class AuthCubit extends Cubit<AuthState> {
     final statusCode = e.errorModel.status;
     final errorMessage = e.errorModel.errorMessage.toLowerCase();
     log("DEBUGGING: The status code received is ==> ${e.statusCode}");
+
     if (statusCode == 401 || statusCode == 400) {
       //    هذه الأكواد لمشاكل في تسجيل الدخول
       return "البريد الإلكتروني أو كلمة المرور غير صحيحة. يرجى المحاولة مرة أخرى.";
@@ -29,9 +33,14 @@ class AuthCubit extends Cubit<AuthState> {
       return "هذا البريد الإلكتروني مسجل بالفعل. يرجى تسجيل الدخول بدلاً من ذلك.";
     }
 
+    if (errorMessage.contains("Login failed: Missing token in response")) {
+      return "هذا البريد الإلكتروني غير مسجل لدينا.";
+    }
+
     if (errorMessage.contains("email not found")) {
       return "هذا البريد الإلكتروني غير مسجل لدينا.";
     }
+
     return "حدث خطأ ما. يرجى المحاولة مرة أخرى لاحقًا.";
   }
 
@@ -55,9 +64,10 @@ class AuthCubit extends Cubit<AuthState> {
       }
       Map<String, dynamic> decodedToken =
           JwtDecoder.decode(userModel.accessToken!);
-      String? userRole = decodedToken['role'];
-      String? userId = decodedToken['nameid'];
-      String? userName = decodedToken['unique_name'];
+      // --- JWT DECODING FIX ---
+      String? userRole = decodedToken[ApiKeys.jwtRole];
+      String? userId = decodedToken[ApiKeys.jwtNameIdentifier];
+      String? userName = decodedToken[ApiKeys.jwtName];
       log("--- Decoded Token Info ---");
       log("User Role: $userRole");
       log("User ID from Token: $userId");
@@ -89,22 +99,6 @@ class AuthCubit extends Cubit<AuthState> {
       emit(AuthFailure("حدث خطأ غير متوقع: ${e.toString()}"));
     }
   }
-  // Future<void> loginWithGoogle() async {
-  //   try {
-  //     emit(AuthLoading());
-
-  //     final userModel = await authRepo.signInWithGoogle();
-
-  //     if (userModel.accessToken != null) {
-  //       await CacheHelper.saveAccessToken(userModel.accessToken!);
-  //       log("✅ Google Access Token Saved!");
-  //     }
-
-  //     emit(AuthSuccess(userModel));
-  //   } catch (e) {
-  //     emit(AuthFailure("فشل تسجيل الدخول بجوجل: ${e.toString()}"));
-  //   }
-  // }
 
   Future<void> logout() async {
     await CacheHelper.removeAccessToken();
@@ -136,10 +130,11 @@ class AuthCubit extends Cubit<AuthState> {
       } else {
         log("✅ Found valid token. User is already logged in.");
         Map<String, dynamic> decodedToken = JwtDecoder.decode(accessToken);
+        // --- JWT DECODING FIX ---
         final user = User(
-          userId: int.parse(decodedToken['nameid'] ?? ''),
-          userName: decodedToken['unique_name'],
-          email: 'loaded_from_token@email.com',
+          userId: int.parse(decodedToken[ApiKeys.jwtNameIdentifier] ?? '0'),
+          userName: decodedToken[ApiKeys.jwtName],
+          email: decodedToken[ApiKeys.jwtEmail],
         );
         final userModel =
             UserModel(status: 'success', accessToken: accessToken, user: user);

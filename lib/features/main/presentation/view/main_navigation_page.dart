@@ -108,8 +108,10 @@ class MainNavigationPage extends StatelessWidget {
                       text: 'طلباتي',
                     ),
                     GButton(
+                      text: 'الرئيسية',
                       icon: Icons.storefront_outlined,
                       leading: SvgPicture.asset(
+                        alignment: Alignment.centerRight,
                         Assets.ichome,
                         width: 18.w,
                         height: 18.h,
@@ -120,7 +122,6 @@ class MainNavigationPage extends StatelessWidget {
                           BlendMode.srcIn,
                         ),
                       ),
-                      text: 'الرئيسية',
                     ),
                   ],
                 ),

@@ -5,7 +5,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CutomButton extends StatelessWidget {
-  const CutomButton({super.key, required this.textButton, this.onTap});
+  const CutomButton({
+    super.key,
+    required this.textButton,
+    this.onTap,
+  });
   final String textButton;
   final void Function()? onTap;
   @override
