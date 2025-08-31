@@ -59,4 +59,17 @@ class Assets {
   static const String fishing = "assets/images/fishing.svg";
   static const String groceryBasket = "assets/images/grocery_basket.png";
   static const String shopping_ = "assets/images/shopping_icon.svg";
+  static const String ratingStarIcon = "assets/images/rating_star_icon.svg";
+  static const String image44 = "assets/images/image 44.svg";
+  static const String image444 = "assets/images/image 44.png";
+  static const String add = "assets/images/Add.png";
+  static const String rectangle = "assets/images/Rectangle.png";
+  static const String rectangle_1 = "assets/images/Rectangle_1.png";
+  static const String rectangle_2 = "assets/images/Rectangle_2.png";
+  static const String rectangle_3 = "assets/images/Rectangle_3.png";
+  static const String rectangle_4 = "assets/images/Rectangle_4.png";
+  static const String rectangle_5 = "assets/images/Rectangle_5.png";
+  static const String rectangle_6 = "assets/images/Rectangle_6.png";
+  static const String rectangle_7 = "assets/images/Rectangle_7.png";
+  static const String frame  = "assets/images/Frame.png";
 }

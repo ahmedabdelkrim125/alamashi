@@ -48,11 +48,14 @@ class CustomTab extends StatelessWidget {
                 ),
               ),
             ),
-            SizedBox(height: 15.h),
-            Text(
-              text,
-              style: Style.textStyle16.copyWith(
-                fontFamily: cairoMedium,
+            SizedBox(height: 10.h),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 15.w),
+              child: Text(
+                text,
+                style: Style.textStyle16.copyWith(
+                  fontFamily: cairoMedium,
+                ),
               ),
             ),
           ],

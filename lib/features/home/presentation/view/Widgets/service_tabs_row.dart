@@ -16,12 +16,12 @@ class ServiceTabsRow extends StatelessWidget {
       height: 120.h,
       child: ListView(
         scrollDirection: Axis.horizontal,
+        reverse: true,
         children: [
           Row(
-            spacing: 20.w,
+            spacing: 8.w,
             children: [
               CustomTab(
-                
                 text: 'اسماك',
                 svgAsset: Assets.fishing,
                 onTap: () {

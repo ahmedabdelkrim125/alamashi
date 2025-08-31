@@ -1,3 +1,4 @@
+import 'package:egyptian_supermaekat/features/home/presentation/view/pages/widgets_grocery_page/grocery_page_body.dart';
 import 'package:flutter/material.dart';
 
 class GroceryPage extends StatelessWidget {
@@ -5,11 +6,8 @@ class GroceryPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Center(
-      child: Text(
-        "صفحة البقالة",
-        style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-      ),
+    return Scaffold(
+      body: GroceryPageBody(),
     );
   }
 }
