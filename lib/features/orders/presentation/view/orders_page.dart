@@ -1,3 +1,4 @@
+import 'package:egyptian_supermaekat/features/orders/presentation/view/Widgets/orders_page_body.dart';
 import 'package:flutter/material.dart';
 
 class OrdersPage extends StatelessWidget {
@@ -6,12 +7,10 @@ class OrdersPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('طلباتي'),
-      ),
-      body: const Center(
-        child: Text('محتوى صفحة طلباتي'),
-      ),
+     body:OrdersPageBody() ,
     );
   }
 }
+
+
+

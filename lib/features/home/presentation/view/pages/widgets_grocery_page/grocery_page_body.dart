@@ -1,12 +1,13 @@
 import 'dart:developer';
+import 'package:egyptian_supermaekat/core/app_router.dart';
 import 'package:egyptian_supermaekat/core/utils/app_images.dart';
-import 'package:egyptian_supermaekat/features/home/presentation/view/Widgets/section_title.dart';
-import 'package:egyptian_supermaekat/features/home/presentation/view/pages/Widgets/products_carousel.dart';
-import 'package:egyptian_supermaekat/features/home/presentation/view/pages/widgets_grocery_page/custom_app_bar.dart';
+import 'package:egyptian_supermaekat/features/home/presentation/view/pages/Widgets/products_carousel_pages.dart';
+import 'package:egyptian_supermaekat/features/home/presentation/view/pages/Widgets/custom_app_bar.dart';
+import 'package:egyptian_supermaekat/features/home/presentation/view/pages/widgets_grocery_page/section_title.dart';
 import 'package:egyptian_supermaekat/features/home/presentation/view/pages/widgets_grocery_page/view_cart_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/svg.dart';
+import 'package:go_router/go_router.dart';
 
 class GroceryPageBody extends StatelessWidget {
   const GroceryPageBody({super.key});
@@ -17,15 +18,9 @@ class GroceryPageBody extends StatelessWidget {
       children: [
         CustomAppBar(
           title: 'البقالة',
-          iconButton: IconButton(
-            padding: EdgeInsets.zero,
-            onPressed: () => Navigator.pop(context),
-            icon: SvgPicture.asset(
-              Assets.chevronRight,
-              width: 24.w,
-              height: 24.h,
-            ),
-          ),
+          onPressed: () {
+            context.push(AppRouter.kSearch);
+          },
         ),
         SizedBox(height: 24.h),
         SectionTitle(title: 'الأطعمة المجمدة'),
@@ -39,7 +34,7 @@ class GroceryPageBody extends StatelessWidget {
             itemBuilder: (context, index) {
               return Padding(
                 padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 8.h),
-                child: ProductsCarousel(
+                child: ProductsCarouselPages(
                   image: Assets.rectangle,
                   title: 'بسلة مجمدة',
                   size: '330 مل',
@@ -64,13 +59,13 @@ class GroceryPageBody extends StatelessWidget {
                 child: Row(
                   spacing: 12.w,
                   children: [
-                    ProductsCarousel(
+                    ProductsCarouselPages(
                       image: Assets.rectangle_1,
                       title: 'زيت دوار الشمس نور',
                       size: '330 مل',
                       price: '15',
                     ),
-                    ProductsCarousel(
+                    ProductsCarouselPages(
                       image: Assets.rectangle_2,
                       title: 'سمنة جنة',
                       size: '330 مل',
@@ -97,19 +92,19 @@ class GroceryPageBody extends StatelessWidget {
                 child: Row(
                   spacing: 12.w,
                   children: [
-                    ProductsCarousel(
+                    ProductsCarouselPages(
                       image: Assets.rectangle_3,
                       title: 'V cola',
                       size: '330 مل',
                       price: '15',
                     ),
-                    ProductsCarousel(
+                    ProductsCarouselPages(
                       image: Assets.rectangle_4,
                       title: 'سبيدز كرافت',
                       size: '1 جم ',
                       price: '15',
                     ),
-                    ProductsCarousel(
+                    ProductsCarouselPages(
                       image: Assets.rectangle_5,
                       title: 'سبيدز كرافت',
                       size: '1 جم ',
@@ -136,13 +131,13 @@ class GroceryPageBody extends StatelessWidget {
                 child: Row(
                   spacing: 12.w,
                   children: [
-                    ProductsCarousel(
+                    ProductsCarouselPages(
                       image: Assets.rectangle_6,
                       title: 'حمص معلب',
                       size: '1 كجم',
                       price: '15',
                     ),
-                    ProductsCarousel(
+                    ProductsCarouselPages(
                       image: Assets.rectangle_7,
                       title: 'سمنة جنة',
                       size: '1 كجم',
@@ -174,4 +169,3 @@ class GroceryPageBody extends StatelessWidget {
     );
   }
 }
-

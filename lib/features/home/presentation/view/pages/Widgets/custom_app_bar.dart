@@ -1,4 +1,3 @@
-
 import 'package:egyptian_supermaekat/constant.dart';
 import 'package:egyptian_supermaekat/core/style.dart';
 import 'package:egyptian_supermaekat/core/theme_color.dart';
@@ -9,12 +8,10 @@ import 'package:flutter_svg/svg.dart';
 
 class CustomAppBar extends StatelessWidget {
   final String title;
-  final Widget? iconButton;
-
+final void Function()? onPressed;
   const CustomAppBar({
     super.key,
-    this.iconButton,
-    required this.title,
+    required this.title, this.onPressed,
   });
 
   @override
@@ -25,7 +22,7 @@ class CustomAppBar extends StatelessWidget {
         Padding(
           padding: EdgeInsets.symmetric(horizontal: 31.66.w),
           child: IconButton(
-            onPressed: () {},
+            onPressed: onPressed,
             icon: SvgPicture.asset(
               Assets.icsearch,
               width: 15.w,
@@ -46,6 +43,7 @@ class CustomAppBar extends StatelessWidget {
               ),
               IconButton(
                 onPressed: () => Navigator.pop(context),
+                padding: EdgeInsets.zero,
                 icon: SvgPicture.asset(
                   Assets.chevronRight,
                   width: 24.w,
@@ -59,5 +57,3 @@ class CustomAppBar extends StatelessWidget {
     );
   }
 }
-
-

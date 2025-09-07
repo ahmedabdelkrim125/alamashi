@@ -1,38 +1,26 @@
-
-
 import 'package:egyptian_supermaekat/constant.dart';
 import 'package:egyptian_supermaekat/core/style.dart';
 import 'package:egyptian_supermaekat/core/theme_color.dart';
 import 'package:egyptian_supermaekat/core/utils/app_images.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:svg_flutter/svg.dart';
 
-class ProductsCarousel extends StatelessWidget {
-  final String image; // ✅ الصورة
-  final String title; // ✅ اسم المنتج
-  final String size; // ✅ الحجم (مثال: 330 مل)
-  final String price; // ✅ السعر (مثال: 15 ج.م)
-
-  const ProductsCarousel({
-    super.key,
-    required this.image,
-    required this.title,
-    required this.size,
-    required this.price,
-  });
+class ProductsCarouselHome extends StatelessWidget {
+  const ProductsCarouselHome({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 168.w,
-      height: 245.h,
+      width: 170.w,
+      height: 200.h,
       decoration: BoxDecoration(
         boxShadow: [
           BoxShadow(
-            color: ThemeColor.charcoalColor.withOpacity(.2),
+            color: ThemeColor.charcoalColor.withOpacity(.1),
             blurRadius: 10,
             spreadRadius: 2,
-            offset: const Offset(0, 6),
+            offset: const Offset(4, 4),
           ),
         ],
         color: ThemeColor.bgColor,
@@ -51,8 +39,9 @@ class ProductsCarousel extends StatelessWidget {
                   borderRadius: BorderRadius.circular(16.r),
                 ),
                 child: Center(
+                  //هنا
                   child: Image.asset(
-                    image, // ✅ هنا الصورة
+                    Assets.image444,
                     width: 146.92.w,
                     height: 119.w,
                   ),
@@ -72,28 +61,35 @@ class ProductsCarousel extends StatelessWidget {
           ),
           SizedBox(height: 14.h),
           Text(
-            title, // ✅ اسم المنتج
-            style: Style.textStyle14.copyWith(
-              fontFamily: cairoSemiBold,
-            ),
-          ),
-          Text(
-            size, // ✅ الحجم
+            'لوكر بسكويت',
             style: Style.textStyle14.copyWith(
               fontFamily: cairoSemiBold,
             ),
           ),
           Row(
+            spacing: 8.w,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              SvgPicture.asset(Assets.ratingStarIcon),
+              Text(
+                '4.8 (287)',
+                style: Style.textStyle14.copyWith(
+                  fontFamily: cairoSemiBold,
+                ),
+              ),
+            ],
+          ),
+          Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                'ج.م', // العملة ثابتة
+                ' ج .م',
                 style: Style.textStyle12.copyWith(
                   fontFamily: cairoBold,
                 ),
               ),
               Text(
-                price, // ✅ السعر
+                '15',
                 style: Style.textStyle12.copyWith(
                   fontFamily: cairoBold,
                 ),

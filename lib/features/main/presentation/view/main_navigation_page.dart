@@ -3,7 +3,7 @@ import 'package:egyptian_supermaekat/core/style.dart';
 import 'package:egyptian_supermaekat/core/theme_color.dart';
 import 'package:egyptian_supermaekat/core/utils/app_images.dart';
 import 'package:egyptian_supermaekat/features/account/presentation/view/account_page.dart';
-import 'package:egyptian_supermaekat/features/favorites/presentation/view/shopping_cart_page.dart';
+import 'package:egyptian_supermaekat/features/Shopping_Cart/presentation/view/shopping_cart_page.dart';
 import 'package:egyptian_supermaekat/features/home/presentation/view/home_page.dart';
 import 'package:egyptian_supermaekat/features/main/presentation/viewmodel/navigation_cubit.dart';
 import 'package:egyptian_supermaekat/features/orders/presentation/view/orders_page.dart';
@@ -96,7 +96,7 @@ class MainNavigationPage extends StatelessWidget {
                       ),
                       GButton(
                         icon: Icons.shopping_cart_outlined,
-                        text: 'عربة التسوق',
+                        text: 'السلة',
                         leading: SvgPicture.asset(
                           Assets.shoppingCartIcon,
                           width: 18.w,

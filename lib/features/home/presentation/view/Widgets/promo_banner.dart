@@ -10,10 +10,10 @@ class PromoBanner extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 375.w,
-      height: 203.h,
+      width: 343.w,
+      height: 184.h,
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(10.r),
+        borderRadius: BorderRadius.circular(16.r),
         boxShadow: [
           BoxShadow(
             color: ThemeColor.charcoalColor.withOpacity(.3),

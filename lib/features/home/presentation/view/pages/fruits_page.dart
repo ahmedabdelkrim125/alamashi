@@ -1,3 +1,4 @@
+import 'package:egyptian_supermaekat/features/home/presentation/view/pages/widgets_fruits_page/fruits_page_body.dart';
 import 'package:flutter/material.dart';
 
 class FruitsPage extends StatelessWidget {
@@ -5,11 +6,8 @@ class FruitsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Center(
-      child: Text(
-        "صفحة الفواكه والخضروات",
-        style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-      ),
+    return Scaffold(
+      body: FruitsPageBody(),
     );
   }
 }

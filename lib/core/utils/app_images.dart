@@ -71,5 +71,13 @@ class Assets {
   static const String rectangle_5 = "assets/images/Rectangle_5.png";
   static const String rectangle_6 = "assets/images/Rectangle_6.png";
   static const String rectangle_7 = "assets/images/Rectangle_7.png";
-  static const String frame  = "assets/images/Frame.png";
+  static const String rectangle_8 = "assets/images/Rectangle_8.png";
+  static const String rectangle_9 = "assets/images/Rectangle_9.png";
+  static const String rectangle_10 = "assets/images/Rectangle_10.png";
+  static const String rectangle_11 = "assets/images/Rectangle_11.png";
+  static const String rectangle_12 = "assets/images/Rectangle_12.png";
+  static const String rectangle_13 = "assets/images/Rectangle_13.png";
+  static const String frame = "assets/images/Frame.png";
+  static const String me = "assets/images/preson.png";
+  static const String splashFullDesign = "assets/images/splash_full_design.png";
 }

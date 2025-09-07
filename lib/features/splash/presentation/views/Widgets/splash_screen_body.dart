@@ -1,7 +1,14 @@
+import 'package:animated_text_kit/animated_text_kit.dart';
+import 'package:egyptian_supermaekat/constant.dart';
+import 'package:egyptian_supermaekat/core/app_router.dart';
+import 'package:egyptian_supermaekat/core/style.dart';
+import 'package:egyptian_supermaekat/core/theme_color.dart';
 import 'package:egyptian_supermaekat/core/utils/app_images.dart';
+import 'package:egyptian_supermaekat/features/auth/presentation/viewmodel/auth_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/svg.dart';
+import 'package:go_router/go_router.dart';
 
 class SplashScreenBody extends StatefulWidget {
   const SplashScreenBody({super.key});
@@ -12,59 +19,94 @@ class SplashScreenBody extends StatefulWidget {
 
 class _SplashScreenBodyState extends State<SplashScreenBody>
     with SingleTickerProviderStateMixin {
-  late AnimationController _animationController;
-  late Animation<double> _fadeAnimation;
-  late Animation<double> _scaleAnimation;
+  late AnimationController _cursorAnimationController;
+
   @override
   void initState() {
-    _initAnimations();
+    super.initState();
+    _initializeApp();
+
+    _cursorAnimationController = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 500),
+    );
+    _cursorAnimationController.repeat(reverse: true);
   }
 
- 
-  void _initAnimations() {
-    _animationController = AnimationController(
-      vsync: this,
-      duration: const Duration(milliseconds: 1500),
+  Future<void> _initializeApp() async {
+    await Future.wait(
+      [
+        Future.delayed(const Duration(seconds: 5)),
+        context.read<AuthCubit>().checkAuthStatus()
+      ],
     );
-    super.initState();
-    _fadeAnimation =
-        Tween<double>(begin: 0.0, end: 1.0).animate(_animationController);
-    _scaleAnimation = Tween<double>(begin: 0.5, end: 1.0).animate(
-      CurvedAnimation(parent: _animationController, curve: Curves.easeOut),
-    );
-    _animationController.forward();
+
+    if (mounted) {
+      final state = context.read<AuthCubit>().state;
+      if (state is AuthSuccess) {
+        context.go(AppRouter.kMain);
+      } else {
+        context.go(AppRouter.kOnBoarding);
+      }
+    }
   }
 
   @override
   void dispose() {
-    _animationController.dispose();
+    _cursorAnimationController.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: [
-        Spacer(flex: 2),
-        FadeTransition(
-          opacity: _fadeAnimation,
-          child: ScaleTransition(
-            scale: _scaleAnimation,
+    return Scaffold(
+      backgroundColor: Colors.transparent,
+      body: Stack(
+        fit: StackFit.expand,
+        children: [
+          Positioned.fill(
+            child: Image.asset(
+              Assets.splashFullDesign,
+              fit: BoxFit.cover,
+            ),
+          ),
+          Center(
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
+              textDirection: TextDirection.rtl,
               children: [
-                SvgPicture.asset(
-                  Assets.imagesLeafyChat,
-                  width: 300.sp,
+                AnimatedTextKit(
+                  animatedTexts: [
+                    TypewriterAnimatedText(
+                      'عـالـمـاشـي',
+                      textStyle: Style.textStyle10.copyWith(
+                        color: ThemeColor.bgColor,
+                        fontFamily: aldhabiRegular,
+                        fontSize: 69.39.sp,
+                      ),
+                      speed: const Duration(milliseconds: 150),
+                      cursor: '',
+                    ),
+                  ],
+                  isRepeatingAnimation: false,
+                  totalRepeatCount: 1,
+                ),
+                FadeTransition(
+                  opacity: _cursorAnimationController,
+                  child: Text(
+                    '|',
+                    style: Style.textStyle10.copyWith(
+                      color: ThemeColor.bgColor,
+                      fontFamily: aldhabiRegular,
+                      fontSize: 60.sp,
+                    ),
+                  ),
                 ),
               ],
             ),
-          ),
-        ),
-        Spacer(flex: 3),
-      ],
+          )
+        ],
+      ),
     );
   }
 }

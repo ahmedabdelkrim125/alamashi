@@ -26,7 +26,7 @@ class CustomTextFieldHome extends StatelessWidget {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16),
+                padding: EdgeInsets.symmetric(horizontal: 16.w),
                 child: Text(
                   'بحث',
                   style: Style.textStyle14.copyWith(
@@ -37,25 +37,25 @@ class CustomTextFieldHome extends StatelessWidget {
             ],
           ),
           border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(16),
+            borderRadius: BorderRadius.circular(25.r),
             borderSide: BorderSide(
               color: ThemeColor.lavenderGray,
             ),
           ),
           enabledBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(20),
+            borderRadius: BorderRadius.circular(25.r),
             borderSide: BorderSide(
               color: ThemeColor.lavenderGray,
             ),
           ),
           focusedBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(20),
+            borderRadius: BorderRadius.circular(25.r),
             borderSide: BorderSide(
               color: ThemeColor.lavenderGray,
             ),
           ),
           disabledBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(20),
+            borderRadius: BorderRadius.circular(25.r),
             borderSide: BorderSide(
               color: ThemeColor.lavenderGray,
             ),

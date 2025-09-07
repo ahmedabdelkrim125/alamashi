@@ -30,8 +30,8 @@ class CustomTab extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Container(
-              width: 80.w,
-              height: 70.h,
+              width: 70.w,
+              height: 60.h,
               decoration: BoxDecoration(
                 color: Colors.transparent,
                 borderRadius: BorderRadius.circular(40.r),

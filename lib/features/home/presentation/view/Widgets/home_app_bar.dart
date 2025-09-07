@@ -30,7 +30,7 @@ class HomeAppBar extends StatelessWidget {
             height: 40.h,
             child: CircleAvatar(
               backgroundImage: NetworkImage(
-                  'https://scontent.fcai19-5.fna.fbcdn.net/v/t39.30808-1/482083315_1782184069016989_4642233234716381867_n.jpg?stp=dst-jpg_s200x200_tt6&_nc_cat=101&ccb=1-7&_nc_sid=1d2534&_nc_ohc=Ua7EU04oHMkQ7kNvwFC55f_&_nc_oc=AdkqkBsa0giCuU-0JiB1EUuCI0knnL_XrZKxNK4vyrn56Mq5iGz2JvMRR3ToTkPS7vg&_nc_zt=24&_nc_ht=scontent.fcai19-5.fna&_nc_gid=PM2wdauDuKJt6y8wImUT2Q&oh=00_AfXXBlEqk0y5vXclXgj-HlGOR1IabUe2e1aHZXyg4BMppw&oe=68B4968E'),
+                  'https://scontent.fcai20-5.fna.fbcdn.net/v/t39.30808-1/482083315_1782184069016989_4642233234716381867_n.jpg?stp=dst-jpg_s200x200_tt6&_nc_cat=101&ccb=1-7&_nc_sid=1d2534&_nc_ohc=-LzTzcmQe64Q7kNvwHIsFSp&_nc_oc=Adm-_WOoMrwl2vzaVwDn43TKe2gAnng5fCwzmIaXs__tUwqvH9Eb8C6hIZN7zTKYMN8&_nc_zt=24&_nc_ht=scontent.fcai20-5.fna&_nc_gid=w2QnjYQ5zIbhKIL9UPaskg&oh=00_AfZde_I473p3H1Ck-vyUoDeyjV6HwrGDzxsVQLKIHpxmPg&oe=68BE79CE'),
             ),
           ),
         )
