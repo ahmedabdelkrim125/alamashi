@@ -15,7 +15,7 @@ import 'package:svg_flutter/svg.dart';
 
 class MainNavigationPage extends StatelessWidget {
   const MainNavigationPage({super.key});
-
+  final int sizeicon = 20;
   static final List<Widget> _pages = <Widget>[
     const HomePage(), // index 0
     const OrdersPage(), // index 1
@@ -34,7 +34,7 @@ class MainNavigationPage extends StatelessWidget {
           ),
           bottomNavigationBar: Container(
             decoration: BoxDecoration(
-              color: ThemeColor.secondaryColor,
+              color: ThemeColor.bgColor,
               boxShadow: [
                 BoxShadow(
                   blurRadius: 20,
@@ -50,9 +50,8 @@ class MainNavigationPage extends StatelessWidget {
                   // 👈 هنا خليت الاتجاه RTL
                   textDirection: TextDirection.rtl,
                   child: GNav(
-                    activeColor: ThemeColor.primaryGreenColor,
-                    tabBackgroundColor:
-                        ThemeColor.forestGreenColor.withOpacity(0.1),
+                    activeColor: ThemeColor.brandColor,
+                    tabBackgroundColor: ThemeColor.brandColor.withOpacity(0.1),
                     padding: const EdgeInsets.all(16),
                     selectedIndex: selectedIndex,
                     onTabChange: (index) {
@@ -61,7 +60,7 @@ class MainNavigationPage extends StatelessWidget {
                     gap: 8,
                     textStyle: Style.textStyle14.copyWith(
                       fontFamily: cairoBold,
-                      color: ThemeColor.forestGreenColor,
+                      color: ThemeColor.brandColor,
                     ),
                     tabs: [
                       GButton(
@@ -69,11 +68,11 @@ class MainNavigationPage extends StatelessWidget {
                         text: 'الرئيسية',
                         leading: SvgPicture.asset(
                           Assets.ichome,
-                          width: 18.w,
-                          height: 18.h,
+                          width: sizeicon.w,
+                          height: sizeicon.h,
                           colorFilter: ColorFilter.mode(
                             selectedIndex == 0
-                                ? ThemeColor.forestGreenColor
+                                ? ThemeColor.brandColor
                                 : ThemeColor.neutralGrayColor,
                             BlendMode.srcIn,
                           ),
@@ -84,11 +83,11 @@ class MainNavigationPage extends StatelessWidget {
                         text: 'طلباتي',
                         leading: SvgPicture.asset(
                           Assets.icorders,
-                          width: 18.w,
-                          height: 18.h,
+                          width: sizeicon.w,
+                          height: sizeicon.h,
                           colorFilter: ColorFilter.mode(
                             selectedIndex == 1
-                                ? ThemeColor.forestGreenColor
+                                ? ThemeColor.brandColor
                                 : ThemeColor.neutralGrayColor,
                             BlendMode.srcIn,
                           ),
@@ -99,11 +98,11 @@ class MainNavigationPage extends StatelessWidget {
                         text: 'السلة',
                         leading: SvgPicture.asset(
                           Assets.shoppingCartIcon,
-                          width: 18.w,
-                          height: 18.h,
+                          width: sizeicon.w,
+                          height: sizeicon.h,
                           colorFilter: ColorFilter.mode(
                             selectedIndex == 2
-                                ? ThemeColor.forestGreenColor
+                                ? ThemeColor.brandColor
                                 : ThemeColor.neutralGrayColor,
                             BlendMode.srcIn,
                           ),
@@ -114,11 +113,11 @@ class MainNavigationPage extends StatelessWidget {
                         text: 'حسابي',
                         leading: SvgPicture.asset(
                           Assets.icaccount,
-                          width: 18.w,
-                          height: 18.h,
+                          width: sizeicon.w,
+                          height: sizeicon.h,
                           colorFilter: ColorFilter.mode(
                             selectedIndex == 3
-                                ? ThemeColor.forestGreenColor
+                                ? ThemeColor.brandColor
                                 : ThemeColor.neutralGrayColor,
                             BlendMode.srcIn,
                           ),

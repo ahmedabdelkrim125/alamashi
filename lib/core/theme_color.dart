@@ -21,6 +21,7 @@ class ThemeColor {
   static const Color lightGrayColor = Color(0xFFD9D9D9);
   static const Color primaryGreenColor = Color(0xFF01AC66);
   static const Color forestGreenColor = Color(0xFF0CA201);
+   static const Color brandColor = Color(0xFF1A3D38);
   static const Color darkGreenColor = Color(0xFF00462A);
   static const Color neutralGrayColor = Color(0xFF9A9BA1);
   static const Color charcoalColor = Color(0xFF242424);
