@@ -38,7 +38,7 @@ class LoginPageBody extends StatelessWidget {
                     content: Row(
                       children: [
                         CircularProgressIndicator(),
-                        SizedBox(width: 16),
+                        SizedBox(width: 16.w),
                         Text("...جاري تسجيل الدخول"),
                       ],
                     ),
@@ -68,7 +68,7 @@ class LoginPageBody extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  const LoginHeader(),
+                  LoginHeader(),
                   LoginEmailField(controller: emailController),
                   LoginPasswordField(
                     controller: passwordController,
@@ -78,7 +78,9 @@ class LoginPageBody extends StatelessWidget {
                     emailController: emailController,
                     passwordController: passwordController,
                   ),
-                  SizedBox(height: 10.sp),
+                  SizedBox(
+                    height: 10.h,
+                  ),
                   const ForgotPasswordLink(),
                   SizedBox(height: 27.h),
                   const LoginOrDivider(),

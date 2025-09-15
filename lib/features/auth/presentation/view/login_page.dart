@@ -17,6 +17,7 @@ class LoginPage extends StatelessWidget {
             children: [
               const CreateAccountTitle(
                 title: 'تسجيل الدخول',
+                
               ),
               LoginPageBody(),
             ],

@@ -22,7 +22,9 @@ void showCustomSnackBar({
       content: Text(
         message,
         textAlign: TextAlign.center,
-        style: Style.textStyle18.copyWith(fontFamily: cairoRegular),
+        style: Style.textStyle18.copyWith(
+          fontFamily: cairoRegular,
+        ),
       ),
     ),
   );

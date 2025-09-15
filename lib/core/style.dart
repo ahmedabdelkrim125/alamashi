@@ -3,11 +3,11 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 abstract class Style {
   static TextStyle textStyle24 = TextStyle(
-    fontSize: 24,
+    fontSize: 24.sp,
   );
 
   static TextStyle textStyle20 = TextStyle(
-    fontSize: 20,
+    fontSize: 20.sp,
   );
   static TextStyle textStyle19 = TextStyle(
     fontSize: 19.sp,
@@ -16,12 +16,12 @@ abstract class Style {
     fontSize: 18.sp,
   );
   static TextStyle textStyle16 = TextStyle(
-    fontSize: 16,
+    fontSize: 16.sp,
   );
   static TextStyle textStyle14 = TextStyle(
     fontSize: 14.sp,
   );
-   static TextStyle textStyle13 = TextStyle(
+  static TextStyle textStyle13 = TextStyle(
     fontSize: 13.sp,
   );
   static TextStyle textStyle12 = TextStyle(

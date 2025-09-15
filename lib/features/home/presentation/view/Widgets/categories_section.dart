@@ -37,7 +37,7 @@ class CustomTab extends StatelessWidget {
                 borderRadius: BorderRadius.circular(40.r),
                 border: Border.all(
                   width: 2,
-                  color: ThemeColor.forestGreenColor,
+                  color: ThemeColor.textColor.withOpacity(.1),
                 ),
               ),
               child: Center(

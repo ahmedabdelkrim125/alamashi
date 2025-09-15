@@ -16,20 +16,23 @@ class CustomTextFieldHome extends StatelessWidget {
       child: TextField(
         decoration: InputDecoration(
           suffixIcon: Row(
-            mainAxisSize: MainAxisSize.min,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              InkWell(
-                child: SvgPicture.asset(
-                  Assets.icsearch,
-                  width: 15.w,
-                  height: 15.h,
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 16.w),
+                child: InkWell(
+                  child: SvgPicture.asset(
+                    Assets.icsearch,
+                    width: 15.w,
+                    height: 15.h,
+                  ),
                 ),
               ),
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 16.w),
                 child: Text(
                   'بحث',
-                  style: Style.textStyle14.copyWith(
+                  style: Style.textStyle16.copyWith(
                     fontFamily: cairoRegular,
                   ),
                 ),
@@ -37,27 +40,27 @@ class CustomTextFieldHome extends StatelessWidget {
             ],
           ),
           border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(25.r),
+            borderRadius: BorderRadius.circular(12.r),
             borderSide: BorderSide(
-              color: ThemeColor.lavenderGray,
+              color: ThemeColor.textColor,
             ),
           ),
           enabledBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(25.r),
+            borderRadius: BorderRadius.circular(12.r),
             borderSide: BorderSide(
-              color: ThemeColor.lavenderGray,
+              color: ThemeColor.textColor,
             ),
           ),
           focusedBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(25.r),
+            borderRadius: BorderRadius.circular(12.r),
             borderSide: BorderSide(
-              color: ThemeColor.lavenderGray,
+              color: ThemeColor.textColor,
             ),
           ),
           disabledBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(25.r),
+            borderRadius: BorderRadius.circular(12.r),
             borderSide: BorderSide(
-              color: ThemeColor.lavenderGray,
+              color: ThemeColor.textColor,
             ),
           ),
         ),

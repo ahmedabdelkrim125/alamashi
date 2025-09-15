@@ -16,15 +16,10 @@ class HomePageBody extends StatelessWidget {
     return SafeArea(
       child: ListView(
         children: [
-          const HomeAppBar(),
-          SizedBox(height: 16.h),
+          HomeAppBar(),
+          SizedBox(height: 17.5.h),
           CustomTextFieldHome(),
           SizedBox(height: 23.h),
-          // Padding(
-          //   padding: EdgeInsets.symmetric(vertical: 8.h, horizontal: 8.w),
-          //   child: StaticAddressRowCards(),
-          // ),
-          // SizedBox(height: 24.h),
           SectionTitle(title: 'تسوّق حسب الفئة'),
           SizedBox(height: 16.h),
           ServiceTabsRow(),

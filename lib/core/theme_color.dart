@@ -12,6 +12,7 @@ class ThemeColor {
   static const Color lightGrey = Color(0xFFF2F2F2);
   static const Color charcoalGrey = Color(0xFF474749);
   static const Color charcoal = Color(0xFF565656);
+  static const Color darkMauve = Color(0xFF665566);
 
   // ألوان OnBoarding
   static const Color primaryDarkColor = Color(0xFF100B20);
