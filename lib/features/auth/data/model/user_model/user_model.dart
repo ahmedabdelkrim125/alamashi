@@ -16,19 +16,20 @@ class UserModel extends Equatable {
   });
 
   factory UserModel.fromJson(Map<String, dynamic> json) {
-    final responseData = json[ApiKeys.response] as Map<String, dynamic>?;
+    final loginDto = json['loginResponseDto'] as Map<String, dynamic>?;
     return UserModel(
       status: json[ApiKeys.status] as String?,
-      accessToken: responseData?[ApiKeys.accessToken] as String?,
-      refreshToken: responseData?[ApiKeys.refreshToken] as String?,
-      user: responseData?[ApiKeys.user] == null
+      accessToken: loginDto?[ApiKeys.accessToken] as String?,
+      refreshToken: loginDto?[ApiKeys.refreshToken] as String?,
+      user: loginDto?[ApiKeys.user] == null
           ? null
-          : User.fromJson(responseData?[ApiKeys.user] as Map<String, dynamic>),
+          : User.fromJson(loginDto?[ApiKeys.user] as Map<String, dynamic>),
     );
   }
+
   Map<String, dynamic> toJson() => {
         ApiKeys.status: status,
-        ApiKeys.data: {
+        "loginResponseDto": {
           ApiKeys.accessToken: accessToken,
           ApiKeys.refreshToken: refreshToken,
           ApiKeys.user: user?.toJson(),

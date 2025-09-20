@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:dio/dio.dart';
 import 'package:egyptian_supermaekat/core/errors/error_model.dart';
 
@@ -17,6 +19,15 @@ void handelDioException(DioException e) {
       errorModel: fallbackError,
       statusCode: e.response?.statusCode,
     );
+  }
+
+  dynamic responseData = e.response!.data;
+  if (responseData is String) {
+    try {
+      responseData = jsonDecode(responseData);
+    } catch (_) {
+      responseData = null;
+    }
   }
 
   switch (e.type) {
@@ -42,11 +53,12 @@ void handelDioException(DioException e) {
         case 422:
         case 504:
           throw ServerException(
-            errorModel: ErrorModel.fromJson(
-              e.response!.data,
-            ),
+            errorModel: (responseData is Map<String, dynamic>)
+                ? ErrorModel.fromJson(responseData)
+                : fallbackError,
             statusCode: e.response?.statusCode,
           );
+
         default:
           throw ServerException(
             errorModel: fallbackError,

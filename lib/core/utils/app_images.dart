@@ -80,4 +80,9 @@ class Assets {
   static const String frame = "assets/images/Frame.png";
   static const String me = "assets/images/preson.png";
   static const String splashFullDesign = "assets/images/splash_full_design.png";
+  static const String ahmed = "assets/images/ahmed.svg";
+  static const String back = "assets/images/back.svg";
+
 }
+
+

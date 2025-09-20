@@ -24,10 +24,10 @@ class HomePageBody extends StatelessWidget {
           SizedBox(height: 16.h),
           ServiceTabsRow(),
           SizedBox(height: 24.h),
-          SectionTitle(title: 'عروض اليوم'),
+          SectionTitle(title: 'العروض'),
           SizedBox(height: 12.h),
           SizedBox(
-            height: 120.h,
+            height: 230.h,
             child: ListView.builder(
               reverse: true,
               scrollDirection: Axis.horizontal,

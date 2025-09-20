@@ -86,16 +86,11 @@ class AuthRepoImplement implements AuthRepo {
     }
   }
 
-  
-
-
-
   ServerException _handleDioException(DioException e) {
     if (e.response?.data != null) {
       return ServerException(errorModel: ErrorModel.fromJson(e.response!.data));
     }
 
-  
     return ServerException(
       errorModel: ErrorModel(
         status: 500,
@@ -138,10 +133,4 @@ class AuthRepoImplement implements AuthRepo {
 //     throw Exception("Google Sign-In Failed: $e");
 //   }
 // }
-
-
-
-
-  
- 
 }

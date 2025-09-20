@@ -33,6 +33,8 @@ class ThemeColor {
   static const Color grayColor = Color(0xFFF6F6F6);
   static const Color coralRed = Color(0xFFEF6A62);
    static const Color onyx = Color(0xFF151414);
+   static const Color lightGreenBackground = Color(0xffE6F4EA);
+
 
   // ألوان الـ Auth
   static const Color errorColor = Color(0xFFFF0000); // لون رسائل الخطأ

@@ -47,7 +47,7 @@ class _OnBoardingBodyState extends State<OnBoardingBody> {
               alignment: Alignment.centerLeft,
               child: GestureDetector(
                 onTap: () {
-                  context.go(AppRouter.kMain);
+                  context.go(AppRouter.kLogin);
                 },
                 child: Text(
                   'تخطي',

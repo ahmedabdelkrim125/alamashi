@@ -21,8 +21,7 @@ class User extends Equatable {
         userName: json[ApiKeys.userName] as String?,
         email: json[ApiKeys.email] as String?,
         phone: json[ApiKeys.phone] as String?,
-        permissions: int.tryParse(json[ApiKeys.permissions]?.toString()??''),
-
+        permissions: int.tryParse(json[ApiKeys.permissions]?.toString() ?? ''),
       );
 
   Map<String, dynamic> toJson() => {
@@ -34,13 +33,5 @@ class User extends Equatable {
       };
 
   @override
-  List<Object?> get props {
-    return [
-      userId,
-      userName,
-      email,
-      phone,
-      permissions,
-    ];
-  }
+  List<Object?> get props => [userId, userName, email, phone, permissions];
 }

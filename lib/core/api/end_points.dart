@@ -1,13 +1,13 @@
 class EndPoints {
-  static const String baseUrl = 'https://alamashi-api.onrender.com/api';
+  static const String baseUrl = 'https://alamashiapi.azurewebsites.net';
 
   // 🔑 Authentication
-  static const String login = '$baseUrl/Users/login';
-  static const String createNewUser = '$baseUrl/Users/register';
-  static const String refresh = '$baseUrl/Users/refresh';
+  static const String login = '$baseUrl/api/Users/login';
+  static const String createNewUser = '$baseUrl/api/Users/register';
+  static const String refresh = '$baseUrl/api/Users/refresh';
 
   // 👥 Users
-  static const String getAllUsers = '$baseUrl/Users/All';
+  static const String getAllUsers = '$baseUrl/api/Users/all';
   static String userByID(int userID) => '$baseUrl/Users/$userID';
 }
 // end_points.dart
