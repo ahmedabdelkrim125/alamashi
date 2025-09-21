@@ -12,8 +12,8 @@ class ProductsCarouselHome extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 170.w,
-      height: 200.h,
+      width: 166.w,
+      height: 250.h,
       decoration: BoxDecoration(
         boxShadow: [
           BoxShadow(
@@ -32,11 +32,11 @@ class ProductsCarouselHome extends StatelessWidget {
           Stack(
             children: [
               Container(
-                width: 160.w,
-                height: 141.h,
+                width: 147.w,
+                height: 147.h,
                 decoration: BoxDecoration(
-                  color: ThemeColor.grayColor,
-                  borderRadius: BorderRadius.circular(16.r),
+                  color: ThemeColor.lightSilver,
+                  borderRadius: BorderRadius.circular(8.r),
                 ),
                 child: Center(
                   //هنا
@@ -48,7 +48,7 @@ class ProductsCarouselHome extends StatelessWidget {
                 ),
               ),
               Positioned(
-                top: 80.h,
+                top: 90.h,
                 right: -20.w,
                 child: InkWell(
                   onTap: () {},

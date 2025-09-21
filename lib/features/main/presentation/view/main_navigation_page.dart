@@ -95,7 +95,7 @@ class MainNavigationPage extends StatelessWidget {
                       ),
                       GButton(
                         icon: Icons.shopping_cart_outlined,
-                        text: 'السلة',
+                        text: 'عربة التسوق',
                         leading: SvgPicture.asset(
                           Assets.shoppingCartIcon,
                           width: sizeicon.w,

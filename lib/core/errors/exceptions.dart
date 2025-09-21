@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:dio/dio.dart';
 import 'package:egyptian_supermaekat/core/errors/error_model.dart';
 
@@ -11,59 +9,43 @@ class ServerException implements Exception {
 }
 
 void handelDioException(DioException e) {
-  final fallbackError =
-      ErrorModel(errorMessage: "حدث خطأ في الاتصال بالسيرفر", status: 0);
-
-  if (e.response == null || e.response?.data == null) {
-    throw ServerException(
-      errorModel: fallbackError,
-      statusCode: e.response?.statusCode,
-    );
-  }
-
-  dynamic responseData = e.response!.data;
-  if (responseData is String) {
-    try {
-      responseData = jsonDecode(responseData);
-    } catch (_) {
-      responseData = null;
-    }
-  }
-
   switch (e.type) {
     case DioExceptionType.connectionTimeout:
     case DioExceptionType.sendTimeout:
     case DioExceptionType.receiveTimeout:
-    case DioExceptionType.badCertificate:
-    case DioExceptionType.cancel:
     case DioExceptionType.connectionError:
+    case DioExceptionType.cancel:
     case DioExceptionType.unknown:
       throw ServerException(
-        errorModel: ErrorModel.fromJson(e.response!.data),
-        statusCode: e.response?.statusCode,
+        errorModel: ErrorModel(
+          status: 503,
+          errorMessage: "فشل الاتصال بالخادم. تحقق من اتصالك بالإنترنت.",
+        ),
       );
-    case DioExceptionType.badResponse:
-      switch (e.response?.statusCode) {
-        case 400:
-        case 401:
-        case 402:
-        case 403:
-        case 404:
-        case 409:
-        case 422:
-        case 504:
-          throw ServerException(
-            errorModel: (responseData is Map<String, dynamic>)
-                ? ErrorModel.fromJson(responseData)
-                : fallbackError,
-            statusCode: e.response?.statusCode,
-          );
 
-        default:
-          throw ServerException(
-            errorModel: fallbackError,
-            statusCode: e.response?.statusCode,
-          );
+    case DioExceptionType.badResponse:
+      final responseData = e.response!.data;
+      if (responseData is Map<String, dynamic>) {
+        throw ServerException(
+          errorModel: ErrorModel.fromJson(responseData),
+          statusCode: e.response!.statusCode,
+        );
+      } else {
+        throw ServerException(
+          errorModel: ErrorModel(
+            status: e.response!.statusCode ?? 500,
+            errorMessage: "حدث خطأ غير متوقع من الخادم.",
+          ),
+          statusCode: e.response!.statusCode,
+        );
       }
+
+    default:
+      throw ServerException(
+        errorModel: ErrorModel(
+          status: 500,
+          errorMessage: "حدث خطأ غير معروف.",
+        ),
+      );
   }
 }

@@ -27,7 +27,7 @@ class HomePageBody extends StatelessWidget {
           SectionTitle(title: 'العروض'),
           SizedBox(height: 12.h),
           SizedBox(
-            height: 230.h,
+            height: 250.h,
             child: ListView.builder(
               reverse: true,
               scrollDirection: Axis.horizontal,
@@ -43,7 +43,7 @@ class HomePageBody extends StatelessWidget {
           SectionTitle(title: 'الأفضل مبيعاَ بالقرب منك'),
           SizedBox(height: 16.h),
           SizedBox(
-            height: 245.h,
+            height: 250.h,
             child: ListView.builder(
               reverse: true,
               scrollDirection: Axis.horizontal,

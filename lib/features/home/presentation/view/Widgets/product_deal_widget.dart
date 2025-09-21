@@ -14,8 +14,8 @@ class ProductDealWidget extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 5.w, vertical: 5.h),
       child: Container(
-        width: 160.w,
-        height: 220.h,
+        width: 163.w,
+        height: 250.h,
         decoration: BoxDecoration(
           boxShadow: [
             BoxShadow(
@@ -33,28 +33,33 @@ class ProductDealWidget extends StatelessWidget {
           children: [
             Stack(
               children: [
-                Container(
-                  width: 147.w,
-                  height: 147.h,
-                  decoration: BoxDecoration(
-                    color: ThemeColor.grayColor,
-                    borderRadius: BorderRadius.circular(8.r),
-                  ),
-                  child: Center(
-                    child: Image.asset(
-                      Assets.image444,
-                      width: 146.92.w,
-                      height: 119.w,
+                Padding(
+                  padding: EdgeInsets.symmetric(vertical: 8.w),
+                  child: Container(
+                    width: 147.w,
+                    height: 147.h,
+                    decoration: BoxDecoration(
+                      color: ThemeColor.lightSilver,
+                      borderRadius: BorderRadius.circular(8.r),
+                    ),
+                    child: Center(
+                      child: Image.asset(
+                        Assets.image444,
+                        width: 146.92.w,
+                        height: 119.w,
+                      ),
                     ),
                   ),
                 ),
                 Positioned(
-                  top: 80.h,
-                  right: -20.w,
+                  top: 88.h,
+                  right: -25.w,
                   child: InkWell(
                     onTap: () {},
                     child: Image.asset(
                       Assets.add,
+                      width: 100.w,
+                      height: 100.h,
                     ),
                   ),
                 )
@@ -66,40 +71,54 @@ class ProductDealWidget extends StatelessWidget {
               child: Column(
                 spacing: 8.h,
                 children: [
+                  Row(
+                    spacing: 18.22.w,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Row(
+                        spacing: 4.w,
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          SvgPicture.asset(Assets.ratingStarIcon),
+                          Text(
+                            '4.5',
+                            style: Style.textStyle14.copyWith(
+                              fontFamily: cairoSemiBold,
+                            ),
+                          ),
+                        ],
+                      ),
+                      Text(
+                        'طماطم  1 كجم',
+                        textAlign: TextAlign.end,
+                        style: Style.textStyle14.copyWith(
+                          fontFamily: cairoRegular,
+                        ),
+                      ),
+                    ],
+                  ),
                   Align(
                     alignment: Alignment.centerRight,
                     child: Text(
-                      'لوكر بسكويت',
-                      textAlign: TextAlign.end,
+                      'حوالي 8 - 12 قطعه',
                       style: Style.textStyle14.copyWith(
-                        fontFamily: cairoSemiBold,
+                        color: ThemeColor.darkGrayTextColor,
+                        fontFamily: cairoRegular,
                       ),
                     ),
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
-                      SvgPicture.asset(Assets.ratingStarIcon),
-                      Text(
-                        '4.8 (287)',
-                        style: Style.textStyle14.copyWith(
-                          fontFamily: cairoSemiBold,
-                        ),
-                      ),
-                    ],
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
                       Text(
                         ' ج .م',
-                        style: Style.textStyle12.copyWith(
+                        style: Style.textStyle14.copyWith(
                           fontFamily: cairoBold,
                         ),
                       ),
                       Text(
-                        '15',
-                        style: Style.textStyle12.copyWith(
+                        '15.34',
+                        style: Style.textStyle14.copyWith(
                           fontFamily: cairoBold,
                         ),
                       ),
