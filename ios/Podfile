@@ -1,6 +1,7 @@
 # Uncomment this line to define a global platform for your project
 platform :ios, '15.0'
 
+# CocoaPods analytics sends network stats synchronously affecting flutter build latency.
 ENV['COCOAPODS_DISABLE_STATS'] = 'true'
 
 project 'Runner', {
@@ -27,12 +28,12 @@ require File.expand_path(File.join('packages', 'flutter_tools', 'bin', 'podhelpe
 flutter_ios_podfile_setup
 
 target 'Runner' do
-  # استخدم frameworks لكن مع modular_headers لتجنب مشاكل Firebase
-  use_frameworks! :linkage => :static
+  # استخدم modular headers لتجنب مشاكل Firebase
+  use_modular_headers!
 
   flutter_install_all_ios_pods File.dirname(File.realpath(__FILE__))
 
-  # هذا التعديل يفرض modular headers على Firebase Auth
+  # تحديد Firebase Auth modular headers للتأكد من عمله بدون مشاكل
   pod 'Firebase/Auth', :modular_headers => true
 
   target 'RunnerTests' do
