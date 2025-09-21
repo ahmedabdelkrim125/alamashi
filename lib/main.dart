@@ -31,7 +31,7 @@ void main() async {
         ),
       ],
       child: ScreenUtilInit(
-        designSize: const Size(360, 690),
+        designSize: const Size(375, 812),
         builder: (context, child) {
           return const EgyptianSupermaekat();
         },

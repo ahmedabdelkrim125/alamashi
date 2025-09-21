@@ -1,9 +1,7 @@
-// auth_cubit.dart
-
 import 'dart:developer';
 import 'package:bloc/bloc.dart';
 import 'package:egyptian_supermaekat/core/api/end_points.dart';
-import 'package:egyptian_supermaekat/core/errors/exceptions.dart';
+import 'package:egyptian_supermaekat/core/errors/exceptions.dart'; // ✅ السطر ده تم إضافته
 import 'package:egyptian_supermaekat/core/utils/cache_helper.dart';
 import 'package:egyptian_supermaekat/core/utils/debug_tokens.dart';
 import 'package:egyptian_supermaekat/features/auth/data/model/user_model/user.dart';
@@ -17,31 +15,38 @@ part 'auth_state.dart';
 class AuthCubit extends Cubit<AuthState> {
   final AuthRepo authRepo;
 
-  //Login
   AuthCubit(this.authRepo) : super(AuthInitial());
+
   String _mapExceptionToMessage(ServerException e) {
     final statusCode = e.errorModel.status;
-    final errorMessage = e.errorModel.errorMessage.toLowerCase();
-    log("DEBUGGING: The status code received is ==> ${e.statusCode}");
+    log("DEBUGGING: Status code from HTTP response ==> ${e.statusCode}");
+    log("DEBUGGING: Status code from response body ==> $statusCode");
 
-    if (statusCode == 401 || statusCode == 400) {
-      //    هذه الأكواد لمشاكل في تسجيل الدخول
-      return "البريد الإلكتروني أو كلمة المرور غير صحيحة. يرجى المحاولة مرة أخرى.";
+    if (statusCode == 400 || statusCode == 401) {
+      return "البريد الإلكتروني أو كلمة المرور غير صحيحة.";
     }
+
+    if (statusCode == 403) {
+      return "ليس لديك الصلاحية للقيام بهذا الإجراء.";
+    }
+
+    if (statusCode == 404) {
+      return "الرابط المطلوب غير موجود على الخادم.";
+    }
+
     if (statusCode == 409) {
-      // 409 Conflict
-      return "هذا البريد الإلكتروني مسجل بالفعل. يرجى تسجيل الدخول بدلاً من ذلك.";
+      return "هذا البريد الإلكتروني مسجل بالفعل.";
     }
 
-    if (errorMessage.contains("Login failed: Missing token in response")) {
-      return "هذا البريد الإلكتروني غير مسجل لدينا.";
+    if (statusCode == 500) {
+      return "حدث خطأ في الخادم، يرجى المحاولة مرة أخرى في وقت لاحق.";
     }
 
-    if (errorMessage.contains("email not found")) {
-      return "هذا البريد الإلكتروني غير مسجل لدينا.";
+    if (statusCode == 503) {
+      return "الخدمة غير متاحة حاليًا أو لا يوجد اتصال بالإنترنت.";
     }
 
-    return "حدث خطأ ما. يرجى المحاولة مرة أخرى لاحقًا.";
+    return "حدث خطأ غير متوقع، يرجى المحاولة مرة أخرى.";
   }
 
   Future<void> login(String email, String password) async {
@@ -55,7 +60,6 @@ class AuthCubit extends Cubit<AuthState> {
         if (userModel.refreshToken != null) {
           await CacheHelper.saveRefreshToken(userModel.refreshToken!);
           log("✅ Refresh Token Saved!");
-          // 🧪 Debug
           await debugTokens();
         }
       } else {
@@ -64,7 +68,7 @@ class AuthCubit extends Cubit<AuthState> {
       }
       Map<String, dynamic> decodedToken =
           JwtDecoder.decode(userModel.accessToken!);
-      // --- JWT DECODING FIX ---
+
       String? userRole = decodedToken[ApiKeys.jwtRole];
       String? userId = decodedToken[ApiKeys.jwtNameIdentifier];
       String? userName = decodedToken[ApiKeys.jwtName];
@@ -83,14 +87,12 @@ class AuthCubit extends Cubit<AuthState> {
       emit(AuthFailure(friendlyMessage));
     }
   }
-//SuginUp
 
   Future<void> signup(User user, String password) async {
     try {
       emit(AuthLoading());
       final userModel = await authRepo.signup(user, password);
       emit(AuthSuccess(userModel));
-      // 🧪 Debug
       await debugTokens();
     } on ServerException catch (e) {
       final friendlyMessage = _mapExceptionToMessage(e);
@@ -120,7 +122,6 @@ class AuthCubit extends Cubit<AuthState> {
             await CacheHelper.saveRefreshToken(newUserModel.refreshToken!);
           }
           log("✅ Token refreshed successfully!");
-          // 🧪 Debug
           await debugTokens();
           emit(AuthSuccess(newUserModel));
         } catch (e) {
@@ -130,7 +131,6 @@ class AuthCubit extends Cubit<AuthState> {
       } else {
         log("✅ Found valid token. User is already logged in.");
         Map<String, dynamic> decodedToken = JwtDecoder.decode(accessToken);
-        // --- JWT DECODING FIX ---
         final user = User(
           userId: int.parse(decodedToken[ApiKeys.jwtNameIdentifier] ?? '0'),
           userName: decodedToken[ApiKeys.jwtName],

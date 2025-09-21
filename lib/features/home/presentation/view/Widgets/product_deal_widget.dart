@@ -52,7 +52,7 @@ class ProductDealWidget extends StatelessWidget {
                   ),
                 ),
                 Positioned(
-                  top: 88.h,
+                  top: 90.h,
                   right: -25.w,
                   child: InkWell(
                     onTap: () {},

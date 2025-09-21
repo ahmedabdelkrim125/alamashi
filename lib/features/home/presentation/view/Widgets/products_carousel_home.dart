@@ -48,12 +48,14 @@ class ProductsCarouselHome extends StatelessWidget {
                 ),
               ),
               Positioned(
-                top: 90.h,
-                right: -20.w,
+                top: 95.h,
+                right: -15.w,
                 child: InkWell(
                   onTap: () {},
                   child: Image.asset(
                     Assets.add,
+                    width: 100.w,
+                    height: 100.h,
                   ),
                 ),
               )
