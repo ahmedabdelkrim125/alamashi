@@ -14,11 +14,11 @@ dependencies:
   dots_indicator: ^4.0.1
   equatable: ^2.0.7
 
-  # --- آخر محاولة: استخدام مجموعة مستقرة من بداية 2023 ---
-  firebase_auth: 4.6.1
-  firebase_core: 2.13.0
-  #google_sign_in: 6.1.0
-  # -----------------------------------------------------------
+  # --- LATEST STABLE VERSIONS FOR CODEMAGIC ---
+  firebase_auth: ^4.19.6
+  firebase_core: ^2.31.1
+  google_sign_in: ^6.2.1
+  # ----------------------------------------------
 
   flutter:
     sdk: flutter

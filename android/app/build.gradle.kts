@@ -1,3 +1,5 @@
+// ... other lines like plugins { ... }
+
 android {
     namespace = "com.example.egyptian_supermaekat_"
     compileSdk = flutter.compileSdkVersion
@@ -25,9 +27,6 @@ android {
             signingConfig = signingConfigs.getByName("debug")
         }
     }
-
-    // ✅ أضف هذا الجزء
-    buildFeatures {
-        buildConfig true
-    }
 }
+
+// ... dependencies { ... }
