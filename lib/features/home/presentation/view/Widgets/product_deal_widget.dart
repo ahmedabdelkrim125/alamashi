@@ -15,7 +15,7 @@ class ProductDealWidget extends StatelessWidget {
       padding: EdgeInsets.symmetric(horizontal: 5.w, vertical: 5.h),
       child: Container(
         width: 163.w,
-        height: 250.h,
+        height: 265.h,
         decoration: BoxDecoration(
           boxShadow: [
             BoxShadow(
@@ -36,8 +36,8 @@ class ProductDealWidget extends StatelessWidget {
                 Padding(
                   padding: EdgeInsets.symmetric(vertical: 8.w),
                   child: Container(
-                    width: 147.w,
-                    height: 147.h,
+                    width: 150.w,
+                    height: 150.h,
                     decoration: BoxDecoration(
                       color: ThemeColor.lightSilver,
                       borderRadius: BorderRadius.circular(8.r),
@@ -52,8 +52,8 @@ class ProductDealWidget extends StatelessWidget {
                   ),
                 ),
                 Positioned(
-                  top: 90.h,
-                  right: -25.w,
+                  top: 93.h,
+                  right: -28.w,
                   child: InkWell(
                     onTap: () {},
                     child: Image.asset(

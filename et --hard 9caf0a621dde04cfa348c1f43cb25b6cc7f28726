@@ -1,0 +1,205 @@
+[33mcommit 0e82f038afef350e101ab6cd988a0178333cb7d7[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m)[m
+Author: ahmedabdelkrim125 <ahmed125abdelkrim@gmail.com>
+Date:   Mon Sep 22 00:02:40 2025 +0300
+
+    sloving build.gradle
+
+[33mcommit d8b44c6c7f4baa0d8ab6d1382dc8afcec43fe79a[m
+Author: ahmedabdelkrim125 <ahmed125abdelkrim@gmail.com>
+Date:   Sun Sep 21 22:50:42 2025 +0300
+
+    Fix: Downgrade dependencies for iOS build compatibility
+
+[33mcommit 9caf0a621dde04cfa348c1f43cb25b6cc7f28726[m
+Author: ahmedabdelkrim125 <ahmed125abdelkrim@gmail.com>
+Date:   Sun Sep 21 18:18:20 2025 +0300
+
+    Enhance auth error handling and refactor home UI
+
+[33mcommit 5b896f7507d050f66de0dc3a142033ba44062fe6[m
+Author: ahmedabdelkrim125 <ahmed125abdelkrim@gmail.com>
+Date:   Sun Sep 21 17:18:07 2025 +0300
+
+    Deve
+
+[33mcommit 311f6e90904e49b6efec7c54b1d23d889c30c60d[m
+Author: ahmedabdelkrim125 <ahmed125abdelkrim@gmail.com>
+Date:   Sat Sep 20 16:14:35 2025 +0300
+
+    add new cred in screen account
+
+[33mcommit 8a7bf78de75ff7ab711aab998ed8ebb5cea0e066[m
+Author: ahmedabdelkrim125 <ahmed125abdelkrim@gmail.com>
+Date:   Mon Sep 15 22:31:38 2025 +0300
+
+    A
+
+[33mcommit c8eb78f0ecba486cd4c75b4cd00a0af860b16a06[m
+Author: ahmedabdelkrim125 <ahmed125abdelkrim@gmail.com>
+Date:   Mon Sep 8 21:27:32 2025 +0300
+
+    changes colors ,icons in main_nav
+
+[33mcommit 66293e17b62f4c9bda126cc0a1f4194499ef9b9d[m
+Author: ahmedabdelkrim125 <ahmed125abdelkrim@gmail.com>
+Date:   Sun Sep 7 23:15:24 2025 +0300
+
+    update ui splash screen
+
+[33mcommit e7881063a57e0cd2b9b9c5727e9380968a922e95[m
+Author: ahmedabdelkrim125 <ahmed125abdelkrim@gmail.com>
+Date:   Mon Sep 1 00:02:49 2025 +0300
+
+    refactor: Improve UI component reusability
+    
+    - Decomposed the product card into smaller widgets.
+    - Renamed and improved the custom app bar for generic use.
+
+[33mcommit d59baafa9fb9555f261b170519e2b4fb9e2de395[m
+Author: ahmedabdelkrim125 <ahmed125abdelkrim@gmail.com>
+Date:   Sat Aug 30 18:24:57 2025 +0300
+
+    fix(auth): Resolve incorrect JWT claim parsing
+    
+    The application was unable to extract user details (ID, name, role) from the access token after a successful login. This was caused by a mismatch between the expected shorthand keys on the client (e.g., 'nameid', 'role') and the full URI-based claim keys provided by the backend API.
+    
+    This commit resolves the issue by:
+    
+    - Adding constants for the correct JWT claim URIs to the ApiKeys class.
+    - Updating AuthCubit to use these new constants when decoding the token payload in both the login() and checkAuthStatus() methods.
+    - Refactoring checkAuthStatus() to also parse the user's email from the token instead of using a hardcoded placeholder.
+    
+    User data is now correctly populated from the token after authentication.
+
+[33mcommit 5527c0f38e94bed8041423baf325cf50f8887cc8[m
+Author: ahmedabdelkrim125 <ahmed125abdelkrim@gmail.com>
+Date:   Thu Aug 28 23:38:48 2025 +0300
+
+    refactor: split ProductDealWidget into separate reusable widgets
+    
+    - Created ProductDetailsSection widget
+    - Created ProductOldPrice widget
+    - Created ProductNewPrice widget
+    - Created ProductImage widget
+    - Kept ProductDealWidget as the main wrapper
+
+[33mcommit 44a02a45024571d4870fcf5beb292ccb953622f3[m
+Author: ahmedabdelkrim125 <ahmed125abdelkrim@gmail.com>
+Date:   Wed Aug 27 14:41:36 2025 +0300
+
+    Start work in Home_page => tabs and initialize firbase in app now
+
+[33mcommit a1932dbfcae7e3ac5b043d6e1b1bb16a6748a3ea[m
+Author: ahmedabdelkrim125 <ahmed125abdelkrim@gmail.com>
+Date:   Fri Aug 22 01:24:59 2025 +0300
+
+    Done MainNavigationPage
+
+[33mcommit 0a4caab429bb6dc4ce87fc4c4b0fd08c32372430[m
+Author: ahmedabdelkrim125 <ahmed125abdelkrim@gmail.com>
+Date:   Thu Aug 21 19:25:37 2025 +0300
+
+    auth api Done
+
+[33mcommit 42c1c838fd9f0f072a81012590eb080d4d73b697[m
+Author: ahmedabdelkrim125 <ahmed125abdelkrim@gmail.com>
+Date:   Tue Aug 19 18:02:19 2025 +0300
+
+    Of course, here is the commit message in English.
+    
+    -----
+    
+    ### Commit Message
+    
+    `
+    feat: Add validation to sign-up and login fields
+    
+    - Implement comprehensive validation for the sign-up form to ensure data integrity and improve user experience.
+    - Create a centralized AppValidators class to hold and reuse all validation logic.
+    
+    Validation rules include:
+    - Proper email format.
+    - Password strength (min 6 chars, uppercase, number, special character).
+    - Egyptian phone number format (11-digit length and valid prefixes).
+    
+    - Refactor the CustomFormTextField widget to accept a alidator function, making it more flexible and reusable across the app.
+    - Apply a
+
+[33mcommit 33ec9e9fb279ba8f8a3dc97e61e2b8491cfdb768[m
+Author: ahmedabdelkrim125 <ahmed125abdelkrim@gmail.com>
+Date:   Tue Aug 19 01:39:04 2025 +0300
+
+    feat(auth): add caching for access & refresh tokens + request interceptor
+    
+    - Added new CacheHelper using SharedPreferences to store/retrieve/remove tokens.
+    - Integrated CacheHelper in AuthCubit to save/remove tokens on login/logout.
+    - Initialized CacheHelper in main.dart at app startup.
+    - Implemented ApiInterceptors to attach AccessToken to request headers.
+    - Fixed duplicate handler call in onRequest (only call handler.next(options) once).
+
+[33mcommit 99c1a01ea5a64348246c1b968c8cdf015a62cd0e[m
+Author: ahmedabdelkrim125 <ahmed125abdelkrim@gmail.com>
+Date:   Mon Aug 18 00:35:11 2025 +0300
+
+    Done api auth
+
+[33mcommit 9a15b7ae647697c5a2dd38c020a201f28d847624[m
+Author: ahmedabdelkrim125 <ahmed125abdelkrim@gmail.com>
+Date:   Sun Aug 17 23:05:38 2025 +0300
+
+    finshing passing api for login
+
+[33mcommit 8e48d298165d98c5fd2c32e90287c0c5deb543d2[m
+Author: ahmedabdelkrim125 <ahmed125abdelkrim@gmail.com>
+Date:   Sun Aug 17 18:25:49 2025 +0300
+
+    feat(auth): implement AuthRepo with login & signup
+    
+    - Created AuthRepo abstract class defining login and signup methods.
+    - Implemented AuthRepoImplement using ApiConsumer.
+    - Integrated API endpoints for login and user creation via EndPoints.
+    - Added mapping of API responses to UserModel.
+
+[33mcommit 643e27ef5f83c00f6415e5b1263d185730b4fa44[m
+Author: ahmedabdelkrim125 <ahmed125abdelkrim@gmail.com>
+Date:   Sun Aug 17 17:04:04 2025 +0300
+
+    feat: setup Dio with ApiInterceptors and add EndPoints & ApiKeys
+    
+    - Added ApiInterceptors class to handle API requests, responses, and errors.
+    - Configured DioConsumer with baseUrl and enabled detailed logging via LogInterceptor.
+    - Introduced isFromData flag to differentiate between API and local data.
+    - Created EndPoints class to centralize all API endpoints.
+    - Created ApiKeys class to manage API response/request keys.
+
+[33mcommit 286cbcb0a67499373c3091806bc08916990cd5a1[m
+Author: ahmedabdelkrim125 <ahmed125abdelkrim@gmail.com>
+Date:   Sat Aug 16 15:27:50 2025 +0300
+
+    feat(core/api): add API and error handling setup
+    
+    - Added ApiConsumer abstract class for defining HTTP methods (GET, POST, PUT, DELETE)
+    - Implemented DioConsumer for executing requests using Dio and handling errors
+    - Added ErrorModel to represent server errors in a structured way
+    - Added ServerException and handelDioException for centralized error handling
+
+[33mcommit 0b04da3027bed7306a159919488f5e8ef9adc237[m
+Author: ahmedabdelkrim125 <ahmed125abdelkrim@gmail.com>
+Date:   Sat Aug 16 01:17:27 2025 +0300
+
+    sing_up_body=>file =>singup_widgets
+
+[33mcommit 44e1bd33fc20a8bcbf9ad599314e8b3044cb8f5b[m
+Author: ahmedabdelkrim125 <ahmed125abdelkrim@gmail.com>
+Date:   Sat Aug 16 00:13:48 2025 +0300
+
+    Refactor Auth pages:
+    - Split SignUp and Login pages into modular widgets
+    - Added SignUpHeader, SignUpNameField, SignUpEmailField, SignUpPasswordField, SignUpButton, SignUpSocialSection
+    - Created SignUpFormFields.dart to group SignUp fields
+    - Created LoginFormFields.dart to group Login fields
+    - Updated SignUpButton to use showCustomSnackBar like LoginButton
+    - Updated SignUpBodyPage to use modular widgets
+    - Made CreateAccountTitle reusable with optional icon and centered text
+
+[33m

@@ -27,7 +27,7 @@ class HomePageBody extends StatelessWidget {
           SectionTitle(title: 'العروض'),
           SizedBox(height: 12.h),
           SizedBox(
-            height: 250.h,
+            height: 265.h,
             child: ListView.builder(
               reverse: true,
               scrollDirection: Axis.horizontal,

@@ -32,8 +32,8 @@ class ProductsCarouselHome extends StatelessWidget {
           Stack(
             children: [
               Container(
-                width: 147.w,
-                height: 147.h,
+                width: 150.w,
+                height: 150.h,
                 decoration: BoxDecoration(
                   color: ThemeColor.lightSilver,
                   borderRadius: BorderRadius.circular(8.r),
@@ -48,8 +48,8 @@ class ProductsCarouselHome extends StatelessWidget {
                 ),
               ),
               Positioned(
-                top: 95.h,
-                right: -15.w,
+                top: 83.h,
+                right: -25.w,
                 child: InkWell(
                   onTap: () {},
                   child: Image.asset(

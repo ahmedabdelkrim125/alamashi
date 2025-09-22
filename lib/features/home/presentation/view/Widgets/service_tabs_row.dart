@@ -1,5 +1,4 @@
 import 'package:egyptian_supermaekat/core/app_router.dart';
-import 'package:egyptian_supermaekat/core/theme_color.dart';
 import 'package:egyptian_supermaekat/core/utils/app_images.dart';
 import 'package:egyptian_supermaekat/features/home/presentation/view/Widgets/categories_section.dart';
 import 'package:flutter/material.dart';
@@ -22,21 +21,22 @@ class ServiceTabsRow extends StatelessWidget {
           Row(
             spacing: 8.w,
             children: [
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Container(
-                  decoration: BoxDecoration(
-                    border: Border.all(color: ThemeColor.charcoal),
-                    borderRadius: BorderRadius.circular(16.r),
-                  ),
-                  child: CustomTab(
-                    text: 'اسماك',
-                    svgAsset: Assets.fishing,
-                    onTap: () {
-                      context.push(AppRouter.kFishPage);
-                    },
-                  ),
-                ),
+              // Padding(
+              //   padding: const EdgeInsets.all(8.0),
+              //   child: Container(
+              //     decoration: BoxDecoration(
+              //       border: Border.all(color: ThemeColor.charcoal),
+              //       borderRadius: BorderRadius.circular(20.r),
+              //     ),
+              //     child:
+              //   ),
+              // ),
+              CustomTab(
+                text: 'اسماك',
+                svgAsset: Assets.fishing,
+                onTap: () {
+                  context.push(AppRouter.kFishPage);
+                },
               ),
               CustomTab(
                 text: 'لحوم',
