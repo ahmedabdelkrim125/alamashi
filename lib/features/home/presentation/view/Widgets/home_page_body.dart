@@ -5,6 +5,7 @@ import 'package:egyptian_supermaekat/features/home/presentation/view/Widgets/pro
 import 'package:egyptian_supermaekat/features/home/presentation/view/Widgets/promo_banner.dart';
 import 'package:egyptian_supermaekat/features/home/presentation/view/Widgets/section_title.dart';
 import 'package:egyptian_supermaekat/features/home/presentation/view/Widgets/service_tabs_row.dart';
+import 'package:egyptian_supermaekat/features/home/presentation/view/models/mock_products.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -27,11 +28,14 @@ class HomePageBody extends StatelessWidget {
           SectionTitle(title: 'العروض'),
           SizedBox(height: 12.h),
           SizedBox(
-            height: 265.h,
+            height: 290.h,
             child: ListView.builder(
               reverse: true,
               scrollDirection: Axis.horizontal,
-              itemBuilder: (context, index) => ProductDealWidget(),
+              itemCount: mockProducts.length,
+              itemBuilder: (context, index) => ProductDealWidget(
+                product: mockProducts[index],
+              ),
             ),
           ),
           SizedBox(height: 24.h),

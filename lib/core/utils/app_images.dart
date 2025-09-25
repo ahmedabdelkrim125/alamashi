@@ -82,6 +82,7 @@ class Assets {
   static const String splashFullDesign = "assets/images/splash_full_design.png";
   static const String ahmed = "assets/images/ahmed.svg";
   static const String back = "assets/images/back.svg";
+  static const String favorites = "assets/images/Vector.png";
 
 }
 
