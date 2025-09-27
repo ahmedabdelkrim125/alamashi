@@ -80,10 +80,16 @@ class Assets {
   static const String frame = "assets/images/Frame.png";
   static const String me = "assets/images/preson.png";
   static const String splashFullDesign = "assets/images/splash_full_design.png";
-  static const String ahmed = "assets/images/ahmed.svg";
+  static const String messages = "assets/images/messages .png";
   static const String back = "assets/images/back.svg";
   static const String favorites = "assets/images/Vector.png";
-
+  static const String useraccount = "assets/images/user-account.png";
+  static const String favourite = "assets/images/favourite.png";
+  static const String notification01 = "assets/images/notification-01.png";
+  static const String helpsquare = "assets/images/help-square.png";
+  static const String informationdiamond =
+      "assets/images/information-diamond.png";
+  static const String global = "assets/images/global.png";
+  static const String group = "assets/images/Group.png";
+  static const String cancelCircle = "assets/images/cancel-circle.png";
 }
-
-

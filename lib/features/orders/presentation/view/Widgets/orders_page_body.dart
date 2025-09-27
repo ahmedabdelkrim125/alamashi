@@ -83,7 +83,7 @@ class DateOrder extends StatelessWidget {
           ),
         ],
         borderRadius: BorderRadius.circular(5.r),
-        color: ThemeColor.greenColor.withOpacity(.6),
+        color: Color(0xffe6f4ea),
       ),
       child: Row(
         children: [
@@ -152,10 +152,22 @@ class DateOrder extends StatelessWidget {
             child: Column(
               spacing: 8.h,
               children: [
-                CircleAvatar(
-                  radius: 45.r,
-                  backgroundImage: AssetImage(
-                    'assets/images/preson.jpg',
+                Container(
+                  decoration: BoxDecoration(
+                    boxShadow: [
+                      BoxShadow(
+                        color: ThemeColor.charcoalColor.withOpacity(.1),
+                        blurRadius: 10,
+                        spreadRadius: 2,
+                        offset: const Offset(4, 4),
+                      ),
+                    ],
+                  ),
+                  child: CircleAvatar(
+                    radius: 50.r,
+                    backgroundImage: AssetImage(
+                      'assets/images/preson.jpg',
+                    ),
                   ),
                 ),
                 Text(

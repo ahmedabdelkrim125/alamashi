@@ -12,6 +12,7 @@ import 'package:egyptian_supermaekat/features/home/presentation/view/pages/fish_
 import 'package:egyptian_supermaekat/features/main/presentation/view/main_navigation_page.dart';
 import 'package:egyptian_supermaekat/features/on_boarding/presentation/views/on_boarding_screen.dart';
 import 'package:egyptian_supermaekat/features/search/presentation/view/search_page.dart';
+import 'package:egyptian_supermaekat/features/shopping_cart/presentation/view/shopping_cart_page.dart';
 import 'package:egyptian_supermaekat/features/splash/presentation/views/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -34,6 +35,7 @@ abstract class AppRouter {
   static const kMeatPage = '/MeatPage';
   static const kFishPage = '/FishPage';
   static const kSearch = '/SearchPage';
+  static const kShoppingCartPage = '/kShoppingCartPage';
 
   static final GoRouter router = GoRouter(
     routes: <RouteBase>[
@@ -125,6 +127,12 @@ abstract class AppRouter {
         path: kSearch,
         builder: (BuildContext context, GoRouterState state) {
           return SearchPage();
+        },
+      ),
+        GoRoute(
+        path: kShoppingCartPage,
+        builder: (BuildContext context, GoRouterState state) {
+          return ShoppingCartPage();
         },
       ),
     ],

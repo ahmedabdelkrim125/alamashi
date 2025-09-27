@@ -34,6 +34,8 @@ class ThemeColor {
   static const Color greenColor = Color(0xFFD7FFD4);
   static const Color grayColor = Color(0xFFF6F6F6);
   static const Color coralRed = Color(0xFFEF6A62);
+  static const Color logoutRed = Color(0xFFD32F2F);
+
   static const Color onyx = Color(0xFF151414);
   static const Color white = Color(0xFFFFFFFF);
   static const Color lightGreenBackground = Color(0xffE6F4EA);
