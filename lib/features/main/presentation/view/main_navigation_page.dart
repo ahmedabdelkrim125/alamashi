@@ -110,7 +110,7 @@ class MainNavigationPage extends StatelessWidget {
                       ),
                       GButton(
                         icon: Icons.person_outline,
-                        text: 'حسابي',
+                        text: 'الملف الشخصي',
                         leading: SvgPicture.asset(
                           Assets.icaccount,
                           width: sizeicon.w,

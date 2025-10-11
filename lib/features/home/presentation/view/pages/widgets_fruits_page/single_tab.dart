@@ -25,16 +25,16 @@ class SingleTab extends StatelessWidget {
         height: 36.h,
         padding: EdgeInsets.symmetric(horizontal: 24.w),
         decoration: BoxDecoration(
-          color: isSelected ? ThemeColor.forestGreenColor : Colors.transparent,
+          color: isSelected ? ThemeColor.brandColor : Colors.transparent,
           borderRadius: BorderRadius.circular(30.r),
-          border: Border.all(color: ThemeColor.forestGreenColor, width: 1.5),
+          border: Border.all(color: ThemeColor.graniteGray, width: 1.5),
         ),
         child: Center(
           child: Text(
             title,
             style: Style.textStyle14.copyWith(
               fontFamily: cairoSemiBold,
-              color: isSelected ? ThemeColor.bgColor : ThemeColor.textColor,
+              color: isSelected ? ThemeColor.bgColor : ThemeColor.graniteGray,
             ),
           ),
         ),
