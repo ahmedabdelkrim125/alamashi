@@ -214,9 +214,9 @@ lib/
 
 إذا كان لديك أي استفسارات أو اقتراحات:
 
-- **البريد الإلكتروني**: your.email@example.com
-- **LinkedIn**: [Your Profile](https://linkedin.com/in/yourprofile)
-- **Twitter**: [@YourHandle](https://twitter.com/yourhandle)
+- **البريد الإلكتروني**: ahmedabdelkrim125@gmail.com
+- **LinkedIn**: [Ahmed Abdelkrim](https://www.linkedin.com/in/ahmed-abdelkrim166)
+- **Facebook**: [Ahmed Abdelkrim](https://facebook.com/ahmedabdelkrim)
 
 ---
 
