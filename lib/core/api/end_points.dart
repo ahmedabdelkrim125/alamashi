@@ -1,5 +1,5 @@
 class EndPoints {
-  static const String baseUrl = 'https://alamashiapi.azurewebsites.net';
+  static const String baseUrl = 'http://alamashi.runasp.net';
 
   // 🔑 Authentication
   static const String login = '$baseUrl/api/Users/login';

@@ -43,3 +43,8 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+
+# Environment & Secrets (Added)
+# ------------------------------
+# Never commit your .env file
+/.env
