@@ -16,14 +16,15 @@ class AuthSuccess extends AuthState {
 
   const AuthSuccess(this.userModel);
 
-  // @override
-  // List<Object?> get props => [userModel];
+  @override
+  List<Object> get props => [userModel];
 }
 
 class AuthFailure extends AuthState {
   final String message;
 
   const AuthFailure(this.message);
-  // @override
-  // List<Object?> get props => [userModel];
+
+  @override
+  List<Object> get props => [message];
 }

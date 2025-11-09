@@ -30,15 +30,15 @@ class _SplashScreenState extends State<SplashScreen> {
       if (state is AuthSuccess) {
         context.go(AppRouter.kMain);
       } else {
-        context.go(AppRouter.kOnBoarding);
+        // Check if onboarding was shown before
+        // For now, redirect to login page directly
+        context.go(AppRouter.kLogin);
       }
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SplashScreenBody(),
-    );
+    return Scaffold(body: SplashScreenBody());
   }
 }

@@ -1,39 +1,41 @@
-import 'package:egyptian_supermaekat/core/api/api_consumer.dart';
+import 'dart:convert';
+
+import 'package:dio/dio.dart';
+import 'package:egyptian_supermaekat/core/api/api_service.dart';
 import 'package:egyptian_supermaekat/core/api/end_points.dart';
 import 'package:egyptian_supermaekat/core/errors/error_model.dart';
 import 'package:egyptian_supermaekat/core/errors/exceptions.dart';
 import 'package:egyptian_supermaekat/core/utils/cache_helper.dart';
-import 'package:egyptian_supermaekat/features/auth/data/model/user_model/user.dart';
-import 'package:egyptian_supermaekat/features/auth/data/model/user_model/user_model.dart';
+import 'package:egyptian_supermaekat/features/auth/data/model/login_request.dart';
+import 'package:egyptian_supermaekat/features/auth/data/model/register_request.dart';
+import 'package:egyptian_supermaekat/features/auth/data/model/user.dart';
+import 'package:egyptian_supermaekat/features/auth/data/model/user_model.dart';
 import 'package:egyptian_supermaekat/features/auth/data/repo/auth_repo.dart';
-import 'package:dio/dio.dart';
 
 class AuthRepoImplement implements AuthRepo {
-  final ApiConsumer api;
-
-  AuthRepoImplement(this.api);
+  final ApiService apiService;
+  AuthRepoImplement(this.apiService);
 
   @override
   Future<UserModel> login(String email, String password) async {
     try {
-      final response = await api.post(
-        EndPoints.login,
-        data: {
-          "email": email,
-          "password": password,
-        },
-      );
+      final request = LoginRequest(email: email, password: password);
+      final apiResponse = await apiService.login(request);
 
-      if (response == null) {
+      // ✅ تحويل ApiResponse<LoginResponseDto> → UserModel
+      if (apiResponse.status == 'success' && apiResponse.data != null) {
+        return UserModel(
+          status: apiResponse.status,
+          loginResponseDto: apiResponse.data,
+        );
+      } else {
         throw ServerException(
           errorModel: ErrorModel(
-            status: 500,
-            errorMessage: "الخادم رجع رد فاضي، جرب تاني بعد شوية.",
+            status: 400,
+            errorMessage: apiResponse.message ?? "فشل تسجيل الدخول",
           ),
         );
       }
-
-      return UserModel.fromJson(response);
     } on DioException catch (e) {
       throw _handleDioException(e);
     }
@@ -42,26 +44,28 @@ class AuthRepoImplement implements AuthRepo {
   @override
   Future<UserModel> signup(User user, String password) async {
     try {
-      final response = await api.post(
-        EndPoints.createNewUser,
-        data: {
-          ApiKeys.userName: user.userName,
-          ApiKeys.email: user.email,
-          ApiKeys.password: password,
-          ApiKeys.phone: user.phone,
-        },
+      final request = RegisterRequest(
+        userName: user.userName ?? '',
+        email: user.email ?? '',
+        password: password,
+        phone: user.phone ?? '',
       );
+      final apiResponse = await apiService.register(request);
 
-      if (response == null) {
+      // ✅ تحويل ApiResponse<LoginResponseDto> → UserModel
+      if (apiResponse.status == 'success' && apiResponse.data != null) {
+        return UserModel(
+          status: apiResponse.status,
+          loginResponseDto: apiResponse.data,
+        );
+      } else {
         throw ServerException(
           errorModel: ErrorModel(
-            status: 500,
-            errorMessage: "الخادم رجع رد فاضي، جرب تاني بعد شوية.",
+            status: 400,
+            errorMessage: apiResponse.message ?? "فشل التسجيل",
           ),
         );
       }
-
-      return UserModel.fromJson(response);
     } on DioException catch (e) {
       throw _handleDioException(e);
     }
@@ -73,64 +77,66 @@ class AuthRepoImplement implements AuthRepo {
     final refreshToken = CacheHelper.getRefreshToken();
 
     try {
-      final response = await api.post(
-        EndPoints.refresh,
-        data: {
-          ApiKeys.accessToken: accessToken,
-          ApiKeys.refreshToken: refreshToken
-        },
-      );
-      return UserModel.fromJson(response);
+      final apiResponse = await apiService.refreshToken({
+        ApiKeys.accessToken: accessToken,
+        ApiKeys.refreshToken: refreshToken,
+      });
+
+      // ✅ تحويل ApiResponse<LoginResponseDto> → UserModel
+      if (apiResponse.status == 'success' && apiResponse.data != null) {
+        return UserModel(
+          status: apiResponse.status,
+          loginResponseDto: apiResponse.data,
+        );
+      } else {
+        throw ServerException(
+          errorModel: ErrorModel(
+            status: 401,
+            errorMessage: apiResponse.message ?? "فشل تحديث الـ Token",
+          ),
+        );
+      }
     } on DioException catch (e) {
       throw _handleDioException(e);
     }
   }
 
   ServerException _handleDioException(DioException e) {
-    if (e.response?.data != null) {
-      return ServerException(errorModel: ErrorModel.fromJson(e.response!.data));
+    final statusCode = e.response?.statusCode ?? 500;
+    final data = e.response?.data;
+
+    // اتعامل مع Redirect (3xx)
+    if (statusCode >= 300 && statusCode < 400) {
+      return ServerException(
+        errorModel: ErrorModel(
+          status: statusCode,
+          errorMessage: "خطأ في الاتصال. تأكد من رابط السيرفر.",
+        ),
+      );
     }
 
+    // اتعامل مع الأخطاء (4xx, 5xx)
+    if (data != null && statusCode >= 400) {
+      if (data is Map<String, dynamic>) {
+        return ServerException(errorModel: ErrorModel.fromJson(data));
+      } else if (data is String) {
+        try {
+          final decoded = jsonDecode(data) as Map<String, dynamic>;
+          return ServerException(errorModel: ErrorModel.fromJson(decoded));
+        } catch (_) {
+          return ServerException(
+            errorModel: ErrorModel(status: statusCode, errorMessage: data),
+          );
+        }
+      }
+    }
+
+    // Default error
     return ServerException(
       errorModel: ErrorModel(
-        status: 500,
-        errorMessage: "حصل مشكلة في الاتصال بالخادم، جرب تاني.",
+        status: statusCode,
+        errorMessage: e.message ?? "حصل مشكلة في الاتصال بالخادم، جرب تاني.",
       ),
     );
   }
-//   @override
-// Future<UserModel> signInWithGoogle() async {
-//   try {
-//     final g = GoogleSignIn.instance;
-//     await g.initialize();
-
-//     final GoogleSignInAccount? googleUser = await g.authenticate();
-//     if (googleUser == null) throw Exception("تم إلغاء تسجيل الدخول");
-
-//     final googleAuth = googleUser.authentication;
-
-//     // مفيش accessToken في v7+
-//     final credential = fb.GoogleAuthProvider.credential(
-//       idToken: googleAuth.idToken,
-//     );
-
-//     final userCred =
-//         await fb.FirebaseAuth.instance.signInWithCredential(credential);
-
-//     final user = userCred.user;
-//     if (user == null) throw Exception("Firebase رجّع user = null");
-
-//     return UserModel(
-//       status: "success",
-//       accessToken: await user.getIdToken(), // ده هو التوكن اللي تسجّله عندك
-//       user: app.User(
-//         userId: user.uid.hashCode,
-//         userName: user.displayName ?? "",
-//         email: user.email ?? "",
-//       ),
-//     );
-//   } catch (e) {
-//     throw Exception("Google Sign-In Failed: $e");
-//   }
-// }
 }

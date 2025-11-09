@@ -1,11 +1,12 @@
 import 'dart:developer';
 import 'package:bloc/bloc.dart';
 import 'package:egyptian_supermaekat/core/api/end_points.dart';
-import 'package:egyptian_supermaekat/core/errors/exceptions.dart'; // ✅ السطر ده تم إضافته
+import 'package:egyptian_supermaekat/core/errors/exceptions.dart';
 import 'package:egyptian_supermaekat/core/utils/cache_helper.dart';
 import 'package:egyptian_supermaekat/core/utils/debug_tokens.dart';
-import 'package:egyptian_supermaekat/features/auth/data/model/user_model/user.dart';
-import 'package:egyptian_supermaekat/features/auth/data/model/user_model/user_model.dart';
+import 'package:egyptian_supermaekat/features/auth/data/model/login_response_dto.dart';
+import 'package:egyptian_supermaekat/features/auth/data/model/user.dart';
+import 'package:egyptian_supermaekat/features/auth/data/model/user_model.dart';
 import 'package:egyptian_supermaekat/features/auth/data/repo/auth_repo.dart';
 import 'package:equatable/equatable.dart';
 import 'package:jwt_decoder/jwt_decoder.dart';
@@ -19,34 +20,70 @@ class AuthCubit extends Cubit<AuthState> {
 
   String _mapExceptionToMessage(ServerException e) {
     final statusCode = e.errorModel.status;
+    final errorMessage = e.errorModel.errorMessage ?? '';
+    
     log("DEBUGGING: Status code from HTTP response ==> ${e.statusCode}");
     log("DEBUGGING: Status code from response body ==> $statusCode");
+    log("DEBUGGING: Server error message ==> $errorMessage");
 
-    if (statusCode == 400 || statusCode == 401) {
-      return "البريد الإلكتروني أو كلمة المرور غير صحيحة.";
+    if (errorMessage.isNotEmpty) {
+      if (errorMessage.toLowerCase().contains("phone") && 
+          errorMessage.toLowerCase().contains("already")) {
+        final phoneMatch = RegExp(r"'(\d+)'").firstMatch(errorMessage);
+        final phone = phoneMatch?.group(1) ?? '';
+        return "رقم الهاتف ${phone.isNotEmpty ? phone : 'هذا'} مسجل بالفعل.";
+      }
+      
+      if (errorMessage.toLowerCase().contains("email") && 
+          errorMessage.toLowerCase().contains("already")) {
+        return "البريد الإلكتروني مسجل بالفعل.";
+      }
+      
+      if (errorMessage.toLowerCase().contains("username") && 
+          errorMessage.toLowerCase().contains("already")) {
+        return "اسم المستخدم مسجل بالفعل.";
+      }
+
+      if (errorMessage.toLowerCase().contains("invalid") && 
+          errorMessage.toLowerCase().contains("password")) {
+        return "كلمة المرور غير صحيحة.";
+      }
+
+      if (errorMessage.toLowerCase().contains("not found") || 
+          errorMessage.toLowerCase().contains("invalid credentials")) {
+        return "البريد الإلكتروني أو كلمة المرور غير صحيحة.";
+      }
     }
 
-    if (statusCode == 403) {
-      return "ليس لديك الصلاحية للقيام بهذا الإجراء.";
+    switch (statusCode) {
+      case 400:
+        return errorMessage.isNotEmpty 
+          ? errorMessage 
+          : "البيانات المدخلة غير صحيحة.";
+      
+      case 401:
+        return "البريد الإلكتروني أو كلمة المرور غير صحيحة.";
+      
+      case 403:
+        return "ليس لديك الصلاحية للقيام بهذا الإجراء.";
+      
+      case 404:
+        return "الرابط المطلوب غير موجود على الخادم.";
+      
+      case 409:
+        return "البيانات مسجلة بالفعل. جرب بيانات مختلفة.";
+      
+      case 500:
+        return "حدث خطأ في الخادم، يرجى المحاولة مرة أخرى في وقت لاحق.";
+      
+      case 503:
+        return "الخدمة غير متاحة حاليًا أو لا يوجد اتصال بالإنترنت.";
+      
+      default:
+        return errorMessage.isNotEmpty 
+          ? errorMessage 
+          : "حدث خطأ غير متوقع، يرجى المحاولة مرة أخرى.";
     }
-
-    if (statusCode == 404) {
-      return "الرابط المطلوب غير موجود على الخادم.";
-    }
-
-    if (statusCode == 409) {
-      return "هذا البريد الإلكتروني مسجل بالفعل.";
-    }
-
-    if (statusCode == 500) {
-      return "حدث خطأ في الخادم، يرجى المحاولة مرة أخرى في وقت لاحق.";
-    }
-
-    if (statusCode == 503) {
-      return "الخدمة غير متاحة حاليًا أو لا يوجد اتصال بالإنترنت.";
-    }
-
-    return "حدث خطأ غير متوقع، يرجى المحاولة مرة أخرى.";
   }
 
   Future<void> login(String email, String password) async {
@@ -66,8 +103,9 @@ class AuthCubit extends Cubit<AuthState> {
         emit(AuthFailure("Login failed: Missing token in response."));
         return;
       }
-      Map<String, dynamic> decodedToken =
-          JwtDecoder.decode(userModel.accessToken!);
+      Map<String, dynamic> decodedToken = JwtDecoder.decode(
+        userModel.accessToken!,
+      );
 
       String? userRole = decodedToken[ApiKeys.jwtRole];
       String? userId = decodedToken[ApiKeys.jwtNameIdentifier];
@@ -77,14 +115,18 @@ class AuthCubit extends Cubit<AuthState> {
       log("User ID from Token: $userId");
       log("Username from Token: $userName");
       log("--------------------------");
-      DateTime expiryDate =
-          JwtDecoder.getExpirationDate(userModel.accessToken!);
+      DateTime expiryDate = JwtDecoder.getExpirationDate(
+        userModel.accessToken!,
+      );
       log("Token will expire on: $expiryDate");
 
       emit(AuthSuccess(userModel));
     } on ServerException catch (e) {
       final friendlyMessage = _mapExceptionToMessage(e);
       emit(AuthFailure(friendlyMessage));
+    } catch (e) {
+      log("Unexpected error during login: $e");
+      emit(AuthFailure("حدث خطأ غير متوقع: ${e.toString()}"));
     }
   }
 
@@ -98,6 +140,7 @@ class AuthCubit extends Cubit<AuthState> {
       final friendlyMessage = _mapExceptionToMessage(e);
       emit(AuthFailure(friendlyMessage));
     } catch (e) {
+      log("Unexpected error during signup: $e");
       emit(AuthFailure("حدث خطأ غير متوقع: ${e.toString()}"));
     }
   }
@@ -112,6 +155,10 @@ class AuthCubit extends Cubit<AuthState> {
   Future<void> checkAuthStatus() async {
     await Future.delayed(Duration.zero);
     final accessToken = CacheHelper.getAccessToken();
+    log(
+      "DEBUG: Checking auth status. Access token: ${accessToken != null ? 'present' : 'null'}",
+    );
+
     if (accessToken != null && accessToken.isNotEmpty) {
       if (JwtDecoder.isExpired(accessToken)) {
         log("Access Token has expired. Attempting to refresh...");
@@ -125,7 +172,7 @@ class AuthCubit extends Cubit<AuthState> {
           await debugTokens();
           emit(AuthSuccess(newUserModel));
         } catch (e) {
-          log("❌ Failed to refresh token. Logging out.");
+          log("❌ Failed to refresh token. Logging out. Error: $e");
           await logout();
         }
       } else {
@@ -136,12 +183,19 @@ class AuthCubit extends Cubit<AuthState> {
           userName: decodedToken[ApiKeys.jwtName],
           email: decodedToken[ApiKeys.jwtEmail],
         );
-        final userModel =
-            UserModel(status: 'success', accessToken: accessToken, user: user);
+        final userModel = UserModel(
+          status: 'success',
+          loginResponseDto: LoginResponseDto(
+            accessToken: accessToken,
+            user: user,
+          ),
+        );
+
         emit(AuthSuccess(userModel));
       }
     } else {
       log("No token found. User needs to log in.");
+      emit(AuthInitial());
     }
   }
 }

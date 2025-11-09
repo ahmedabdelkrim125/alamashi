@@ -1,8 +1,6 @@
-import 'package:dio/dio.dart';
-import 'package:egyptian_supermaekat/core/api/dio_consumer.dart';
 import 'package:egyptian_supermaekat/core/app_router.dart';
+import 'package:egyptian_supermaekat/core/di/injection.dart';
 import 'package:egyptian_supermaekat/core/utils/cache_helper.dart';
-import 'package:egyptian_supermaekat/features/auth/data/repo/auth_repo_implement.dart';
 import 'package:egyptian_supermaekat/features/auth/presentation/viewmodel/auth_cubit.dart';
 import 'package:egyptian_supermaekat/features/main/presentation/viewmodel/navigation_cubit.dart';
 import 'package:egyptian_supermaekat/firebase_options.dart';
@@ -21,13 +19,13 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+   await setupInjection();
   runApp(
     MultiBlocProvider(
       providers: [
         BlocProvider<AuthCubit>(
-          create: (context) =>
-              AuthCubit(AuthRepoImplement(DioConsumer(dio: Dio())))
-                ..checkAuthStatus(),
+         
+           create: (context) => getIt<AuthCubit>()..checkAuthStatus(),
         ),
         BlocProvider<NavigationCubit>(
           create: (context) => NavigationCubit(),
