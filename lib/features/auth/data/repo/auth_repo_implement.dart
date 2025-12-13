@@ -1,142 +1,126 @@
-import 'dart:convert';
+// Path: lib/features/auth/data/repositories/auth_repository_impl.dart
 
 import 'package:dio/dio.dart';
-import 'package:egyptian_supermaekat/core/api/api_service.dart';
 import 'package:egyptian_supermaekat/core/api/end_points.dart';
-import 'package:egyptian_supermaekat/core/errors/error_model.dart';
-import 'package:egyptian_supermaekat/core/errors/exceptions.dart';
-import 'package:egyptian_supermaekat/core/utils/cache_helper.dart';
+import 'package:egyptian_supermaekat/core/network/dio_exception_handler.dart';
+import 'package:egyptian_supermaekat/features/auth/data/datasources/auth_local_datasource.dart';
+import 'package:egyptian_supermaekat/features/auth/data/datasources/auth_remote_datasource.dart';
+import 'package:egyptian_supermaekat/features/auth/data/mappers/auth_response_mapper.dart';
 import 'package:egyptian_supermaekat/features/auth/data/model/login_request.dart';
 import 'package:egyptian_supermaekat/features/auth/data/model/register_request.dart';
 import 'package:egyptian_supermaekat/features/auth/data/model/user.dart';
 import 'package:egyptian_supermaekat/features/auth/data/model/user_model.dart';
 import 'package:egyptian_supermaekat/features/auth/data/repo/auth_repo.dart';
 
-class AuthRepoImplement implements AuthRepo {
-  final ApiService apiService;
-  AuthRepoImplement(this.apiService);
+/// ✅ SRP: ينسق فقط بين Remote و Local DataSources
+/// ✅ DIP: يعتمد على abstractions (interfaces) وليس implementations
+/// ✅ OCP: مفتوح للتوسع بدون تعديل في الكود الأساسي
+/// ✅ LSP: يمكن استبدال أي DataSource بـ implementation آخر
+class AuthRepositoryImpl implements AuthRepo {
+  final AuthRemoteDataSource remoteDataSource;
+  final AuthLocalDataSource localDataSource;
+
+  AuthRepositoryImpl({
+    required this.remoteDataSource,
+    required this.localDataSource,
+  });
 
   @override
   Future<UserModel> login(String email, String password) async {
     try {
+      // 1️⃣ إنشاء الـ Request
       final request = LoginRequest(email: email, password: password);
-      final apiResponse = await apiService.login(request);
+      
+      // 2️⃣ استدعاء الـ API
+      final apiResponse = await remoteDataSource.login(request);
+      
+      // 3️⃣ تحويل الـ Response إلى UserModel
+      final userModel = AuthResponseMapper.toUserModel(
+        apiResponse,
+        errorContext: "فشل تسجيل الدخول",
+      );
 
-      // ✅ تحويل ApiResponse<LoginResponseDto> → UserModel
-      if (apiResponse.status == 'success' && apiResponse.data != null) {
-        return UserModel(
-          status: apiResponse.status,
-          loginResponseDto: apiResponse.data,
-        );
-      } else {
-        throw ServerException(
-          errorModel: ErrorModel(
-            status: 400,
-            errorMessage: apiResponse.message ?? "فشل تسجيل الدخول",
-          ),
+      // 4️⃣ حفظ الـ Tokens محلياً
+      if (userModel.accessToken != null) {
+        await localDataSource.saveTokens(
+          accessToken: userModel.accessToken!,
+          refreshToken: userModel.refreshToken,
         );
       }
+
+      return userModel;
     } on DioException catch (e) {
-      throw _handleDioException(e);
+      // معالجة أخطاء Dio
+      throw DioExceptionHandler.handle(e);
     }
   }
 
   @override
   Future<UserModel> signup(User user, String password) async {
     try {
+      // 1️⃣ إنشاء الـ Request
       final request = RegisterRequest(
         userName: user.userName ?? '',
         email: user.email ?? '',
         password: password,
         phone: user.phone ?? '',
       );
-      final apiResponse = await apiService.register(request);
+      
+      // 2️⃣ استدعاء الـ API
+      final apiResponse = await remoteDataSource.register(request);
+      
+      // 3️⃣ تحويل الـ Response إلى UserModel
+      final userModel = AuthResponseMapper.toUserModel(
+        apiResponse,
+        errorContext: "فشل التسجيل",
+      );
 
-      // ✅ تحويل ApiResponse<LoginResponseDto> → UserModel
-      if (apiResponse.status == 'success' && apiResponse.data != null) {
-        return UserModel(
-          status: apiResponse.status,
-          loginResponseDto: apiResponse.data,
-        );
-      } else {
-        throw ServerException(
-          errorModel: ErrorModel(
-            status: 400,
-            errorMessage: apiResponse.message ?? "فشل التسجيل",
-          ),
+      // 4️⃣ حفظ الـ Tokens محلياً
+      if (userModel.accessToken != null) {
+        await localDataSource.saveTokens(
+          accessToken: userModel.accessToken!,
+          refreshToken: userModel.refreshToken,
         );
       }
+
+      return userModel;
     } on DioException catch (e) {
-      throw _handleDioException(e);
+      // معالجة أخطاء Dio
+      throw DioExceptionHandler.handle(e);
     }
   }
 
   @override
   Future<UserModel> refreshToken() async {
-    final accessToken = CacheHelper.getAccessToken();
-    final refreshToken = CacheHelper.getRefreshToken();
-
     try {
-      final apiResponse = await apiService.refreshToken({
+      // 1️⃣ الحصول على الـ Tokens المحفوظة
+      final accessToken = localDataSource.getAccessToken();
+      final refreshToken = localDataSource.getRefreshToken();
+
+      // 2️⃣ استدعاء الـ API
+      final apiResponse = await remoteDataSource.refreshToken({
         ApiKeys.accessToken: accessToken,
         ApiKeys.refreshToken: refreshToken,
       });
-
-      // ✅ تحويل ApiResponse<LoginResponseDto> → UserModel
-      if (apiResponse.status == 'success' && apiResponse.data != null) {
-        return UserModel(
-          status: apiResponse.status,
-          loginResponseDto: apiResponse.data,
-        );
-      } else {
-        throw ServerException(
-          errorModel: ErrorModel(
-            status: 401,
-            errorMessage: apiResponse.message ?? "فشل تحديث الـ Token",
-          ),
-        );
-      }
-    } on DioException catch (e) {
-      throw _handleDioException(e);
-    }
-  }
-
-  ServerException _handleDioException(DioException e) {
-    final statusCode = e.response?.statusCode ?? 500;
-    final data = e.response?.data;
-
-    // اتعامل مع Redirect (3xx)
-    if (statusCode >= 300 && statusCode < 400) {
-      return ServerException(
-        errorModel: ErrorModel(
-          status: statusCode,
-          errorMessage: "خطأ في الاتصال. تأكد من رابط السيرفر.",
-        ),
+      
+      // 3️⃣ تحويل الـ Response إلى UserModel
+      final userModel = AuthResponseMapper.toUserModel(
+        apiResponse,
+        errorContext: "فشل تحديث الـ Token",
       );
-    }
 
-    // اتعامل مع الأخطاء (4xx, 5xx)
-    if (data != null && statusCode >= 400) {
-      if (data is Map<String, dynamic>) {
-        return ServerException(errorModel: ErrorModel.fromJson(data));
-      } else if (data is String) {
-        try {
-          final decoded = jsonDecode(data) as Map<String, dynamic>;
-          return ServerException(errorModel: ErrorModel.fromJson(decoded));
-        } catch (_) {
-          return ServerException(
-            errorModel: ErrorModel(status: statusCode, errorMessage: data),
-          );
-        }
+      // 4️⃣ تحديث الـ Tokens المحفوظة
+      if (userModel.accessToken != null) {
+        await localDataSource.saveTokens(
+          accessToken: userModel.accessToken!,
+          refreshToken: userModel.refreshToken,
+        );
       }
-    }
 
-    // Default error
-    return ServerException(
-      errorModel: ErrorModel(
-        status: statusCode,
-        errorMessage: e.message ?? "حصل مشكلة في الاتصال بالخادم، جرب تاني.",
-      ),
-    );
+      return userModel;
+    } on DioException catch (e) {
+      // معالجة أخطاء Dio
+      throw DioExceptionHandler.handle(e);
+    }
   }
 }

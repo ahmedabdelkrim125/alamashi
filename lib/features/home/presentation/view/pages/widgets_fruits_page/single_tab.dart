@@ -1,8 +1,8 @@
 import 'package:egyptian_supermaekat/constant.dart';
 import 'package:egyptian_supermaekat/core/style.dart';
 import 'package:egyptian_supermaekat/core/theme_color.dart';
+import 'package:egyptian_supermaekat/core/utils/responsive_helper.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class SingleTab extends StatelessWidget {
   const SingleTab({
@@ -18,27 +18,38 @@ class SingleTab extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: onTap,
-      borderRadius: BorderRadius.circular(30.r),
-      child: Container(
-        height: 36.h,
-        padding: EdgeInsets.symmetric(horizontal: 24.w),
-        decoration: BoxDecoration(
-          color: isSelected ? ThemeColor.brandColor : Colors.transparent,
-          borderRadius: BorderRadius.circular(30.r),
-          border: Border.all(color: ThemeColor.graniteGray, width: 1.5),
-        ),
-        child: Center(
-          child: Text(
-            title,
-            style: Style.textStyle14.copyWith(
-              fontFamily: cairoSemiBold,
-              color: isSelected ? ThemeColor.bgColor : ThemeColor.graniteGray,
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        final isTablet = ResponsiveHelper.isTablet(context);
+        final borderRadius = isTablet ? 40.0 : 30.0;
+        final height = isTablet ? 50.0 : 36.0;
+        final paddingHorizontal = isTablet ? 35.0 : 24.0;
+
+        return InkWell(
+          onTap: onTap,
+          borderRadius: BorderRadius.circular(borderRadius),
+          child: Container(
+            height: height,
+            padding: EdgeInsets.symmetric(horizontal: paddingHorizontal),
+            decoration: BoxDecoration(
+              color: isSelected ? ThemeColor.brandColor : Colors.transparent,
+              borderRadius: BorderRadius.circular(borderRadius),
+              border: Border.all(color: ThemeColor.graniteGray, width: 1.5),
+            ),
+            child: Center(
+              child: Text(
+                title,
+                style: Style.textStyle14.copyWith(
+                  fontFamily: cairoSemiBold,
+                  color: isSelected
+                      ? ThemeColor.bgColor
+                      : ThemeColor.graniteGray,
+                ),
+              ),
             ),
           ),
-        ),
-      ),
+        );
+      },
     );
   }
 }

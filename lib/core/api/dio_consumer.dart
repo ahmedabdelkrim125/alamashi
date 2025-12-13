@@ -1,7 +1,9 @@
+// Path: lib/core/api/dio_consumer.dart
+
 import 'package:dio/dio.dart';
+import 'package:egyptian_supermaekat/core/api/api_consumer.dart';
+import 'package:egyptian_supermaekat/core/network/dio_exception_handler.dart';
 import 'package:injectable/injectable.dart';
-import 'api_consumer.dart';
-import '../errors/exceptions.dart';
 
 @LazySingleton(as: ApiConsumer)
 class DioConsumer implements ApiConsumer {
@@ -23,7 +25,8 @@ class DioConsumer implements ApiConsumer {
       );
       return response.data;
     } on DioException catch (e) {
-      handelDioException(e);
+      // ✅ استخدام DioExceptionHandler بدلاً من handelDioException
+      throw DioExceptionHandler.handle(e);
     }
   }
 
@@ -41,7 +44,7 @@ class DioConsumer implements ApiConsumer {
       );
       return response.data;
     } on DioException catch (e) {
-      handelDioException(e);
+      throw DioExceptionHandler.handle(e);
     }
   }
 
@@ -59,7 +62,7 @@ class DioConsumer implements ApiConsumer {
       );
       return response.data;
     } on DioException catch (e) {
-      handelDioException(e);
+      throw DioExceptionHandler.handle(e);
     }
   }
 
@@ -77,7 +80,7 @@ class DioConsumer implements ApiConsumer {
       );
       return response.data;
     } on DioException catch (e) {
-      handelDioException(e);
+      throw DioExceptionHandler.handle(e);
     }
   }
 
@@ -95,7 +98,7 @@ class DioConsumer implements ApiConsumer {
       );
       return response.data;
     } on DioException catch (e) {
-      handelDioException(e);
+      throw DioExceptionHandler.handle(e);
     }
   }
 }

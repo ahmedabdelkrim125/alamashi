@@ -8,11 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 class CutomForgetText extends StatelessWidget {
-  const CutomForgetText({
-    super.key,
-    required this.textline,
-    this.autofocus,
-  });
+  const CutomForgetText({super.key, required this.textline, this.autofocus});
   final String textline;
   final bool? autofocus;
   @override
@@ -20,7 +16,7 @@ class CutomForgetText extends StatelessWidget {
     return TextButton(
       onPressed: () {
         log('نسيت كلمة المرور؟');
-        context.go(AppRouter.kForgotPassword);
+        context.push(AppRouter.kForgotPassword);
       },
       child: Text(
         textline,

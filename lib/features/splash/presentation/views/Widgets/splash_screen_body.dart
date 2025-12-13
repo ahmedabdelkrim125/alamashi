@@ -4,6 +4,7 @@ import 'package:egyptian_supermaekat/core/app_router.dart';
 import 'package:egyptian_supermaekat/core/style.dart';
 import 'package:egyptian_supermaekat/core/theme_color.dart';
 import 'package:egyptian_supermaekat/core/utils/app_images.dart';
+import 'package:egyptian_supermaekat/core/utils/responsive_helper.dart';
 import 'package:egyptian_supermaekat/features/auth/presentation/viewmodel/auth_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -34,12 +35,10 @@ class _SplashScreenBodyState extends State<SplashScreenBody>
   }
 
   Future<void> _initializeApp() async {
-    await Future.wait(
-      [
-        Future.delayed(const Duration(seconds: 5)),
-        context.read<AuthCubit>().checkAuthStatus()
-      ],
-    );
+    await Future.wait([
+      Future.delayed(const Duration(seconds: 5)),
+      context.read<AuthCubit>().checkAuthStatus(),
+    ]);
 
     if (mounted) {
       final state = context.read<AuthCubit>().state;
@@ -59,16 +58,17 @@ class _SplashScreenBodyState extends State<SplashScreenBody>
 
   @override
   Widget build(BuildContext context) {
+    // Using MediaQuery for layout responsiveness
+    final isTablet = ResponsiveHelper.isTablet(context);
+    // final padding = ResponsiveHelper.getPadding(context);
+
     return Scaffold(
       backgroundColor: Colors.transparent,
       body: Stack(
         fit: StackFit.expand,
         children: [
           Positioned.fill(
-            child: Image.asset(
-              Assets.splashFullDesign,
-              fit: BoxFit.cover,
-            ),
+            child: Image.asset(Assets.splashFullDesign, fit: BoxFit.cover),
           ),
           Center(
             child: Row(
@@ -82,7 +82,9 @@ class _SplashScreenBodyState extends State<SplashScreenBody>
                       textStyle: Style.textStyle10.copyWith(
                         color: ThemeColor.bgColor,
                         fontFamily: aldhabiRegular,
-                        fontSize: 69.39.sp,
+                        fontSize: isTablet
+                            ? 80.sp
+                            : 69.39.sp, // Using ScreenUtil for font size
                       ),
                       speed: const Duration(milliseconds: 150),
                       cursor: '',
@@ -98,13 +100,15 @@ class _SplashScreenBodyState extends State<SplashScreenBody>
                     style: Style.textStyle10.copyWith(
                       color: ThemeColor.bgColor,
                       fontFamily: aldhabiRegular,
-                      fontSize: 60.sp,
+                      fontSize: isTablet
+                          ? 70.sp
+                          : 60.sp, // Using ScreenUtil for font size
                     ),
                   ),
                 ),
               ],
             ),
-          )
+          ),
         ],
       ),
     );

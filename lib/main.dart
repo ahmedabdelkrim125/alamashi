@@ -1,3 +1,4 @@
+import 'package:egyptian_supermaekat/bloc_observer.dart';
 import 'package:egyptian_supermaekat/core/app_router.dart';
 import 'package:egyptian_supermaekat/core/di/injection.dart';
 import 'package:egyptian_supermaekat/core/utils/cache_helper.dart';
@@ -16,20 +17,16 @@ void main() async {
 
   await dotenv.load(fileName: ".env");
 
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
-   await setupInjection();
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  await setupInjection();
+  Bloc.observer = const AppBlocObserver();
   runApp(
     MultiBlocProvider(
       providers: [
         BlocProvider<AuthCubit>(
-         
-           create: (context) => getIt<AuthCubit>()..checkAuthStatus(),
+          create: (context) => getIt<AuthCubit>()..checkAuthStatus(),
         ),
-        BlocProvider<NavigationCubit>(
-          create: (context) => NavigationCubit(),
-        ),
+        BlocProvider<NavigationCubit>(create: (context) => NavigationCubit()),
       ],
       child: ScreenUtilInit(
         designSize: const Size(375, 812),
@@ -50,7 +47,11 @@ class EgyptianSupermaekat extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       routerConfig: AppRouter.router,
       builder: (context, child) {
-        return child!;
+        // Ensure ScreenUtil is initialized properly
+        return MediaQuery(
+          data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
+          child: child!,
+        );
       },
     );
   }

@@ -2,22 +2,23 @@ import 'package:egyptian_supermaekat/constant.dart';
 import 'package:egyptian_supermaekat/core/style.dart';
 import 'package:egyptian_supermaekat/core/theme_color.dart';
 import 'package:egyptian_supermaekat/core/utils/app_images.dart';
+import 'package:egyptian_supermaekat/core/utils/responsive_helper.dart';
 import 'package:egyptian_supermaekat/features/home/presentation/view/models/product.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 
 class ProductDealWidget extends StatelessWidget {
   const ProductDealWidget({super.key, required this.product});
   final Product product;
+
   Widget _buildTag({required String text, required Color color}) {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 4.h),
+      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
       decoration: BoxDecoration(
         color: color,
-        borderRadius: BorderRadius.only(
-          topRight: Radius.circular(8.r),
-          bottomLeft: Radius.circular(8.r),
+        borderRadius: const BorderRadius.only(
+          topRight: Radius.circular(8),
+          bottomLeft: Radius.circular(8),
         ),
       ),
       child: Text(
@@ -36,19 +37,23 @@ class ProductDealWidget extends StatelessWidget {
     }
     if (product.discountPercentage != null && product.discountPercentage! > 0) {
       return _buildTag(
-          color: ThemeColor.orangeAccentColor,
-          text: '%وفر${product.discountPercentage}');
+        color: ThemeColor.orangeAccentColor,
+        text: '%وفر${product.discountPercentage}',
+      );
     }
-    return SizedBox.shrink();
+    return const SizedBox.shrink();
   }
 
   @override
   Widget build(BuildContext context) {
+    final isTablet = ResponsiveHelper.isTablet(context);
+    final containerWidth = isTablet ? 200.0 : 163.0;
+    final borderRadius = isTablet ? 16.0 : 12.0;
+
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 5.w, vertical: 5.h),
+      padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 5),
       child: Container(
-        width: 163.w,
-        // height: 265.h,
+        width: containerWidth,
         decoration: BoxDecoration(
           boxShadow: [
             BoxShadow(
@@ -59,85 +64,88 @@ class ProductDealWidget extends StatelessWidget {
             ),
           ],
           color: ThemeColor.bgColor,
-          borderRadius: BorderRadius.circular(12.r),
+          borderRadius: BorderRadius.circular(borderRadius),
         ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
+            // Image and tags stack
             Stack(
+              clipBehavior: Clip.none,
               children: [
                 Padding(
-                    padding: EdgeInsets.symmetric(vertical: 8.w),
-                    child: Stack(
-                      children: [
-                        Container(
-                          width: 150.w,
-                          height: 150.h,
-                          decoration: BoxDecoration(
-                            color: ThemeColor.lightSilver,
-                            borderRadius: BorderRadius.circular(8.r),
-                          ),
-                          child: Center(
-                            child: Image.network(
-                              product.imageUrl,
-                              width: 146.92.w,
-                              height: 119.w,
-                            ),
-                          ),
+                  padding: const EdgeInsets.symmetric(vertical: 8),
+                  child: Stack(
+                    children: [
+                      Container(
+                        width: 150,
+                        height: 150,
+                        decoration: BoxDecoration(
+                          color: ThemeColor.lightSilver,
+                          borderRadius: BorderRadius.circular(8),
                         ),
-                        Positioned(
-                          top: 0,
-                          right: 0,
-                          child: _buildConditionalTag(),
-                        ),
-                        Positioned(
-                          top: 2.h,
-                          left: 8.w,
-                          child: CircleAvatar(
-                            backgroundColor: ThemeColor.white,
-                            radius: 13.r,
-                            child: Image.asset(
-                              Assets.favorites,
-                              width: 15.w,
-                            ),
+                        child: Center(
+                          child: Image.network(
+                            product.imageUrl,
+                            width: 146.92,
+                            height: 119,
+                            fit: BoxFit.contain,
                           ),
                         ),
-                      ],
-                    )
-                    //Edting here //
-                    ),
+                      ),
+                      Positioned(
+                        top: 0,
+                        right: 0,
+                        child: _buildConditionalTag(),
+                      ),
+                      Positioned(
+                        top: 2,
+                        left: 8,
+                        child: CircleAvatar(
+                          backgroundColor: ThemeColor.white,
+                          radius: 13,
+                          child: Image.asset(
+                            Assets.favorites,
+                            width: 15,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
                 Positioned(
-                  top: 90.h,
-                  right: -25.w,
+                  top: 90,
+                  right: -25,
                   child: InkWell(
                     onTap: () {},
                     child: Image.asset(
                       Assets.add,
-                      width: 100.w,
-                      height: 100.h,
+                      width: 100,
+                      height: 100,
                     ),
                   ),
-                )
+                ),
               ],
             ),
+
+            // Details section
             Expanded(
               child: Padding(
-                padding: EdgeInsets.fromLTRB(8.w, 4.h, 8.w, 8.h),
+                padding: const EdgeInsets.fromLTRB(8, 4, 8, 8),
                 child: Column(
-                  mainAxisAlignment:
-                      MainAxisAlignment.spaceAround, // توزيع العناصر
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  spacing: 8.h,
                   children: [
+                    // First row: rating + name
                     Row(
-                      spacing: 18.22.w,
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
+                        // Rating
                         Row(
-                          spacing: 4.w,
-                          mainAxisAlignment: MainAxisAlignment.end,
+                          mainAxisSize: MainAxisSize.min,
                           children: [
                             SvgPicture.asset(Assets.ratingStarIcon),
+                            const SizedBox(width: 4),
                             Text(
                               product.rating.toString(),
                               style: Style.textStyle14.copyWith(
@@ -146,6 +154,10 @@ class ProductDealWidget extends StatelessWidget {
                             ),
                           ],
                         ),
+
+                        const SizedBox(width: 18.22),
+
+                        // Name (take remaining space)
                         Expanded(
                           child: Text(
                             product.name,
@@ -159,6 +171,9 @@ class ProductDealWidget extends StatelessWidget {
                         ),
                       ],
                     ),
+
+                    const SizedBox(height: 8),
+
                     Align(
                       alignment: Alignment.centerRight,
                       child: Text(
@@ -169,6 +184,10 @@ class ProductDealWidget extends StatelessWidget {
                         ),
                       ),
                     ),
+
+                    const SizedBox(height: 6),
+
+                    // Price row
                     Row(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
@@ -178,6 +197,7 @@ class ProductDealWidget extends StatelessWidget {
                             fontFamily: cairoBold,
                           ),
                         ),
+                        const SizedBox(width: 6),
                         Text(
                           product.price.toString(),
                           style: Style.textStyle14.copyWith(

@@ -1,38 +1,49 @@
 import 'package:egyptian_supermaekat/core/theme_color.dart';
+import 'package:egyptian_supermaekat/core/utils/responsive_helper.dart';
 import 'package:egyptian_supermaekat/features/home/presentation/view/Widgets/banner_image.dart';
 import 'package:egyptian_supermaekat/features/home/presentation/view/Widgets/banner_text_content.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class PromoBanner extends StatelessWidget {
   const PromoBanner({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: 343.w,
-      height: 184.h,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(16.r),
-        boxShadow: [
-          BoxShadow(
-            color: ThemeColor.charcoalColor.withOpacity(.3),
-            blurRadius: 10,
-            spreadRadius: 2,
-            offset: Offset(0, 6),
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        final isTablet = ResponsiveHelper.isTablet(context);
+        final containerWidth = isTablet ? 400.0 : 343.0;
+        final containerHeight = isTablet ? 220.0 : 184.0;
+        final borderRadius = isTablet ? 20.0 : 16.0;
+        final firstSpacing = isTablet ? 20.0 : 17.0;
+        final secondSpacing = isTablet ? 15.0 : 12.0;
+
+        return Container(
+          width: containerWidth,
+          height: containerHeight,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(borderRadius),
+            boxShadow: [
+              BoxShadow(
+                color: ThemeColor.charcoalColor.withOpacity(.3),
+                blurRadius: 10,
+                spreadRadius: 2,
+                offset: Offset(0, 6),
+              ),
+            ],
+            color: ThemeColor.greenColor,
           ),
-        ],
-        color: ThemeColor.greenColor,
-      ),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          SizedBox(width: 17.w),
-          Expanded(child: BannerTextContent()),
-          SizedBox(width: 12.w),
-          Expanded(child: BannerImage()),
-        ],
-      ),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              SizedBox(width: firstSpacing),
+              Expanded(child: BannerTextContent()),
+              SizedBox(width: secondSpacing),
+              Expanded(child: BannerImage()),
+            ],
+          ),
+        );
+      },
     );
   }
 }

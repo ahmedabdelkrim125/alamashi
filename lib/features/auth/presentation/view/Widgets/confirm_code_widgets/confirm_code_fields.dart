@@ -1,9 +1,9 @@
 // lib/.../Widgets/confirm_code_widgets/confirm_code_fields.dart
 
 import 'package:egyptian_supermaekat/core/theme_color.dart';
+import 'package:egyptian_supermaekat/core/utils/responsive_helper.dart';
 import 'package:egyptian_supermaekat/core/utils/validators.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:pinput/pinput.dart';
 
 class ConfirmCodeFields extends StatelessWidget {
@@ -18,24 +18,34 @@ class ConfirmCodeFields extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final defaultPinTheme = PinTheme(
-     width: 55.75.w,
-      height: 55.75.h,
-      textStyle: TextStyle(fontSize: 22.sp),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(8),
-        border: Border.all(color: ThemeColor.darkGreenColor),
-      ),
-    );
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        final isTablet = ResponsiveHelper.isTablet(context);
+        final pinWidth = isTablet ? 70.0 : 55.75;
+        final pinHeight = isTablet ? 70.0 : 55.75;
+        final fontSize = isTablet ? 26.0 : 22.0;
+        final separatorWidth = isTablet ? 50.0 : 40.0;
 
-    return Pinput(
-      length: 4,
-      controller: pinController,
-      focusNode: focusNode,
-      defaultPinTheme: defaultPinTheme,
+        final defaultPinTheme = PinTheme(
+          width: pinWidth,
+          height: pinHeight,
+          textStyle: TextStyle(fontSize: fontSize),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(8),
+            border: Border.all(color: ThemeColor.darkGreenColor),
+          ),
+        );
 
-      validator:AppValidators.confirmCode,
-      separatorBuilder: (index) => SizedBox(width: 40.w),
+        return Pinput(
+          length: 4,
+          controller: pinController,
+          focusNode: focusNode,
+          defaultPinTheme: defaultPinTheme,
+
+          validator: AppValidators.confirmCode,
+          separatorBuilder: (index) => SizedBox(width: separatorWidth),
+        );
+      },
     );
   }
 }

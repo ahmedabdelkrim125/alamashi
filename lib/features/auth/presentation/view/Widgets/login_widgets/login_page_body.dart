@@ -11,16 +11,35 @@ import 'package:egyptian_supermaekat/features/auth/presentation/view/Widgets/log
 import 'package:egyptian_supermaekat/features/auth/presentation/viewmodel/auth_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 
-class LoginPageBody extends StatelessWidget {
-  LoginPageBody({super.key});
-  final _formKey = GlobalKey<FormState>();
+class LoginPageBody extends StatefulWidget {
+  const LoginPageBody({super.key});
 
+  @override
+  State<LoginPageBody> createState() => _LoginPageBodyState();
+}
+
+class _LoginPageBodyState extends State<LoginPageBody> {
+  final _formKey = GlobalKey<FormState>();
+  
   // Controllers
-  final TextEditingController emailController = TextEditingController();
-  final TextEditingController passwordController = TextEditingController();
+  late final TextEditingController emailController;
+  late final TextEditingController passwordController;
+
+  @override
+  void initState() {
+    super.initState();
+    emailController = TextEditingController();
+    passwordController = TextEditingController();
+  }
+
+  @override
+  void dispose() {
+    emailController.dispose();
+    passwordController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -28,24 +47,22 @@ class LoginPageBody extends StatelessWidget {
       child: BlocConsumer<AuthCubit, AuthState>(
         listener: (context, state) {
           if (state is AuthLoading) {
-            WidgetsBinding.instance.addPostFrameCallback(
-              (_) {
-                showDialog(
-                  context: context,
-                  barrierDismissible: false,
-                  builder: (_) => AlertDialog(
-                    backgroundColor: ThemeColor.bgColor,
-                    content: Row(
-                      children: [
-                        CircularProgressIndicator(),
-                        SizedBox(width: 16.w),
-                        Text("...جاري تسجيل الدخول"),
-                      ],
-                    ),
+            WidgetsBinding.instance.addPostFrameCallback((_) {
+              showDialog(
+                context: context,
+                barrierDismissible: false,
+                builder: (_) => AlertDialog(
+                  backgroundColor: ThemeColor.bgColor,
+                  content: Row(
+                    children: [
+                      CircularProgressIndicator(),
+                      SizedBox(width: 16),
+                      Text("...جاري تسجيل الدخول"),
+                    ],
                   ),
-                );
-              },
-            );
+                ),
+              );
+            });
           } else if (state is AuthSuccess) {
             Navigator.pop(context);
             context.go(AppRouter.kMain);
@@ -70,21 +87,17 @@ class LoginPageBody extends StatelessWidget {
                 children: [
                   LoginHeader(),
                   LoginEmailField(controller: emailController),
-                  LoginPasswordField(
-                    controller: passwordController,
-                  ),
+                  LoginPasswordField(controller: passwordController),
                   LoginButton(
                     formKey: _formKey,
                     emailController: emailController,
                     passwordController: passwordController,
                   ),
-                  SizedBox(
-                    height: 10.h,
-                  ),
+                  SizedBox(height: 10),
                   const ForgotPasswordLink(),
-                  SizedBox(height: 27.h),
+                  SizedBox(height: 27),
                   const LoginOrDivider(),
-                  SizedBox(height: 12.h),
+                  SizedBox(height: 12),
                   const LoginSocialSection(),
                 ],
               ),

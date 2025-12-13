@@ -7,7 +7,7 @@ class AccountPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: AccountPageBody(),
+      body: SafeArea(child: AccountPageBody(),),
     );
   }
 }

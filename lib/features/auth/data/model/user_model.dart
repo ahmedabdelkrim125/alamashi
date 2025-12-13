@@ -1,3 +1,4 @@
+import 'package:egyptian_supermaekat/core/api/end_points.dart';
 import 'package:egyptian_supermaekat/features/auth/data/model/user.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'login_response_dto.dart';
@@ -6,10 +7,10 @@ part 'user_model.g.dart';
 
 @JsonSerializable()
 class UserModel {
-  @JsonKey(name: 'status')
+  @JsonKey(name: ApiKeys.status)
   final String? status;
   
-  @JsonKey(name: 'loginResponseDto')
+  @JsonKey(name: ApiKeys.loginResponseDto)
   final LoginResponseDto? loginResponseDto;
 
   UserModel({

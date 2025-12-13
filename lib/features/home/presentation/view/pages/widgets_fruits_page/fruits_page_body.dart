@@ -5,7 +5,6 @@ import 'package:egyptian_supermaekat/features/home/presentation/view/pages/widge
 import 'package:egyptian_supermaekat/features/home/presentation/viewmodel/segmented_tab_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class FruitsPageBody extends StatelessWidget {
   const FruitsPageBody({super.key});
@@ -51,50 +50,43 @@ class FruitsPageBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => SegmentedTabCubit(),
-      child: CustomScrollView(
-        slivers: [
-          SliverToBoxAdapter(
-            child: SizedBox(height: 50.h),
-          ),
-          SliverToBoxAdapter(
-            child: CustomAppBar(
-              title: 'الفواكهة والخضروات',
-              onPressed: () {},
-            ),
-          ),
-          SliverToBoxAdapter(
-            child: SizedBox(height: 24.h),
-          ),
-          SliverToBoxAdapter(
-            child: CategoryTabs(),
-          ),
-          SliverToBoxAdapter(
-            child: SizedBox(height: 16.h),
-          ),
-          SliverPadding(
-            padding: EdgeInsets.symmetric(horizontal: 16.w),
-            sliver: SliverGrid(
-              delegate: SliverChildBuilderDelegate(
-                (context, index) {
-                  final product = productsData[index];
-                  return ProductsCarouselPages(
-                    image: product['image']!,
-                    title: product['title']!,
-                    size: product['size']!,
-                    price: product['price']!,
-                  );
-                },
-                childCount: productsData.length,
+      child: LayoutBuilder(
+        builder: (context, constraints) {
+          return CustomScrollView(
+            slivers: [
+              SliverToBoxAdapter(child: SizedBox(height: 50)),
+              SliverToBoxAdapter(
+                child: CustomAppBar(
+                  title: 'الفواكهة والخضروات',
+                  onPressed: () {},
+                ),
               ),
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                childAspectRatio: 0.6,
-                crossAxisSpacing: 10.w,
-                mainAxisSpacing: 10.h,
+              SliverToBoxAdapter(child: SizedBox(height: 24)),
+              SliverToBoxAdapter(child: CategoryTabs()),
+              SliverToBoxAdapter(child: SizedBox(height: 16)),
+              SliverPadding(
+                padding: EdgeInsets.symmetric(horizontal: 16),
+                sliver: SliverGrid(
+                  delegate: SliverChildBuilderDelegate((context, index) {
+                    final product = productsData[index];
+                    return ProductsCarouselPages(
+                      image: product['image']!,
+                      title: product['title']!,
+                      size: product['size']!,
+                      price: product['price']!,
+                    );
+                  }, childCount: productsData.length),
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2,
+                    childAspectRatio: 0.6,
+                    crossAxisSpacing: 10,
+                    mainAxisSpacing: 10,
+                  ),
+                ),
               ),
-            ),
-          ),
-        ],
+            ],
+          );
+        },
       ),
     );
   }
